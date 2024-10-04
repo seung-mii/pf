@@ -3,4 +3,5 @@
 ### 사용 기술
 - Next.js
 - Three.js
+- Tailwind CSS
 - Vercel
