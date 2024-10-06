@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Photo from "../../public/img/photo.jpeg";
@@ -10,18 +10,81 @@ import Filp from "../../public/img/icon/reload.png";
 export default function Contact() {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
+  const cardWrapperRef = useRef<HTMLDivElement>(null);
   const frontCardRef = useRef<HTMLDivElement>(null);
   const backCardRef = useRef<HTMLDivElement>(null);
+  const frontLightRef = useRef<HTMLDivElement>(null);
+  const backLightRef = useRef<HTMLDivElement>(null);
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
   };
 
+  useEffect(() => {
+    const cardWrapper = cardWrapperRef.current;
+    const frontCard = frontCardRef.current;
+    const backCard = backCardRef.current;
+    const frontLight = frontLightRef.current;
+    const backLight = backLightRef.current;
+
+    if (!cardWrapper || !frontCard || !backCard || !frontLight || !backLight) return;
+
+    const mouseMove = (e: MouseEvent) => {
+      const rect = cardWrapper.getBoundingClientRect();
+      const left = e.clientX - rect.left;
+      const top = e.clientY - rect.top;
+      const centerX = left - rect.width / 2;
+      const centerY = top - rect.height / 2;
+      const d = Math.sqrt(centerX ** 2 + centerY ** 2);
+
+      if (!isFlipped) {
+        frontCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
+        frontCard.style.transform = `rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
+        frontLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
+
+        backCard.style.transform = "rotateY(180deg)";
+        backCard.style.boxShadow = "";
+        backLight.style.backgroundImage = "";
+      } else {
+        backCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
+        backCard.style.transform = `rotateY(180deg) rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
+        backLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
+        backLight.style.transform = `translateY(-30px)`;
+
+        frontCard.style.transform = "";
+        frontCard.style.boxShadow = "";
+        frontLight.style.backgroundImage = "";
+      }
+    };
+
+    const mouseLeave = () => {
+      frontCard.style.boxShadow = "";
+      frontCard.style.transform = "";
+      frontLight.style.backgroundImage = "";
+
+      backCard.style.boxShadow = "";
+      backCard.style.transform = "rotateY(180deg)";
+      backLight.style.backgroundImage = "";
+    };
+
+    cardWrapper.addEventListener("mousemove", mouseMove);
+    cardWrapper.addEventListener("mouseleave", mouseLeave);
+
+    return () => {
+      cardWrapper.removeEventListener("mousemove", mouseMove);
+      cardWrapper.removeEventListener("mouseleave", mouseLeave);
+    };
+  }, [isFlipped]);
+
   return (
     <div className="flex items-center justify-center relative min-h-screen text-[#1E2F44] bg-gradient-to-b from-[#6F94B0] to-[#A8C5D3] font-serif px-4">
-      <div className="relative flex flex-col items-center justify-center w-full sm:w-11/12 md:w-4/5 lg:w-[55%] transition-transform duration-200 [perspective:1000px] md:hover:scale-105">
+      <div
+        ref={cardWrapperRef}
+        className="relative flex flex-col items-center justify-center w-full sm:w-11/12 md:w-4/5 lg:w-[55%] transition-transform duration-200 [perspective:1000px] md:hover:scale-105"
+      >
         <div className={`w-full [transform-style:preserve-3d] transition-transform duration-700 ease-in-out ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
           <div ref={frontCardRef} className="relative flex flex-col bg-[#f0f0f0] p-4 sm:p-7 md:p-8 lg:p-10 shadow-md [backface-visibility:hidden]">
+            <div ref={frontLightRef}className="absolute w-full h-full pointer-events-none -translate-x-4 -translate-y-4 sm:-translate-x-7 sm:-translate-y-7 md:-translate-x-8 md:-translate-y-8 lg:-translate-x-10 lg:-translate-y-10"></div>
             <p className="text-[12px] sm:text-[13px] font-normal mb-4 text-center sm:mb-5">
               상상을 실현하며, 사용자 경험과 만족을 극대화합니다.
             </p>
@@ -68,6 +131,7 @@ export default function Contact() {
             </div>
           </div>
           <div ref={backCardRef} className="absolute top-0 left-0 w-full h-full bg-[#f0f0f0] p-4 sm:p-6 md:p-8 lg:p-10 shadow-md flex flex-col items-center justify-start [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div ref={backLightRef} className="absolute w-full h-full pointer-events-none -translate-x-4 -translate-y-4 sm:-translate-x-7 sm:-translate-y-7 md:-translate-x-8 md:-translate-y-8 lg:-translate-x-10 lg:-translate-y-10"></div>
             <div className="w-full text-left">
               <h1 className="w-[140px] sm:w-[160px] md:w-[170px] text-[14px] sm:text-[16px] md:text-[18px] font-semibold mb-3 sm:mb-5 pb-2 sm:pb-3 border-b-[1px] border-solid border-[#1E2F44]">
                 CONTACT
