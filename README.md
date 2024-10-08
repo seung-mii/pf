@@ -4,4 +4,6 @@
 - Next.js
 - Three.js
 - Tailwind CSS
+- EmailJS
+- react-toastify
 - Vercel

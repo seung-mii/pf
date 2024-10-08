@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, FormEvent } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import emailjs from "emailjs-com";
 import Image from "next/image";
 import Link from "next/link";
 import Photo from "../../public/img/photo.jpeg";
@@ -9,15 +12,42 @@ import Filp from "../../public/img/icon/reload.png";
 
 export default function Contact() {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const cardWrapperRef = useRef<HTMLDivElement>(null);
   const frontCardRef = useRef<HTMLDivElement>(null);
   const backCardRef = useRef<HTMLDivElement>(null);
   const frontLightRef = useRef<HTMLDivElement>(null);
   const backLightRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleFlip = () => {
     setIsFlipped((prev) => !prev);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      if (formRef.current) {
+        await emailjs.sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+          formRef.current,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
+        );
+        toast.success("메일이 전송되었습니다!", { position: 'top-center' });
+        formRef.current.reset();
+      } else {
+        throw new Error("Form reference is null");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("메일 전송에 실패했습니다. tmdal9953@naver.com로 메일주시면 빠른 시일 내에 개선하겠습니다!", { position: 'top-center' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -145,7 +175,8 @@ export default function Contact() {
                 </p>
               </div>
             </div>
-            <form className="flex flex-col gap-2 sm:gap-3 w-full max-w-2xl mt-2 sm:mt-3">
+            <ToastContainer />
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3 w-full max-w-2xl mt-2 sm:mt-3">
               <div className="relative">
                 <input type="text" name="user_name" placeholder="Name..." required className="w-full p-3 md:p-4 text-[12px] rounded-[15px] bg-[#D1E4EC] outline-none sm:p-3" />
               </div>
@@ -155,8 +186,12 @@ export default function Contact() {
               <div className="relative">
                 <textarea placeholder="Message..." name="message" required className="w-full p-3 md:p-4 text-[12px] rounded-[15px] bg-[#D1E4EC] outline-none resize-none sm:p-3" />
               </div>
-              <button type="submit" className="block w-fit text-[10px] font-bold px-3 py-2 mx-auto border border-[#1e2f44] rounded-full cursor-pointer transition-all duration-300 hover:bg-[#2f3e4f] hover:text-white sm:px-6 sm:py-2">
-                Send
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`block w-fit text-[10px] font-bold px-3 py-2 mx-auto border border-[#1e2f44] rounded-full cursor-pointer transition-all duration-300
+                  ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "hover:bg-[#2F3E4F] hover:text-white"} sm:px-6 sm:py-2`}>
+                {isSubmitting ? "Sending..." : "Send"}
               </button>
             </form>
           </div>
