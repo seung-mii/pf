@@ -1,0 +1,100 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Labeling from "../../public/img/labeling_photo.webp";
+import Zomato from "../../public/img/zomato_photo.webp";
+
+const projects = [
+  {
+    id: 1,
+    title: "Zomato Clone",
+    date: "「2024.09.02 ~ 2024.09.29」",
+    tags: ["HTML", "SCSS", "JavaScript", "Vercel"],
+    imgSrc: Zomato,
+    link: "zomato",
+    badge: "SOLO",
+    isImportant: true,
+  },
+  {
+    id: 2,
+    title: "Labeling Tool",
+    date: "「2023.11.01 ~ 2023.12.21」",
+    tags: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
+    imgSrc: Labeling,
+    link: "labeling",
+    badge: "SOLO",
+    isImportant: true,
+  },
+  {
+    id: 3,
+    title: "Zomato Clone",
+    date: "「2024.09.02 ~ 2024.09.29」",
+    tags: ["HTML", "SCSS", "JavaScript", "Vercel"],
+    imgSrc: Zomato,
+    link: "zomato",
+    badge: "SOLO",
+    isImportant: true,
+  },
+  {
+    id: 4,
+    title: "Labeling Tool",
+    date: "「2023.11.01 ~ 2023.12.21」",
+    tags: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
+    imgSrc: Labeling,
+    link: "labeling",
+    badge: "SOLO",
+    isImportant: true,
+  },
+];
+
+export default function Project() {
+  const [items, setItems] = useState(projects);
+
+  useEffect(() => {
+    setItems(projects);
+  }, [projects]);
+
+  return (
+    <div className="relative max-w-5xl mx-auto p-4 sm:p-8 font-serif">
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px bg-[#1A2B3C] h-[165vh] transition-all duration-300 ease-out"></div>
+      <div className="flex flex-col items-center">
+        {items.map((item, index) => (
+          <div key={item.id} className={`relative w-full my-3 transform translate-y-5 transition-all duration-700 ease-in-out font-serif flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#1A2B3C] rounded-full z-10"></div>
+            <div className={`absolute top-1/2 w-1/2 h-px bg-[#1A2B3C] ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
+            <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
+              <div className="relative overflow-hidden">
+                <Image src={item.imgSrc} alt={item.title} width={500} height={300}
+                  className="w-full max-h-60 transition-transform filter transition-filter duration-300 ease"
+                />
+                <div className="absolute top-2 left-2 bg-[#D1E4EC] text-[#1A2B3C] text-[12px] sm:text-[13px] md:text-[14px] px-2 py-1 rounded">
+                  {item.badge}
+                </div>
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease hover:opacity-100">
+                  <Link href={`/projects/${item.link}`} className="text-[#D1E4EC] text-[10px] sm:text-[11px] md:text-[12px] underline">
+                    Detail
+                  </Link>
+                </div>
+              </div>
+              <div className="pt-2 pb-3 px-3 text-center">
+                <div className="flex flex-col sm:flex-row justify-center items-center mb-2">
+                  <h3 className="text-base text-[11px] sm:text-[13px] md:text-[15px] font-bold mr-0 sm:mr-2  mb-1 sm:mb-0">{item.title}</h3>
+                  <p className="pb-1 text-[10px] sm:text-[11px] md:text-[12px]">{item.date}</p>
+                </div>
+                <div className="flex justify-center flex-wrap gap-2">
+                  {item.tags.map((tag, idx) => (
+                    <span key={idx} className="text-[8px] sm:text-[9px] md:text-[10px] px-2 sm:px-3 py-1 sm:py-2 border-solid border-[1px] border-[#1A2B3C] rounded-full capitalize">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
