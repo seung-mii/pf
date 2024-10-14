@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Labeling from "../../public/img/labeling_photo.webp";
@@ -50,18 +50,93 @@ const projects = [
 ];
 
 export default function Project() {
-  const [items, setItems] = useState(projects);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const timelineRef = useRef<HTMLDivElement | null>(null);
+
+  const [items, setItems] = useState(projects.slice(0, 2));
+  const [hasMore, setHasMore] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const fetchMoreData = () => {
+    if (items.length >= projects.length) {
+      setHasMore(false);
+      return;
+    }
+    const nextItems = projects.slice(items.length, items.length + 2);
+    setItems((prevItems) => [...prevItems, ...nextItems]);
+  };
 
   useEffect(() => {
-    setItems(projects);
-  }, [projects]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          fetchMoreData();
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const loader = document.getElementById("loader");
+    if (loader) observer.observe(loader);
+
+    return () => {
+      if (loader) observer.unobserve(loader);
+    };
+  }, [hasMore, items]);
+
+  useEffect(() => {
+    const animationObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (ref.current) animationObserver.unobserve(ref.current);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      animationObserver.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        animationObserver.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+
+      const timeline = timelineRef.current;
+      const timelineLine = timeline.querySelector<HTMLDivElement>(".timeline-line");
+
+      if (!timelineLine) return;
+
+      const timelineTop = timeline.getBoundingClientRect().top;
+      const viewportHeight = window.innerHeight;
+      const maxHeight = document.body.scrollHeight - 70;
+
+      const newHeight = Math.min(maxHeight, Math.max(0, viewportHeight - timelineTop));
+
+      timelineLine.style.height = `${newHeight}px`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); 
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="relative max-w-5xl mx-auto p-4 sm:p-8 font-serif">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px bg-[#1A2B3C] h-[165vh] transition-all duration-300 ease-out"></div>
+    <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-serif">
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px bg-[#1A2B3C] h-0 transition-all duration-300 ease-out timeline-line"></div>
       <div className="flex flex-col items-center">
         {items.map((item, index) => (
-          <div key={item.id} className={`relative w-full my-3 transform translate-y-5 transition-all duration-700 ease-in-out font-serif flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+          <div key={item.id} ref={ref} className={`relative w-full my-3 opacity-0 transform translate-y-5 transition-all duration-700 ease-in-out font-serif ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#1A2B3C] rounded-full z-10"></div>
             <div className={`absolute top-1/2 w-1/2 h-px bg-[#1A2B3C] ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
             <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
@@ -95,6 +170,11 @@ export default function Project() {
           </div>
         ))}
       </div>
+      {hasMore && (
+        <div id="loader" className="text-center mt-4">
+          Loading...
+        </div>
+      )}
     </div>
   );
 }
