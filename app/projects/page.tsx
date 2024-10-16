@@ -3,66 +3,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Labeling from "../../public/img/labeling_photo.webp";
-import Zomato from "../../public/img/zomato_photo.webp";
-
-const projects = [
-  {
-    id: 1,
-    title: "Zomato Clone",
-    date: "「2024.09.02 ~ 2024.09.29」",
-    tags: ["HTML", "SCSS", "JavaScript", "Vercel"],
-    imgSrc: Zomato,
-    link: "zomato",
-    badge: "SOLO",
-    isImportant: true,
-  },
-  {
-    id: 2,
-    title: "Labeling Tool",
-    date: "「2023.11.01 ~ 2023.12.21」",
-    tags: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
-    imgSrc: Labeling,
-    link: "labeling",
-    badge: "SOLO",
-    isImportant: true,
-  },
-  {
-    id: 3,
-    title: "Zomato Clone",
-    date: "「2024.09.02 ~ 2024.09.29」",
-    tags: ["HTML", "SCSS", "JavaScript", "Vercel"],
-    imgSrc: Zomato,
-    link: "zomato",
-    badge: "SOLO",
-    isImportant: true,
-  },
-  {
-    id: 4,
-    title: "Labeling Tool",
-    date: "「2023.11.01 ~ 2023.12.21」",
-    tags: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
-    imgSrc: Labeling,
-    link: "labeling",
-    badge: "SOLO",
-    isImportant: true,
-  },
-];
+import { projectsData } from "../../data/projects"
 
 export default function Project() {
   const ref = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
 
-  const [items, setItems] = useState(projects.slice(0, 2));
+  const [items, setItems] = useState(projectsData.slice(0, 2));
   const [hasMore, setHasMore] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
 
   const fetchMoreData = () => {
-    if (items.length >= projects.length) {
+    if (items.length >= projectsData.length) {
       setHasMore(false);
       return;
     }
-    const nextItems = projects.slice(items.length, items.length + 2);
+    const nextItems = projectsData.slice(items.length, items.length + 2);
     setItems((prevItems) => [...prevItems, ...nextItems]);
   };
 
@@ -141,9 +97,15 @@ export default function Project() {
             <div className={`absolute top-1/2 w-1/2 h-px bg-[#1A2B3C] ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
             <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
               <div className="relative overflow-hidden">
-                <Image src={item.imgSrc} alt={item.title} width={500} height={300}
-                  className="w-full max-h-60 transition-transform filter transition-filter duration-300 ease"
-                />
+                {item.imgSrc ? (
+                  <Image src={item.imgSrc} alt={item.title} width={500} height={300}
+                    className="w-full max-h-60 transition-transform filter transition-filter duration-300 ease"
+                  />
+                ) : (
+                  <div className="w-[30rem] h-[25vh] bg-white flex items-center justify-center border border-gray-300">
+                    <p className="text-gray-500 text-center absolute inset-0 flex justify-center items-center">No Image</p>
+                  </div>
+                )}
                 <div className="absolute top-2 left-2 bg-[#D1E4EC] text-[#1A2B3C] text-[12px] sm:text-[13px] md:text-[14px] px-2 py-1 rounded">
                   {item.badge}
                 </div>
