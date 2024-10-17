@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { projectsData } from "../../data/projects"
+import React, { useRef, useState } from "react";
+import { projectsData } from "../../data/projects";
+import TimelineItem from "@/components/projects/TimelineItem";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { useTimelineScroll } from "@/hooks/useTimelineScroll";
+import { ProjectInfo } from "@/data/projects";
 
 export default function Project() {
-  const ref = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
-
-  const [items, setItems] = useState(projectsData.slice(0, 2));
+  const [items, setItems] = useState<ProjectInfo[]>(projectsData.slice(0, 2));
   const [hasMore, setHasMore] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
 
   const fetchMoreData = () => {
     if (items.length >= projectsData.length) {
@@ -22,114 +21,15 @@ export default function Project() {
     setItems((prevItems) => [...prevItems, ...nextItems]);
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          fetchMoreData();
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const loader = document.getElementById("loader");
-    if (loader) observer.observe(loader);
-
-    return () => {
-      if (loader) observer.unobserve(loader);
-    };
-  }, [hasMore, items]);
-
-  useEffect(() => {
-    const animationObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            if (ref.current) animationObserver.unobserve(ref.current);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      animationObserver.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        animationObserver.unobserve(ref.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!timelineRef.current) return;
-
-      const timeline = timelineRef.current;
-      const timelineLine = timeline.querySelector<HTMLDivElement>(".timeline-line");
-
-      if (!timelineLine) return;
-
-      const timelineTop = timeline.getBoundingClientRect().top;
-      const viewportHeight = window.innerHeight;
-      const maxHeight = document.body.scrollHeight - 70;
-
-      const newHeight = Math.min(maxHeight, Math.max(0, viewportHeight - timelineTop));
-
-      timelineLine.style.height = `${newHeight}px`;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useInfiniteScroll({ hasMore, fetchMoreData, dependencies: [items] });
+  useTimelineScroll(timelineRef);
 
   return (
     <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-serif">
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px bg-[#1A2B3C] h-0 transition-all duration-300 ease-out timeline-line"></div>
       <div className="flex flex-col items-center">
         {items.map((item, index) => (
-          <div key={item.id} ref={ref} className={`relative w-full my-3 opacity-0 transform translate-y-5 transition-all duration-700 ease-in-out font-serif ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#1A2B3C] rounded-full z-10"></div>
-            <div className={`absolute top-1/2 w-1/2 h-px bg-[#1A2B3C] ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
-            <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
-              <div className="relative overflow-hidden">
-                {item.imgSrc ? (
-                  <Image src={item.imgSrc} alt={item.title} width={500} height={300}
-                    className="w-full max-h-60 transition-transform filter transition-filter duration-300 ease"
-                  />
-                ) : (
-                  <div className="w-[30rem] h-[25vh] bg-white flex items-center justify-center border border-gray-300">
-                    <p className="text-gray-500 text-center absolute inset-0 flex justify-center items-center">No Image</p>
-                  </div>
-                )}
-                <div className="absolute top-2 left-2 bg-[#D1E4EC] text-[#1A2B3C] text-[12px] sm:text-[13px] md:text-[14px] px-2 py-1 rounded">
-                  {item.badge}
-                </div>
-                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease hover:opacity-100">
-                  <Link href={`/projects/${item.link}`} className="text-[#D1E4EC] text-[10px] sm:text-[11px] md:text-[12px] underline">
-                    Detail
-                  </Link>
-                </div>
-              </div>
-              <div className="pt-2 pb-3 px-3 text-center">
-                <div className="flex flex-col sm:flex-row justify-center items-center mb-2">
-                  <h3 className="text-base text-[11px] sm:text-[13px] md:text-[15px] font-bold mr-0 sm:mr-2  mb-1 sm:mb-0">{item.title}</h3>
-                  <p className="pb-1 text-[10px] sm:text-[11px] md:text-[12px]">{item.date}</p>
-                </div>
-                <div className="flex justify-center flex-wrap gap-2">
-                  {item.tags.map((tag, idx) => (
-                    <span key={idx} className="text-[8px] sm:text-[9px] md:text-[10px] px-2 sm:px-3 py-1 sm:py-2 border-solid border-[1px] border-[#1A2B3C] rounded-full capitalize">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <TimelineItem key={item.id} item={item} index={index} />
         ))}
       </div>
       {hasMore && (

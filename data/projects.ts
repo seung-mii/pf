@@ -10,7 +10,18 @@ import Starbucks from "../public/img/starbucks_photo.webp";
 import X from "../public/img/xclone_photo.png";
 import Zomato from "../public/img/zomato_photo.webp";
 
-interface ProjectInfo {
+export interface TimelineItemProps {
+  item: ProjectInfo;
+  index: number;
+}
+
+export interface UseInfiniteScrollProps {
+  hasMore: boolean;
+  fetchMoreData: () => void;
+  dependencies?: ReadonlyArray<ProjectInfo[]>;
+}
+
+export interface ProjectInfo {
   id: number;
   title: string;
   date: string;
