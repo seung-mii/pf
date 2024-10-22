@@ -2,10 +2,29 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import Html from "../../public/img/logo/html.webp";
+import Css from "../../public/img/logo/css.png";
+import Javascript from "../../public/img/logo/javascript.png";
+import Typescript from "../../public/img/logo/typescript.webp";
+import REact from "../../public/img/logo/react.png";
+import Nextjs from "../../public/img/logo/nextjs.webp";
+import REdux from "../../public/img/logo/redux.webp";
+import REcoil from "../../public/img/logo/recoil.webp";
+import Tailwindcss from "../../public/img/logo/tailwindcss.webp";
+import Styledcomponent from "../../public/img/logo/styledcomponent.webp";
+import Nodejs from "../../public/img/logo/nodejs.png";
+import Firebase from "../../public/img/logo/firebase.png";
+import Mysql from "../../public/img/logo/mysql.webp";
+import Mongodb from "../../public/img/logo/mongodb.webp";
+import Figma from "../../public/img/logo/figma.webp";
+import Postman from "../../public/img/logo/postman.png";
 
 export default function About() {
+  const tabs = ["Language", "Frontend", "Backend", "DBMS", "Tool"];
   const [isLineAnimating, setIsLineAnimating] = useState(false);
   const [visibleBoxes, setVisibleBoxes] = useState(0);
+  const [activeTab, setActiveTab] = useState("Language");
 
   useEffect(() => {
     const animatePathsAfterRender = () => {
@@ -251,6 +270,159 @@ export default function About() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="p-8 font-serif">
+        <div className="flex justify-center gap-4 mb-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              className={`px-6 py-2 text-base border-2 border-[#1a2b3c] rounded-[25px] bg-transparent cursor-pointer transition-colors duration-300  hover:bg-[#1a2b3c] hover:text-[#D1E4EC] ${activeTab === tab ? "bg-[#1a2b3c] text-[#D1E4EC]" : ""}`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+        {activeTab === "Language" && (
+          <div className="flex flex-col items-start pl-8">
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Html} alt="HTML Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">HTML</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">웹 표준과 접근성을 고려한 마크업을 작성할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Css} alt="CSS Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">CSS</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">스타일 관련 라이브러리 없이 CSS만으로 원하는 스타일을 구현할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Javascript} alt="JavaScript Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">
+                  JavaScript
+                </h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">Vanilla JS로만 작동되는 웹을 구현할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Typescript} alt="TypeScript Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">
+                  TypeScript
+                </h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">타입 안정성을 보장하며 유지보수가 쉬운 코드를 작성할 수 있으며 버그를 사전에 방지할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === "Frontend" && (
+          <div className="flex flex-col items-start pl-8">
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={REact} alt="React Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">React</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">재사용 가능한 컴포넌트 기반 설계 및 개발을 할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Nextjs} alt="Next.js Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Next.js</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">SSR 및 정적 사이트 생성을 구현할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={REdux} alt="Redux Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Redux</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">애플리케이션 상태를 중앙에서 관리하고 디버깅을 용이하게 할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={REcoil} alt="Recoil Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Recoil</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">Recoil을 활용하여 간편하게 글로벌 상태 관리를 구현할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Tailwindcss} alt="Tailwind CSS Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">
+                  Tailwind CSS
+                </h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">유틸리티 클래스 기반으로 효율적이고 반응형 스타일을 작성할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Styledcomponent} alt="styled-component Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">
+                  styled-component
+                </h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">컴포넌트 기반으로 스타일을 작성하고 유지할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === "Backend" && (
+          <div className="flex flex-col items-start pl-8">
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Nodejs} alt="Node.js Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Node.js</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">RESTful API를 설계할 수 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Firebase} alt="Firebase Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Firebase</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">인증, 실시간 데이터베이스, 서버리스 기능 등을 빠르게 구현할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === "DBMS" && (
+          <div className="flex flex-col items-start pl-8">
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Mysql} alt="mysql Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">MySQL</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">백엔드와의 API 통합을 통해 데이터를 처리하고 시각화한 경험이 있습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Mongodb} alt="mongodb Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">mongoDB</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">비정형 데이터를 처리하는 REST API와의 통합 작업 경험이 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === "Tool" && (
+          <div className="flex flex-col items-start pl-8">
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Figma} alt="Figma Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" />
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Figma</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">UI/UX 디자인 제작 및 프로토타입 설계가 가능합니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 p-4 m-4 rounded-[10px]">
+              <Image src={Postman} alt="postman Logo" className="w-[4.5em] h-[4.5em] rounded-full bg-white" /> 
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-2 text-[#1A2B3C]">Postman</h3>
+                <p className="text-sm leading-6 text-[#1A2B3C]">API 테스트 및 디버깅을 통해 효율적인 개발 환경을 구축할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
