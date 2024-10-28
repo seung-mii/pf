@@ -20,6 +20,7 @@ import Mongodb from "../../public/img/logo/mongodb.webp";
 import Figma from "../../public/img/logo/figma.webp";
 import Postman from "../../public/img/logo/postman.png";
 import { Svg } from "@/components/about/Svg";
+import { ContentInfo, contentsData } from "../../data/contents";
 
 export default function About() {
   const tabs = ["Language", "Frontend", "Backend", "DBMS", "Tool"];
@@ -29,6 +30,40 @@ export default function About() {
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
+
+  const processParagraph = (paragraph: string,highlights?: { text: string; color: string }[],links?: { text: string; href: string }[]): React.ReactNode[] => {
+    let elements: React.ReactNode[] = [paragraph];
+    
+    if (highlights && highlights.length > 0) {
+      highlights.forEach(({ text, color }) => {
+        const regex = new RegExp(`(${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "g");
+        elements = elements.flatMap(element => {
+          if (typeof element === 'string') {
+            return element.split(regex).map((part, index) => 
+              part === text ? <span key={`highlight-${text}-${index}`} style={{ color }}>{part}</span> : part
+            );
+          }
+          return element;
+        });
+      });
+    }
+
+    if (links && links.length > 0) {
+      links.forEach(({ text, href }) => {
+        const regex = new RegExp(`(${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "g");
+        elements = elements.flatMap(element => {
+          if (typeof element === 'string') {
+            return element.split(regex).map((part, index) => 
+              part === text ? <Link key={`link-${text}-${index}`} href={href} className="underline" target="_blank" rel="noopener noreferrer">{part}</Link> : part
+            );
+          }
+          return element;
+        });
+      });
+    }
+
+    return elements;
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -98,50 +133,17 @@ export default function About() {
       <div className="px-16 py-8 font-serif">
         <Svg />
         <div className="grid grid-cols-2 gap-8">
-          {[...Array(4)].map((_, index) => (
+          {contentsData.map((item: ContentInfo, index: number) => (
             <div
-              key={index}
+              key={item.id}
               className={`border-[1.5px] border-solid border-[#1A2B3C] p-8 rounded-[15px] text-[1rem] leading-[1.8] bg-transparent hover:bg-white/20 hover:scale-[1.02] transition-opacity transition-transform duration-700 ease-out opacity-0 translate-y-5
                 ${visibleBoxes > index ? "opacity-100 translate-y-0" : ""}`}
             >
-              {index === 0 && (
-                <>
-                  <p className="m-0 text-[#1A2B3C]">
-                    <span className="text-[#ffdf00]">사용자의 경험과 피드백</span>을 중요하게 생각하며
-                  </p>
-                  <p className="m-0 text-[#1A2B3C]">
-                    이를 반영해 모두를 만족시킬 웹을 개발하고 싶습니다.
-                  </p>
-                </>
-              )}
-              {index === 1 && (
-                <>
-                  <p className="m-0 text-[#1A2B3C]">학생회부터 팀 프로젝트, 인턴까지 다양한 상황에서</p>
-                  <p className="m-0 text-[#1A2B3C]">
-                    <span className="text-[#ffdf00]">여러 사람들과 일을 수행하며 성공적인 결과를 도출한 경험</span>이 있어
-                  </p>
-                  <p className="m-0 text-[#1A2B3C]">협업에 자신 있습니다.</p>
-                </>
-              )}
-              {index === 2 && (
-                <>
-                  <p className="m-0 text-[#1A2B3C]">인턴 당시 사용자 편의성을 해결하여</p>
-                  <p className="m-0 text-[#1A2B3C]">
-                    <span className="text-[#ffdf00]"> 작업 효율 40% 증가와 약 150만 원을 절감</span>한 경험이 있습니다.
-                  </p>
-                </>
-              )}
-              {index === 3 && (
-                <>
-                  <p className="m-0 text-[#1A2B3C]">지식을 습득하고 이해하는 과정을 기록으로 남겨</p>
-                  <p className="m-0 text-[#1A2B3C]">
-                    성장하기 위해 꾸준히 <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline">블로그</Link>에 기록하고 있습니다.
-                  </p>
-                  <p className="m-0 text-[#1A2B3C]">
-                    현재 다양한 주제에 대해 <span className="text-[#ffdf00]">200+</span>개 작성하였습니다.
-                  </p>
-                </>
-              )}
+              {item.paragraphs.map((para, idx) => (
+                <p key={idx} className="m-0 text-[#1A2B3C]">
+                  {processParagraph(para, item.highlights, item.links)}
+                </p>
+              ))}
             </div>
           ))}
         </div>
