@@ -1,15 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { Svg } from "@/components/about/Svg";
 import { ContentSection } from "@/components/about/ContentSection";
-import { skillsData } from "../../data/skills";
+import { SkillSection } from "@/components/about/SkillSection";
 
 export default function About() {
-  const tabs = ["Language", "Frontend", "Tool"];
-  const [activeTab, setActiveTab] = useState("Language");
-
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,34 +59,7 @@ export default function About() {
         <Svg />
         <ContentSection />
       </div>
-      <div className="p-8 font-serif">
-        <div className="flex justify-center gap-4 mb-8">
-          {tabs.map((tab) => (
-            <button key={tab} className={`px-6 py-2 text-base border-2 border-[#1a2b3c] rounded-[25px] bg-transparent cursor-pointer transition-colors duration-300  hover:bg-[#1a2b3c] hover:text-[#D1E4EC] ${activeTab === tab ? "bg-[#1a2b3c] text-[#D1E4EC]" : ""}`} onClick={() => setActiveTab(tab)}>
-              {tab}
-            </button>
-          ))}
-        </div>
-        {skillsData[activeTab] && (
-          <div className="flex flex-col items-start pl-8">
-            {skillsData[activeTab].map((skill) => (
-              <div key={skill.name} className="flex items-start gap-4 px-10 py-3 my-2 rounded-lg transition-colors duration-300">
-                <Image src={skill.logo} alt={`${skill.name} Logo`} className="w-[4.5em] h-[4.5em] rounded-full bg-white" loading="lazy" />
-                <div className="flex-1">
-                  <h3 className={`text-base font-bold mb-2 text-[#1A2B3C] ${skill.name.toLowerCase().replace('.', '-')}`}>{skill.name}</h3>
-                  <ul>
-                    {skill.description.map((desc, index) => (
-                      <li key={index} className="text-sm leading-6 text-[#1A2B3C] list-disc ml-4">
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <SkillSection />
       <div ref={wrapperRef} className="w-full h-[500vh]">
         <div ref={stickyRef} className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute w-[95vw] h-auto min-h-[40vw] m-8 p-8 box-border overflow-visible flex gap-6 justify-center items-center flex-wrap [perspective:1000px] [transform-style:preserve-3d]">
