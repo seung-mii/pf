@@ -1,20 +1,20 @@
 import { StaticImageData } from "next/image";
-import Html from "../public/img/logo/html.webp";
-import Css from "../public/img/logo/css.png";
-import Javascript from "../public/img/logo/javascript.png";
-import Typescript from "../public/img/logo/typescript.webp";
-import ReactLogo from "../public/img/logo/react.png";
-import Nextjs from "../public/img/logo/nextjs.webp";
-import ReduxLogo from "../public/img/logo/redux.webp";
-import RecoilLogo from "../public/img/logo/recoil.webp";
-import Tailwindcss from "../public/img/logo/tailwindcss.webp";
-import Styledcomponent from "../public/img/logo/styledcomponent.webp";
-// import Nodejs from "../public/img/logo/nodejs.png";
-// import Firebase from "../public/img/logo/firebase.png";
-// import Mysql from "../public/img/logo/mysql.webp";
-// import Mongodb from "../public/img/logo/mongodb.webp";
-import Figma from "../public/img/logo/figma.webp";
-import Postman from "../public/img/logo/postman.png";
+import Html from "@/public/img/logo/html.webp";
+import Css from "@/public/img/logo/css.png";
+import Javascript from "@/public/img/logo/javascript.png";
+import Typescript from "@/public/img/logo/typescript.webp";
+import ReactLogo from "@/public/img/logo/react.png";
+import Nextjs from "@/public/img/logo/nextjs.webp";
+import ReduxLogo from "@/public/img/logo/redux.webp";
+import RecoilLogo from "@/public/img/logo/recoil.webp";
+import Tailwindcss from "@/public/img/logo/tailwindcss.webp";
+import Styledcomponent from "@/public/img/logo/styledcomponent.webp";
+// import Nodejs from "@/public/img/logo/nodejs.png";
+// import Firebase from "@/public/img/logo/firebase.png";
+// import Mysql from "@/public/img/logo/mysql.webp";
+// import Mongodb from "@/public/img/logo/mongodb.webp";
+import Figma from "@/public/img/logo/figma.webp";
+import Postman from "@/public/img/logo/postman.png";
 
 interface SkillInfo {
   name: string;
