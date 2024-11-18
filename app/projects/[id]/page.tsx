@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
@@ -134,6 +134,7 @@ const ProjectDetails: React.FC = () => {
   const params = useParams();
   const { id } = params;
   
+  const [isOpen, setIsOpen] = useState<boolean[]>(new Array(detailsData.length).fill(false));
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const listContentRef = useRef<HTMLDivElement | null>(null);
@@ -141,6 +142,14 @@ const ProjectDetails: React.FC = () => {
   const contentVh = 96 - headerVh * 5;
   
   const projectDetails = detailsData.find((item) => item.key === id)?.value;
+  
+  const handleToggle = (index: number) => {
+    setIsOpen((prev) => {
+      const newState = [...prev];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
 
   const init = () => {
     const wrapper = wrapperRef.current;
@@ -291,16 +300,20 @@ const ProjectDetails: React.FC = () => {
                   <div
                     key={idx}
                     className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
+                    onClick={() => handleToggle(idx)}
                   >
                     <div className="flex items-center">
                       <div className="w-5 h-4 relative mr-2">
-                        <span className="block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform"></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]"}`}></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]"}`}></span>
                       </div>
                       <p className="font-bold text-sm">{title}</p>
                     </div>
-                    <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                      <li>{details}</li>
-                    </ul>
+                    {isOpen[idx] && (
+                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
+                        <li>{details}</li>
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
@@ -316,19 +329,23 @@ const ProjectDetails: React.FC = () => {
               <div ref={listContentRef} className="space-y-4">
                 {projectDetails.troubleshooting.map(({ title, cause, solution }, idx) => (
                   <div
-                    key={idx}
+                    key={idx+10}
                     className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
+                    onClick={() => handleToggle(idx+10)}
                   >
                     <div className="flex items-center">
                       <div className="w-5 h-4 relative mr-2">
-                        <span className="block absolute w-full h-[2px] bg-[#1A2B3C] transition-transformn"></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx+10] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]" }`}></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx+10] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]" }`}></span>
                       </div>
                       <p className="font-bold text-sm">{title}</p>
                     </div>
-                    <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                      <li>{"원인: " + cause}</li>
-                      <li>{"해결방안: " + solution}</li>
-                    </ul>
+                    {isOpen[idx+10] && (
+                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
+                        <li>{"원인: " + cause}</li>
+                        <li>{"해결방안: " + solution}</li>
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
@@ -344,18 +361,22 @@ const ProjectDetails: React.FC = () => {
               <div ref={listContentRef} className="space-y-4">
                 {projectDetails.icandoit.map(({ title, details }, idx) => (
                   <div
-                    key={idx}
+                    key={idx + 20}
                     className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
+                    onClick={() => handleToggle(idx + 20)}
                   >
                     <div className="flex items-center">
                       <div className="w-5 h-4 relative mr-2">
-                        <span className="block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform"></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx + 20] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]"}`}></span>
+                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx + 20] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]"}`}></span>
                       </div>
                       <p className="font-bold text-sm">{title}</p>
                     </div>
-                    <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                      <li>{details}</li>
-                    </ul>
+                    {isOpen[idx + 20] && (
+                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
+                        <li>{details}</li>
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
