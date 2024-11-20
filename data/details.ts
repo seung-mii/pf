@@ -1,3 +1,19 @@
+export interface TroubleSectionProps {
+  details: TroubleInfo[];
+}
+
+export interface DetailsProps {
+  details: DetailsInfo[];
+}
+
+export interface ToggleProps {
+  id: number;
+  title: string;
+  cause?: string;
+  solution?: string[];
+  contents?: string[];
+}
+
 interface DetailsInfo {
   title: string;
   details: string[];

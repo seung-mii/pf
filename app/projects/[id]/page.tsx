@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
@@ -8,27 +8,20 @@ import Left from "../../../public/img/icon/left.png";
 import Tab from "../../../public/img/icon/link.png"
 import Github from "../../../public/img/icon/github-logo.png"
 import { detailsData } from "../../../data/details";
+import FunctionSection from "@/components/projects/FunctionSection";
+import TroubleSection from "@/components/projects/TroubleSection";
+import ICanDoItSection from "@/components/projects/ICanDoItSection";
 
 const ProjectDetails: React.FC = () => {
   const params = useParams();
   const { id } = params;
   
-  const [isOpen, setIsOpen] = useState<boolean[]>(new Array(detailsData.length).fill(false));
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
-  const listContentRef = useRef<HTMLDivElement | null>(null);
   const headerVh = 6;
   const contentVh = 96 - headerVh * 5;
   
   const projectDetails = detailsData.find((item) => item.key === id)?.value;
-  
-  const handleToggle = (index: number) => {
-    setIsOpen((prev) => {
-      const newState = [...prev];
-      newState[index] = !newState[index];
-      return newState;
-    });
-  };
 
   const init = () => {
     const wrapper = wrapperRef.current;
@@ -85,9 +78,14 @@ const ProjectDetails: React.FC = () => {
 
   if (!projectDetails) {
     return (
-      <div className="max-w-5xl mx-auto p-4 sm:p-8">
-        <h1 className="text-2xl font-bold">Project Not Found</h1>
-        <p>The project you are looking for does not exist.</p>
+      <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl mx-auto p-4 sm:p-8 text-center font-serif text-[#1A2B3C]">
+        <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
+        <p className="text-lg mb-6">The project you are looking for does not exist.</p>
+        <Link 
+          href="/projects" 
+          className="p-3 px-5 bg-[#6F94B0] text-white rounded-[20px] transition-transform duration-500">
+          Projects 페이지로 돌아가기
+        </Link>
       </div>
     );
   }
@@ -192,100 +190,9 @@ const ProjectDetails: React.FC = () => {
             }
           </div>
         </div>
-        {projectDetails.function &&
-          <div className="section w-full h-full absolute">
-            <div className="title mt-[3vh] border-solid border-[1px] border-[#1A2B3C] bg-[#6F94B0] h-[6vh] flex items-center pl-[3vh]">
-              Function
-            </div>
-            <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-[#6F94B0] to-[#A8C5D3]">
-              <div ref={listContentRef} className="space-y-4">
-                {projectDetails.function.map(({ title, details }, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
-                    onClick={() => handleToggle(idx)}
-                  >
-                    <div className="flex items-center">
-                      <div className="w-5 h-4 relative mr-2">
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]"}`}></span>
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]"}`}></span>
-                      </div>
-                      <p className="font-bold text-sm">{title}</p>
-                    </div>
-                    {isOpen[idx] && (
-                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                        <li>{details}</li>
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        }
-        {projectDetails.troubleshooting && 
-          <div className="section w-full h-full absolute">
-            <div className="title mt-[3vh] border-solid border-[1px] border-[#1A2B3C] bg-[#6F94B0] h-[6vh] flex items-center pl-[3vh]">
-              Trouble Shooting
-            </div>
-            <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-[#6F94B0] to-[#A8C5D3]">
-              <div ref={listContentRef} className="space-y-4">
-                {projectDetails.troubleshooting.map(({ title, cause, solution }, idx) => (
-                  <div
-                    key={idx+10}
-                    className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
-                    onClick={() => handleToggle(idx+10)}
-                  >
-                    <div className="flex items-center">
-                      <div className="w-5 h-4 relative mr-2">
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx+10] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]" }`}></span>
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx+10] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]" }`}></span>
-                      </div>
-                      <p className="font-bold text-sm">{title}</p>
-                    </div>
-                    {isOpen[idx+10] && (
-                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                        <li>{"원인: " + cause}</li>
-                        <li>{"해결방안: " + solution}</li>
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        }
-        {projectDetails.icandoit &&
-          <div className="section w-full h-full absolute">
-            <div className="title mt-[3vh] border-solid border-[1px] border-[#1A2B3C] bg-[#6F94B0] h-[6vh] flex items-center pl-[3vh]">
-              I can do it
-            </div>
-            <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-[#6F94B0] to-[#A8C5D3]">
-              <div ref={listContentRef} className="space-y-4">
-                {projectDetails.icandoit.map(({ title, details }, idx) => (
-                  <div
-                    key={idx + 20}
-                    className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
-                    onClick={() => handleToggle(idx + 20)}
-                  >
-                    <div className="flex items-center">
-                      <div className="w-5 h-4 relative mr-2">
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx + 20] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]"}`}></span>
-                        <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[idx + 20] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]"}`}></span>
-                      </div>
-                      <p className="font-bold text-sm">{title}</p>
-                    </div>
-                    {isOpen[idx + 20] && (
-                      <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
-                        <li>{details}</li>
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        }
+        {projectDetails.function && <FunctionSection details={projectDetails.function} />}
+        {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}
+        {projectDetails.icandoit && <ICanDoItSection details={projectDetails.icandoit} />}
       </div>
     </div>
   );
