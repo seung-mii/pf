@@ -10,21 +10,22 @@ export function FlipCareerCard({ category, title, details, date }: CareerInfo) {
   ));
 
   return (
-    <div className="card flex w-[23%] min-w-[300px] h-full min-h-[400px] flex-col justify-between p-4 text-center relative text-[4vw] items-center transition-transform duration-700 [transform-style:preserve-3d] cursor-pointer">
-      <div className="front absolute w-full h-full font-medium overflow-hidden [backface-visibility:hidden] flex flex-col justify-center rounded-[2vw] shadow-md text-base p-6 text-[#1A2B3C] bg-[#D1E4EC]">
-        <div className="text-[1.2rem] font-bold text-[#2b5876] mb-6 whitespace-pre-line">
+    <div
+      className="card relative min-w-[260px] h-full min-h-[330px] text-center transition-transform duration-700 ease-out cursor-pointer [transform-style:preserve-3d] hover:rotate-y-180"
+      style={{ perspective: "1000px" }}
+    >
+      <div className="front absolute w-full h-full flex flex-col justify-center rounded-[2vw] shadow-md text-base px-6 pt-2 pb-6 text-darkBlue bg-lightBlue backface-hidden">
+        <div className="flex items-center justify-center text-m font-bold text-darkBlue h-[30%] whitespace-pre-line">
           {formattedTitle}
         </div>
-        <div className="text-base text-left leading-[1.4] flex-grow text-[#1A2B3C]">
+        <div className="text-base text-s text-left leading-[1.4] flex-grow text-darkBlue">
           {details.map((line, i) => (
-            <p key={i}>{line}</p>
+            <p key={i} className="mb-3">{line}</p>
           ))}
         </div>
-        <div className="text-sm text-[#999] mt-4 italic">
-          {date}
-        </div>
+        <div className="text-s text-darkBlue italic">{date}</div>
       </div>
-      <div className="back absolute w-full h-full font-medium overflow-hidden [backface-visibility:hidden] flex flex-col justify-center rounded-[2vw] shadow-md text-[0.5em] text-[#A8C5D3] bg-[#1A2B3C] [transform:rotateY(180deg)]">
+      <div className="back absolute w-full h-full flex flex-col justify-center rounded-[2vw] shadow-md text-xl font-semibold text-bottom bg-darkBlue rotate-y-180 backface-hidden">
         {category}
       </div>
     </div>

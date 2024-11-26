@@ -7,10 +7,10 @@ const TroubleSection: React.FC<TroubleSectionProps> = ({ details }) => {
 
   return (
     <div className="section w-full h-full absolute">
-      <div className="title mt-[3vh] border-solid border-[1px] border-[#1A2B3C] bg-[#6F94B0] h-[6vh] flex items-center pl-[3vh]">
+      <div className="title font-bold mt-[3vh] border-b-thin border-solid border-darkBlue bg-top h-[6vh] flex items-center pl-[3vh]">
         Trouble Shooting
       </div>
-      <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-[#6F94B0] to-[#A8C5D3]">
+      <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-top to-bottom">
         <div ref={listContentRef} className="space-y-4">
           {details.map(({ title, cause, solution }, idx) => (
             <ToggleGroup key={idx} id={idx} title={title} cause={cause} solution={solution} />

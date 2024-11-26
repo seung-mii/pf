@@ -3,40 +3,40 @@
 import React, { useEffect } from "react";
 
 export function Svg() {
-  useEffect(() => {
-    const animatePathsAfterRender = () => {
-      const line1Group = document.querySelector(".svg-line1");
-      const line2Group = document.querySelector(".svg-line2");
+ useEffect(() => {
+  const animatePathsAfterRender = () => {
+    const line1Group = document.querySelector(".svg-line1");
+    const line2Group = document.querySelector(".svg-line2");
 
-      if (!line1Group || !line2Group) {
-        console.error("SVG groups not found");
-        return;
-      }
+    if (!line1Group || !line2Group) {
+      console.error("SVG groups not found");
+      return;
+    }
 
-      const line1Paths = line1Group.querySelectorAll("path");
-      const line2Paths = line2Group.querySelectorAll("path");
+    const line1Paths = line1Group.querySelectorAll("path");
+    const line2Paths = line2Group.querySelectorAll("path");
 
-      if (line1Paths.length === 0 || line2Paths.length === 0) {
-        console.error("No paths found in SVG groups");
-        return;
-      }
+    if (line1Paths.length === 0 || line2Paths.length === 0) {
+      console.error("No paths found in SVG groups");
+      return;
+    }
 
-      [...line1Paths, ...line2Paths].forEach((path, i) => {
-        const length = path.getTotalLength();
-        path.style.setProperty("--length", length.toString());
-        path.style.setProperty("--duration", `${length}ms`);
-        path.style.setProperty("--delay", `${i * 80}ms`);
-      });
-    };
+    [...line1Paths, ...line2Paths].forEach((path, i) => {
+      const length = path.getTotalLength();
+      path.style.setProperty("--length", length.toString());
+      path.style.setProperty("--duration", `${length}ms`);
+      path.style.setProperty("--delay", `${i * 80}ms`);
+    });
+  };
 
-    setTimeout(() => {
+  setTimeout(() => {
       animatePathsAfterRender();
     }, 100); 
   }, []);
 
   return (
-    <div className="my-8 mx-10 mb-10">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1692.48 347.84" width="50%" height="10em">
+    <div className="my-8 mx-10 mb-12">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1692.48 347.84" width="35%" height="12em">
         <defs>
           <clipPath id="01">
             <path d="M59.32,266.75c-20.7,0-49.5-14.4-49.5-53.7v-71.7c0-15.6,6.75-29.78,16.69-40.05,3.33-3.45,6.52-5.85,7.16-6.32,10.89-7.96,22.3-9.82,28.65-10.33h27c26.7,0,51.3,25.5,51.3,56.7v73.8c0,30.9-23.7,51.6-47.7,51.6h-33.6ZM80.62,235.25c15.3,0,24.9-14.7,24.9-26.4v-64.5c0-13.2-12.9-24.6-24.9-24.6h-9.6c-12,0-26.1,10.8-26.1,24v68.1c0,9.3,7.8,23.4,23.1,23.4h12.6ZM235.43,71.75v252.3h-42v-84.3h-38.7v-35.1h38.7v-31.2h-38.7v-35.4h38.7v-66.3h42Z" />
@@ -89,7 +89,7 @@ export function Svg() {
           <path clipPath="url(#07)" d="M1645.32,287s9.91-.52,18,0c6.22.4,7.57,1.17,9.75.97.03,0,.13-.01.25.03,1.87.75-.42,12.73-5,23-1.47,3.3-2.64,5.91-5,9-4.7,6.15-10.45,9.38-14,11"/>
         </g>
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1825.36 203.78" width="55%">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1825.36 203.78" width="45%">
         <defs>
           <clipPath id="08">
             <path d="M154.28,164.35H0v-23.75h63.54v-22.94h27.2v22.94h63.54v23.75ZM137.64,27.32v83.43H17.66V27.32h119.97ZM112.46,49.45H45.47v38.98h66.99v-38.98Z"/>

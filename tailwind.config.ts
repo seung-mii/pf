@@ -9,19 +9,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#1A2B3C",
-        secondary: "#D1E4EC",
+        top: "#6F94B0",
+        bottom: "#A8C5D3",
+        darkBlue: "#1E2F44",
+        lightBlue: "#D1E4EC",
+        point: "#FFD700",
+        lightWhite: "#f0f0f0",
       },
       fontSize: {
-        'xxs': '0.5rem',
-        'xs': '9px',
-        's': '10px',
-        'xxm': '11px',
-        'xm': '12px',
-        'm': '13px',
-        'xxl': '14px',
-        'xl': '15px',
-        'l': '16px',
+        'xs': 'clamp(0.5rem, 2vw, 0.625rem)',
+        's': 'clamp(0.6875rem, 2vw, 0.8125rem)',
+        'm': 'clamp(0.875rem, 2vw, 1rem)',
+        'l': 'clamp(1.0625rem, 2vw, 1.1875rem)',
+        'xl': 'clamp(1.25rem, 2vw, 1.4375rem)',
+      },
+      borderWidth: {
+        'thin': '0.0625rem',
       },
     },
   },

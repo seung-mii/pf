@@ -15,18 +15,18 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, conten
   return (
     <div
       key={id}
-      className="bg-[#A8C5D3] rounded-md shadow-sm p-4 cursor-pointer transition-all"
+      className="bg-bottom rounded-md shadow-sm p-4 cursor-pointer transition-all"
       onClick={() => handleToggle(id)}
     >
       <div className="flex items-center">
-        <div className="w-5 h-4 relative mr-2">
-          <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[id] ? "rotate-0 top-[7px]" : "rotate-0 top-[4px]" }`}></span>
-          <span className={`block absolute w-full h-[2px] bg-[#1A2B3C] transition-transform ${isOpen[id] ? "rotate-0 top-[7px]" : "rotate-90 top-[4px]" }`}></span>
+        <div className="w-5 h-2 relative mr-1">
+          <span className={`block absolute w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-0 top-[3px]" }`}></span>
+          <span className={`block absolute w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-90 top-[3px]" }`}></span>
         </div>
-        <p className="font-bold text-sm">{title}</p>
+        <p className="font-semibold text-m select-none">{title}</p>
       </div>
       {isOpen[id] && (
-        <ul className="list-disc ml-6 mt-2 pt-2 border-t-[2px] border-[#1A2B3C] text-xs space-y-2">
+        <ul className="list-disc ml-10 mt-2 py-2 text-s space-y-2">
           {contents && <li>{contents}</li>}
           {cause && 
             <>

@@ -25,9 +25,9 @@ export default function Project() {
   useTimelineScroll(timelineRef);
 
   return (
-    <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-serif">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px bg-[#1A2B3C] h-0 transition-all duration-300 ease-out timeline-line"></div>
-      <div className="flex flex-col items-center">
+    <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-sans">
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[2px] bg-darkBlue h-0 transition-all duration-300 ease-out timeline-line"></div>
+      <div className="flex flex-col items-center mt-7">
         {items.map((item, index) => (
           <TimelineItem key={item.id} item={item} index={index} />
         ))}

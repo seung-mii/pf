@@ -60,15 +60,15 @@ export function ContentSection() {
   }, [isLineAnimating]);
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid grid-cols-2 gap-10 mt-5">
       {contentsData.map((item: ContentInfo, index: number) => (
         <div
           key={item.id}
-          className={`border-[1.5px] border-solid border-[#1A2B3C] p-8 rounded-[15px] text-[1rem] leading-[1.8] bg-transparent hover:bg-white/20 hover:scale-[1.02] transition-opacity transition-transform duration-700 ease-out opacity-0 translate-y-5
+          className={`border-[1.5px] border-solid border-darkBlue p-6 rounded-[15px] text-s leading-[1.8] bg-transparent hover:bg-lightWhite/20 hover:scale-[1.02] transition-all duration-700 ease-out opacity-0 translate-y-5
             ${visibleBoxes > index ? "opacity-100 translate-y-0" : ""}`}
         >
           {item.paragraphs.map((para, idx) => (
-            <p key={idx} className="m-0 text-[#1A2B3C]">
+            <p key={idx} className="m-0 text-darkBlue">
               {processParagraph(para, item.highlights, item.links)}
             </p>
           ))}

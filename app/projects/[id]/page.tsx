@@ -78,12 +78,12 @@ const ProjectDetails: React.FC = () => {
 
   if (!projectDetails) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl mx-auto p-4 sm:p-8 text-center font-serif text-[#1A2B3C]">
+      <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl mx-auto p-4 sm:p-8 text-center font-sans text-darkBlue">
         <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
         <p className="text-lg mb-6">The project you are looking for does not exist.</p>
         <Link 
           href="/projects" 
-          className="p-3 px-5 bg-[#6F94B0] text-white rounded-[20px] transition-transform duration-500">
+          className="p-3 px-5 bg-top text-lightBlue rounded-[20px] transition-transform duration-500">
           Projects 페이지로 돌아가기
         </Link>
       </div>
@@ -91,14 +91,14 @@ const ProjectDetails: React.FC = () => {
   }
 
   return (
-    <div ref={wrapperRef} className="w-full h-[600vh] font-[Palatino] text-[#1A2B3C]">
-      <div className="fixed z-10 top-0 w-full h-[6vh] border-[1px] border-solid border-[#1A2B3C] flex items-center bg-[#6F94B0] px-6">
-        <Link href="/projects">
-          <Image src={Left} alt="Go back Icon" className="w-4 h-4 opacity-80 transition-opacity duration-300 ease-in-out" />
+    <div ref={wrapperRef} className="w-full h-[500vh] font-sans text-darkBlue">
+      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-4">
+        <Link href="/projects" className="text-darkBlue text-base">
+          <Image src={Left} alt="Go back Icon" className="w-5 h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100" />
         </Link>
       </div>
-      <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden bg-[#6F94B0]">
-        <div className="content px-[5vh] py-[2vh] bg-[#6F94B0]">
+      <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden bg-top">
+        <div className="content px-[5vh] py-[2vh] bg-top">
           <div className="flex flex-col gap-6">
             <div className="flex flex-row items-center justify-end gap-4 mt-20">
               {projectDetails.information.videos?.[0] && (
@@ -129,7 +129,7 @@ const ProjectDetails: React.FC = () => {
                 </div>
                 <div className="flex flex-wrap gap-2 justify-center mt-2">
                   {projectDetails.information.skills.map((skill, idx) => (
-                    <span key={idx} className="px-3 py-2 text-xs font-medium border-solid border-[1px] border-[#1A2B3C] rounded-2xl">
+                    <span key={idx} className="px-3 py-2 text-xs font-medium border-solid border-thin border-darkBlue rounded-2xl">
                       {skill}
                     </span>
                   ))}
@@ -156,16 +156,16 @@ const ProjectDetails: React.FC = () => {
             </div>
             {projectDetails.information.challenge &&
               <>
-                <div className="border-solid border-[1px] border-[#1A2B3C] rounded-md p-4 relative shadow-sm">
-                  <h1 className="absolute -top-3 left-4 bg-[#6F94B0] text-sm font-bold px-2">
+                <div className="border-solid border-thin border-darkBlue rounded-md p-4 relative shadow-sm">
+                  <h1 className="absolute -top-3 left-4 bg-top text-sm font-bold px-2">
                     Challenge
                   </h1>
                   <p className="text-xs leading-5 mt-2 ml-1">
                     {projectDetails.information.challenge}
                   </p>
                 </div>
-                <div className="border-solid border-[1px] border-[#1A2B3C] rounded-md p-4 relative shadow-sm">
-                  <h1 className="absolute -top-3 left-4 bg-[#6F94B0] text-sm font-bold px-2">
+                <div className="border-solid border-thin border-darkBlue rounded-md p-4 relative shadow-sm">
+                  <h1 className="absolute -top-3 left-4 bg-top text-sm font-bold px-2">
                     Approach
                   </h1>
                   <ul className="list-disc pl-4 text-xs leading-5 mt-2">
@@ -177,8 +177,8 @@ const ProjectDetails: React.FC = () => {
               </>
             }
             {projectDetails.information.result &&
-              <div className="border-solid border-[1px] border-[#1A2B3C] rounded-md p-4 relative shadow-sm">
-                <h1 className="absolute -top-3 left-4 bg-[#6F94B0] text-sm font-bold px-2">
+              <div className="border-solid border-thin border-darkBlue rounded-md p-4 relative shadow-sm">
+                <h1 className="absolute -top-3 left-4 bg-top text-sm font-bold px-2">
                   Result
                 </h1>
                 <ul className="list-disc pl-4 text-xs leading-5 mt-2">

@@ -5,10 +5,10 @@ const ContactBackCard: React.FC = () => {
   return (
     <>
       <div className="w-full text-left">
-        <h1 className="w-[140px] sm:w-[160px] md:w-[170px] text-[14px] sm:text-[16px] md:text-[18px] font-semibold mb-3 sm:mb-5 pb-2 sm:pb-3 border-b-[1px] border-solid border-[#1E2F44]">
+        <h1 className="w-[140px] sm:w-[160px] md:w-[170px] text-l font-semibold mb-3 sm:mb-5 pb-2 sm:pb-3 border-b-thin border-solid border-darkBlue">
           CONTACT
         </h1>
-        <div className="text-[12px] mb-3">
+        <div className="text-s mb-3">
           <p className="mb-2">
             저의 포트폴리오를 봐주셔서 진심으로 감사드립니다.
           </p>
