@@ -32,16 +32,24 @@ export function Header() {
     }, 500);
   };
 
+  const handleCloseCatalog = () => {
+    setCircleStyle((prevStyle) => ({
+      ...prevStyle,
+      transform: "scale(0)",
+    }));
+
+    setTimeout(() => {
+      setShowCatalog(false);
+      setIsCircleVisible(false);
+    }, 500); 
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLineAnimating(true);
     }, 100);
     return () => clearTimeout(timer);
   }, []);
-
-  if (showCatalog) {
-    return <Catalog />;
-  }
 
   return (
     <div className="relative bg-transparent">
@@ -55,10 +63,11 @@ export function Header() {
       </header>
       {isCircleVisible && (
         <div
-          className="fixed top-0 left-0 w-[100px] h-[100px] bg-bottom rounded-full pointer-events-none transition-transform duration-1000 ease-out"
+          className="fixed top-0 left-0 w-[100px] h-[100px] bg-bottom rounded-full pointer-events-none transition-transform duration-500 ease-out"
           style={{ ...circleStyle, position: "fixed", zIndex: 20 }}
         ></div>
       )}
+      {showCatalog && <Catalog onClose={handleCloseCatalog} />}
     </div>
   );
 }
