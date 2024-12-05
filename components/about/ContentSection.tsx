@@ -1,79 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React, { useCallback, useState } from "react";
 import { ContentInfo, contentsData } from "../../data/contents";
+import { ParagraphsTypingEffect } from "./ParagraphsTypingEffect";
+import { StaticHighlight } from "./StaticHighlight";
 
 export function ContentSection() {
-  const [isLineAnimating, setIsLineAnimating] = useState(false);
-  const [visibleBoxes, setVisibleBoxes] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
   
-  const processParagraph = (paragraph: string, highlights?: { text: string; color: string }[], links?: { text: string; href: string }[]): React.ReactNode[] => {
-    let elements: React.ReactNode[] = [paragraph];
-    
-    if (highlights && highlights.length > 0) {
-      highlights.forEach(({ text, color }) => {
-        const regex = new RegExp(`(${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "g");
-        elements = elements.flatMap(element => {
-          if (typeof element === 'string') {
-            return element.split(regex).map((part, index) => 
-              part === text ? <span key={`highlight-${text}-${index}`} style={{ color }}>{part}</span> : part
-            );
-          }
-          return element;
-        });
-      });
-    }
-
-    if (links && links.length > 0) {
-      links.forEach(({ text, href }) => {
-        const regex = new RegExp(`(${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "g");
-        elements = elements.flatMap(element => {
-          if (typeof element === 'string') {
-            return element.split(regex).map((part, index) => 
-              part === text ? <Link key={`link-${text}-${index}`} href={href} className="underline" target="_blank" rel="noopener noreferrer">{part}</Link> : part
-            );
-          }
-          return element;
-        });
-      });
-    }
-
-    return elements;
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLineAnimating(true);
-    }, 7000);
-    return () => clearTimeout(timer);
+  const handleItemComplete = useCallback(() => {
+    setCurrentItemIndex((prev) => prev + 1);
   }, []);
-
-  useEffect(() => {
-    if (isLineAnimating) {
-      const interval = setInterval(() => {
-        setVisibleBoxes((prev) => {
-          if (prev < 4) return prev + 1;
-          clearInterval(interval);
-          return prev;
-        });
-      }, 2500);
-    }
-  }, [isLineAnimating]);
 
   return (
     <div className="grid grid-cols-2 gap-10 mt-5">
-      {contentsData.map((item: ContentInfo, index: number) => (
-        <div
-          key={item.id}
-          className={`border-[1.5px] border-solid border-darkBlue p-6 rounded-[15px] text-s leading-[1.8] bg-transparent hover:bg-lightWhite/20 hover:scale-[1.02] transition-all duration-700 ease-out opacity-0 translate-y-5
-            ${visibleBoxes > index ? "opacity-100 translate-y-0" : ""}`}
-        >
-          {item.paragraphs.map((para, idx) => (
-            <p key={idx} className="m-0 text-darkBlue">
-              {processParagraph(para, item.highlights, item.links)}
-            </p>
-          ))}
-        </div>
-      ))}
+      {contentsData.map((item: ContentInfo, index: number) => {
+        const isPast = index < currentItemIndex;
+        const isPresent = index === currentItemIndex;
+        const isFuture = index > currentItemIndex;
+        
+        return (
+          <div key={item.id} className="border-[1.5px] border-solid border-darkBlue p-6 rounded-[15px] text-s leading-[1.8] bg-transparent  hover:bg-lightWhite/20 hover:scale-[1.02] transition-all duration-300">
+            {isPast && (
+              <>
+                {item.paragraphs.map((para, i) => (
+                  <p key={i} className="m-0 text-darkBlue">
+                    <StaticHighlight text={para} highlights={item.highlights} links={item.links} />
+                  </p>
+                ))}
+              </>
+            )}
+            {isPresent && <ParagraphsTypingEffect paragraphs={item.paragraphs} highlights={item.highlights} links={item.links} onComplete={handleItemComplete} />}
+            {isFuture && <div className="text-darkBlue">...</div>}
+          </div>
+        );
+      })}
     </div>
   );
 }

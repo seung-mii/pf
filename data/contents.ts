@@ -1,3 +1,27 @@
+export type Highlight = { text: string; color: string };
+export type LinkData = { text: string; href: string };
+
+export interface StaticHighlightProps {
+  text: string;
+  highlights?: Highlight[];
+  links?: LinkData[];
+}
+
+export interface TypingEffectProps {
+  text: string;
+  highlights?: Highlight[];
+  links?: LinkData[];
+  onComplete?: () => void;
+  typingSpeed?: number;
+}
+
+export interface ParagraphsTypingEffectProps {
+  paragraphs: string[];
+  highlights?: Highlight[];
+  links?: LinkData[];
+  onComplete?: () => void;
+}
+
 export interface ContentInfo {
   id: number;
   paragraphs: string[];
