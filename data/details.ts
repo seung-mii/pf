@@ -1,3 +1,20 @@
+export interface InfoSectionProps {
+  information: {
+    videos?: VideoInfo[];
+    title: string;
+    description: string;
+    github?: string;
+    link?: string;
+    period: string;
+    personnel: string[];
+    skills: string[];
+    challenge?: string[];
+    approach?: string[];
+    result?: string[];
+    award?: string[];
+  };
+}
+
 export interface TroubleSectionProps {
   details: TroubleInfo[];
 }
