@@ -90,17 +90,23 @@ const ProjectDetails: React.FC = () => {
   }
 
   return (
-    <div ref={wrapperRef} className="w-full h-[500vh] font-sans text-darkBlue">
-      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-4">
+    <div ref={wrapperRef} className="grid w-full font-sans text-darkBlue pt-20 h-[608vh]">
+      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-2 sm:px-4">
         <Link href="/projects" className="text-darkBlue text-base">
           <Image src={Left} alt="Go back Icon" className="w-5 h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100" />
         </Link>
+        <div className="flex-1 text-center text-s sm:text-m">{projectDetails.information.title}</div>
       </div>
-      <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden bg-top">
-        <InfoSection information={projectDetails.information}/>
-        {projectDetails.function && <FunctionSection details={projectDetails.function} />}
-        {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}
-        {projectDetails.icandoit && <ICanDoItSection details={projectDetails.icandoit} />}
+      <InfoSection information={projectDetails.information}/>
+      <div className="border-t border-b border-darkBlue w-full h-[500vh] mb-[100vh]">
+        <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden">
+          {projectDetails.function && <FunctionSection details={projectDetails.function} />}
+          {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}
+          {projectDetails.icandoit && <ICanDoItSection details={projectDetails.icandoit} />}
+          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 text-[3vw] sm:text-[1rem] text-darkBlue text-center bg-white/60 px-2 py-1 rounded shadow-md z-50 transition-opacity duration-500 ease-in-out whitespace-nowrap">
+            Scroll to the bottom for more details.
+          </div>
+        </div>
       </div>
     </div>
   );
