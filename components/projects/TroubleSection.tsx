@@ -11,9 +11,11 @@ const TroubleSection: React.FC<TroubleSectionProps> = ({ details }) => {
         Trouble Shooting
       </div>
       <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-top to-bottom">
-        <div ref={listContentRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div ref={listContentRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[minmax(0, 1fr, auto)]">
           {details.map(({ title, cause, solution }, idx) => (
-            <ToggleGroup key={idx} id={idx} title={title} cause={cause} solution={solution} />
+            <div key={idx} className="h-full">
+              <ToggleGroup id={idx} title={title} cause={cause} solution={solution} />
+            </div>
           ))}
         </div>
       </div>

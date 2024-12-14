@@ -11,9 +11,11 @@ const ICanDoItSection: React.FC<DetailsProps> = ({ details }) => {
         I can do it
       </div>
       <div className="content px-[5vh] py-[2vh] bg-gradient-to-b from-top to-bottom">
-        <div ref={listContentRef} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div ref={listContentRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[minmax(0, 1fr, auto)]">
           {details.map(({ title, details }, idx) => (
-            <ToggleGroup key={idx} id={idx} title={title} contents={details} />
+            <div key={idx} className="h-full">
+              <ToggleGroup id={idx} title={title} contents={details} />
+            </div>
           ))}
         </div>
       </div>
