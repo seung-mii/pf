@@ -28,7 +28,7 @@ export function ContentSection() {
                 ))}
               </>
             )}
-            {isPresent && <ParagraphsTypingEffect paragraphs={item.paragraphs} highlights={item.highlights} links={item.links} onComplete={handleItemComplete} />}
+            {isPresent && <ParagraphsTypingEffect id={item.id} paragraphs={item.paragraphs} highlights={item.highlights} links={item.links} onComplete={handleItemComplete} />}
             {isFuture && <div className="text-darkBlue">...</div>}
           </div>
         );

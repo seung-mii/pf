@@ -16,6 +16,7 @@ export interface TypingEffectProps {
 }
 
 export interface ParagraphsTypingEffectProps {
+  id: number;
   paragraphs: string[];
   highlights?: Highlight[];
   links?: LinkData[];
