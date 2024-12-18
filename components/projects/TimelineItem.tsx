@@ -34,25 +34,25 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   }, []);
 
   return (
-    <div ref={ref} className={`relative w-full my-3 opacity-0 transform translate-y-5 transition-all duration-700 ease-in-out font-sans ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+    <div ref={ref} className={`relative w-full my-3 opacity-0 transform text-darkBlue translate-y-5 transition-all duration-700 ease-in-out font-sans ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-darkBlue rounded-full z-10"></div>
       <div className={`absolute top-1/2 w-1/2 h-[1.5px] bg-darkBlue ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
-      <div className="bg-lightWhite bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
+      <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-2/5 sm:w-5/12 md:w-5/12 relative">
         <div className="relative overflow-hidden">
           {item.imgSrc ? (
             <Image src={item.imgSrc} alt={item.title} width={500} height={300}
               className="w-full max-h-60 transition-transform filter transition-filter duration-300 ease"
             />
           ) : (
-            <div className="w-[30rem] h-[25vh] bg-white flex items-center justify-center border border-gray-300">
+            <div className="w-[30rem] h-[13rem] bg-white flex items-center justify-center border border-gray-300">
               <p className="text-gray-500 text-center absolute inset-0 flex justify-center items-center">No Image</p>
             </div>
           )}
-          <div className="absolute top-2 left-2 bg-lightBlue text-darkBlue text-s px-2 py-1 rounded">
+          <div className="absolute top-2 left-2 bg-darkBlue text-lightWhite text-xs px-2 py-1 rounded">
             {item.badge}
           </div>
           <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease hover:opacity-100">
-            <Link href={`/projects/${item.link}`} className="text-lightBlue text-xs underline" aria-label={`View details of ${item.title}`}>
+            <Link href={`/projects/${item.link}`} className="text-lightBlue text-xs underline cursor-star" aria-label={`View details of ${item.title}`}>
               Detail
             </Link>
           </div>
@@ -64,7 +64,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
           </div>
           <div className="flex justify-center flex-wrap gap-2">
             {item.tags.map((tag, idx) => (
-              <span key={idx} className="text-xs px-2 sm:px-3 py-1 sm:py-2 border-solid border-thin border-darkBlue rounded-full capitalize">
+              <span key={idx} className="text-xs px-2 py-1 sm:py-2 border-solid border-thin border-darkBlue rounded-full capitalize">
                 {tag}
               </span>
             ))}

@@ -52,10 +52,10 @@ export function Header() {
   }, []);
 
   return (
-    <div className="relative bg-transparent">
-      <header className="absolute top-0 left-0 w-full flex justify-end items-center gap-8 px-8 py-6 bg-top z-10">
+    <div className="relative bg-transparent star cursor-star">
+      <header className="absolute top-0 left-0 w-full flex justify-end items-center gap-8 px-8 py-4 bg-[#6f94b0] z-10">
         <div className={`h-[2px] flex-1 bg-darkBlue transition-[clip-path] duration-1000 ease-linear`} style={{ clipPath: isLineAnimating ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}></div>
-        <div className="flex flex-col gap-1 cursor-pointer" onClick={handleCircleAnimation}>
+        <div className="flex flex-col gap-1 cursor-star" onClick={handleCircleAnimation}>
           <div className="rounded-[2px] bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "1s" : "0s" }}></div>
           <div className="rounded-[2px] bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "1.5s" : "0s" }}></div>
           <div className="rounded-[2px] bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "2s" : "0s" }}></div>

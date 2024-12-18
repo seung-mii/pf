@@ -11,7 +11,7 @@ const ContactSection: React.FC = () => {
         </p>
         <p className="text-s">
           <strong className="font-semibold">Mail. </strong>
-          <Link href="mailto:tmdal9953@naver.com" className="underline-offset-2 hover:underline">
+          <Link href="mailto:tmdal9953@naver.com" className="underline-offset-2 hover:underline hover:cursor-star">
             tmdal9953@naver.com
           </Link>
         </p>
@@ -19,13 +19,13 @@ const ContactSection: React.FC = () => {
       <div className="flex-1 text-left sm:pl-5 mt-4 sm:mt-0">
         <p className="text-s mt-3 mb-3 sm:mb-5">
           <strong className="font-semibold">Github. </strong>
-          <Link href="https://github.com/seung-mii" target="_blank" className="underline-offset-2 hover:underline">
+          <Link href="https://github.com/seung-mii" target="_blank" className="underline-offset-2 hover:underline hover:cursor-star">
             seung-mii
           </Link>
         </p>
         <p className="text-s">
           <strong className="font-semibold">Tistory. </strong>
-          <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline-offset-2 hover:underline">
+          <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline-offset-2 hover:underline hover:cursor-star">
             mi-dairy
           </Link>
         </p>

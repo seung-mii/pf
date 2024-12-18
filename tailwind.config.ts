@@ -15,6 +15,8 @@ export default {
         lightBlue: "#D1E4EC",
         point: "#FFD700",
         lightWhite: "#f0f0f0",
+        white: "#F5F5F5",
+        btnBg: "#F4A261"
       },
       fontSize: {
         'xs': 'clamp(0.5rem, 2vw, 0.625rem)',
@@ -25,6 +27,10 @@ export default {
       },
       borderWidth: {
         'thin': '0.0625rem',
+      },
+      cursor: {
+        'star': 'url("/img/star2.png"), auto',
+        'downArrow': 'url("/img/down_arrow_fill.png"), auto',
       },
     },
   },

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RESET */
 html,
 body,
 div,
@@ -137,7 +138,6 @@ table {
 body {
   min-height: 100vh;
   background: linear-gradient(to bottom, #6F94B0, #A8C5D3);
-  font-family: 'Palatino', 'Times New Roman';
 }
 
 /* HEADER */
@@ -151,7 +151,7 @@ body {
 
   to {
     width: 25px;
-    height: 3px;
+    height: 2px;
     opacity: 1;
     transform: translateX(0);
   }
@@ -160,7 +160,16 @@ body {
 .animate-draw-bar {
   animation: draw-bar 0.5s ease forwards;
   transform-origin: left;
-} 
+}
+
+/* ABOUT */
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
 
 /* SVG */
 @keyframes draw {

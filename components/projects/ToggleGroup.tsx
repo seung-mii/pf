@@ -15,7 +15,7 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, conten
   return (
     <div
       key={id}
-      className="bg-bottom rounded-md shadow-sm p-4 cursor-pointer transition-all"
+      className="bg-bottom rounded-md shadow-sm p-4 cursor-star transition-all"
       onClick={() => handleToggle(id)}
     >
       <div className="flex items-center">

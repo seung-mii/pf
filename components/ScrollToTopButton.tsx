@@ -28,15 +28,15 @@ const ScrollToTopButton: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="cursor-star">
       <div
-        className={`fixed bottom-4 right-4 transition-all duration-500 ease-in-out z-[100] ${
+        className={`fixed bottom-4 right-4 transition-all duration-500 ease-in-out z-[100] cursor-star ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <button
           onClick={scrollToTop}
-          className="p-3 bg-darkBlue rounded-full shadow-lg transition-all duration-500 ease-in-out"
+          className="p-3 bg-darkBlue rounded-full shadow-lg transition-all duration-500 ease-in-out cursor-star"
         >
           <Image
             src={Up}
@@ -45,7 +45,7 @@ const ScrollToTopButton: React.FC = () => {
           />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

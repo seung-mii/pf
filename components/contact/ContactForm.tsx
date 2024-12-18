@@ -53,8 +53,8 @@ const ContactForm: React.FC = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`block w-fit text-s font-bold px-3 py-2 mx-auto border border-darkBlue rounded-full cursor-pointer transition-all duration-300
-            ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "hover:bg-darkBlue hover:text-lightBlue"} sm:px-6 sm:py-2`}>
+          className={`block w-fit text-s font-bold px-3 py-2 mx-auto border border-darkBlue rounded-full cursor-star transition-all duration-300
+            ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "hover:bg-darkBlue hover:text-white"} sm:px-6 sm:py-2`}>
           {isSubmitting ? "Sending..." : "Send"}
         </button>
       </form>

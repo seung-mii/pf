@@ -10,21 +10,22 @@ export function FlipCareerCard({ category, title, details, date }: CareerInfo) {
   ));
 
   return (
-    <div className="card relative min-w-[260px] h-full min-h-[330px] flex-col justify-between p-4 text-center items-center transition-transform duration-700 [transform-style:preserve-3d] cursor-pointer"
+    <div
+      className="card relative w-48 sm:w-64 h-72 sm:h-80 text-center transition-transform duration-700 ease-out cursor-downArrow [transform-style:preserve-3d] hover:rotate-y-180 cursor-downArrow"
       style={{ perspective: "1000px" }}
     >
-      <div className="front absolute w-full h-full font-medium overflow-hidden [backface-visibility:hidden] flex flex-col justify-center rounded-[2vw] shadow-md text-base px-6 pt-2 pb-6 text-darkBlue bg-lightBlue">
-        <div className="flex items-center justify-center text-m font-bold text-darkBlue m-6 whitespace-pre-line">
+      <div className="front absolute w-full h-full flex flex-col justify-center rounded-xl shadow-md text-base px-3 pt-2 pb-3 sm:px-6 sm:pt-2 sm:pb-6 text-darkBlue bg-lightBlue backface-hidden">
+        <div className="flex items-center justify-center text-md font-bold text-darkBlue h-1/3 whitespace-pre-line">
           {formattedTitle}
         </div>
-        <div className="text-base text-s text-left leading-[1.4] flex-grow text-darkBlue">
+        <div className="text-base text-sm text-left leading-5 flex-grow text-darkBlue">
           {details.map((line, i) => (
-            <p key={i} className="mb-3">{line}</p>
+            <p key={i} className="mb-2">{line}</p>
           ))}
         </div>
-        <div className="text-s text-darkBlue text-[#999] italic">{date}</div>
+        <div className="text-sm text-darkBlue text-[#999] italic">{date}</div>
       </div>
-      <div className="back absolute w-full h-full font-medium overflow-hidden [backface-visibility:hidden] flex flex-col justify-center rounded-[2vw] shadow-md text-xl font-semibold text-bottom bg-darkBlue [transform:rotateY(180deg)]">
+      <div className="back absolute w-full h-full flex flex-col justify-center rounded-xl shadow-md text-xl font-semibold text-center text-lightBlue bg-darkBlue rotate-y-180 backface-hidden">
         {category}
       </div>
     </div>
