@@ -29,7 +29,7 @@ export function SkillSection() {
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`px-6 py-2 text-base border-2 border-darkBlue rounded-[25px] bg-transparent cursor-star transition-colors duration-300 hover:cursor-star hover:bg-darkBlue hover:text-white ${activeTab === tab ? "bg-darkBlue text-white" : ""}`}
+            className={`px-6 py-2 text-base border-2 border-darkBlue rounded-[25px] bg-transparent cursor-star transition-colors duration-300 hover:cursor-star hover:bg-darkBlue hover:text-white ${activeTab === tab ? "!bg-darkBlue !text-white" : ""}`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
