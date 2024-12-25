@@ -15,18 +15,18 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, conten
   return (
     <div
       key={id}
-      className="bg-bottom rounded-md shadow-sm p-4 cursor-star transition-all"
+      className="bg-bottom rounded-md shadow-sm p-3 sm:p-4 cursor-star transition-all"
       onClick={() => handleToggle(id)}
     >
       <div className="flex items-center">
-        <div className="w-5 h-2 relative mr-1">
-          <span className={`block absolute w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-0 top-[3px]" }`}></span>
-          <span className={`block absolute w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-90 top-[3px]" }`}></span>
+        <div className="w-5 h-2 relative sm:mr-1">
+          <span className={`block absolute w-[8px] sm:w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-0 top-[3px]" }`}></span>
+          <span className={`block absolute w-[8px] sm:w-[13px] h-[1px] bg-darkBlue transition-transform ${isOpen[id] ? "rotate-0 top-[3px]" : "rotate-90 top-[3px]" }`}></span>
         </div>
-        <p className="font-semibold text-s select-none leading-relaxed">{title}</p>
+        <p className="font-semibold text-xs sm:text-s select-none leading-relaxed">{title}</p>
       </div>
       {isOpen[id] && (
-        <ul className="list-disc ml-6 mt-2 py-2 text-xs space-y-2">
+        <ul className="list-disc ml-4 sm:ml-6 mt-2 py-1 sm:py-2 text-xs space-y-2">
           {contents?.map((item, idx: number) => (
             <li key={`content-${idx}`} className="select-none leading-relaxed">
               {item}

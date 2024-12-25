@@ -3,9 +3,9 @@ import Link from "next/link";
 
 const ContactSection: React.FC = () => {
   return (
-    <div className="flex flex-col sm:flex-row justify-between border-t-thin border-solid border-darkBlue pt-4 sm:pt-6 mt-4 sm:mt-6">
-      <div className="flex-1 text-left">
-        <p className="text-s mt-3 mb-3 sm:mb-5">
+    <div className="flex flex-col sm:flex-row justify-between border-t-thin border-solid border-darkBlue pt-4 sm:pt-6 mt-3 sm:mt-6">
+      <div className="flex-1 text-left ml-1">
+        <p className="text-s mt-1 mb-3 sm:mb-5">
           <strong className="font-semibold">Tel. </strong>
           010 7200 0776
         </p>
@@ -16,8 +16,8 @@ const ContactSection: React.FC = () => {
           </Link>
         </p>
       </div>
-      <div className="flex-1 text-left sm:pl-5 mt-4 sm:mt-0">
-        <p className="text-s mt-3 mb-3 sm:mb-5">
+      <div className="flex-1 text-left ml-1 sm:pl-5 mt-3 sm:mt-0">
+        <p className="text-s mt-0 mb-3 sm:mb-5">
           <strong className="font-semibold">Github. </strong>
           <Link href="https://github.com/seung-mii" target="_blank" className="underline-offset-2 hover:underline hover:cursor-star">
             seung-mii

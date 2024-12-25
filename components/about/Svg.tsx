@@ -35,8 +35,12 @@ export function Svg() {
   }, []);
 
   return (
-    <div className="mt-20 mx-7">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1692.48 347.84" width="35vw" height="15vh">
+    <div className="flex flex-col items-center sm:items-start mt-10 sm:mt-20 mx-1 sm:mx-5">
+      <svg
+        className="block pt-7 w-[55vw] h-[10vh] sm:w-[60vw] md:h-[17vh] sm:pr-80"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1692.48 347.84"
+      >
         <defs>
           <clipPath id="01">
             <path d="M59.32,266.75c-20.7,0-49.5-14.4-49.5-53.7v-71.7c0-15.6,6.75-29.78,16.69-40.05,3.33-3.45,6.52-5.85,7.16-6.32,10.89-7.96,22.3-9.82,28.65-10.33h27c26.7,0,51.3,25.5,51.3,56.7v73.8c0,30.9-23.7,51.6-47.7,51.6h-33.6ZM80.62,235.25c15.3,0,24.9-14.7,24.9-26.4v-64.5c0-13.2-12.9-24.6-24.9-24.6h-9.6c-12,0-26.1,10.8-26.1,24v68.1c0,9.3,7.8,23.4,23.1,23.4h12.6ZM235.43,71.75v252.3h-42v-84.3h-38.7v-35.1h38.7v-31.2h-38.7v-35.4h38.7v-66.3h42Z" />
@@ -89,7 +93,11 @@ export function Svg() {
           <path clipPath="url(#07)" d="M1645.32,287s9.91-.52,18,0c6.22.4,7.57,1.17,9.75.97.03,0,.13-.01.25.03,1.87.75-.42,12.73-5,23-1.47,3.3-2.64,5.91-5,9-4.7,6.15-10.45,9.38-14,11"/>
         </g>
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 280 1861.29 604.64" width="45vw">
+      <svg
+        className="block w-[63vw] h-[12vh] sm:w-[69vw] sm:h-[25vh] sm:pr-80"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 250 1901.29 604.64"
+      >
         <defs>
           <clipPath id="08">
             <path d="M184.42,565.61H30.14v-23.75h63.54v-22.94h27.2v22.94h63.54v23.75ZM167.78,428.58v83.43H47.8v-83.43h119.97ZM142.6,450.71h-66.99v38.98h66.99v-38.98Z"/>

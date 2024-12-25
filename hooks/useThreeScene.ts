@@ -76,6 +76,8 @@ export function useThreeScene(mountRef: RefObject<HTMLDivElement | null>) {
           tooltip.style.left = `${event.clientX + 10}px`;
           tooltip.style.top = `${event.clientY + 10}px`;
           tooltip.style.visibility = "visible";
+          tooltip.style.fontSize = "0.75rem";
+          tooltip.style.padding = "0.5rem";
         }
       } else {
         tooltip.style.visibility = "hidden";

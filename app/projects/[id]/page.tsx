@@ -89,16 +89,16 @@ const ProjectDetails: React.FC = () => {
     );
   }
 
-  return (
-    <div ref={wrapperRef} className="w-full font-sans text-darkBlue cursor-star h-[620vh]">
-      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-4">
-        <Link href="/projects" className="text-darkBlue text-base">
-          <Image src={Left} alt="Go back Icon" className="w-5 h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:cursor-star" />
+  return ( 
+    <div ref={wrapperRef} className="grid w-full font-sans text-darkBlue cursor-star h-[608vh] pt-20">
+      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-2 sm:px-4">
+        <Link href="/projects">
+          <Image src={Left} alt="Go back Icon" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:cursor-star" />
         </Link>
         <div className="flex-1 text-center text-s sm:text-m">{projectDetails.information.title}</div>
       </div>
       <InfoSection information={projectDetails.information}/>
-      <div className="bg-darkBlue border-t border-b border-darkBlue w-full h-[500vh] mb-[100vh] cursor-downArrow">  
+      <div className="border-t border-b border-darkBlue w-full h-[429vh] sm:h-[410vh] mt-[50vh] cursor-downArrow">
         <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden bg-top">
           {projectDetails.function && <FunctionSection details={projectDetails.function} />}
           {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}

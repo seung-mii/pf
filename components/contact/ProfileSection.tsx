@@ -9,8 +9,8 @@ const ProfileSection: React.FC = () => {
       <div className="flex items-center gap-3 sm:gap-5 mb-4 sm:mb-2">
         <Image src={Photo} alt="Profile Photo" className="w-[90px] h-[120px] sm:w-[100px] sm:h-[130px] md:w-[120px] md:h-[150px] lg:w-[130px] lg:h-[160px] object-cover" />
         <div className="text-left">
-          <h1 className="text-l font-bold m-0">Shin Seung Mi</h1>
-          <h2 className="text-m mt-1 sm:mt-2 md:mt-3">Frontend Developer</h2>
+          <h1 className="text-m sm:text-l font-bold m-0">Shin Seung Mi</h1>
+          <h2 className="text-s sm:text-m mt-1 sm:mt-2 md:mt-3">Frontend Developer</h2>
         </div>
       </div>
       <div className="text-center">

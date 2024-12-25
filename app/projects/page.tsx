@@ -39,21 +39,21 @@ export default function Project() {
     <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-sans star cursor-star">
       <button
         onClick={() => setIsImportantOnly((prev) => !prev)}
-        className="absolute top-14 left-1/2 transform -translate-x-1/2 px-4 py-3 bg-point text-darkBlue text-xs rounded-[20px] z-10 cursor-star"
+        className="absolute top-14 left-1/2 transform -translate-x-1/2 px-4 py-3 bg-point text-darkBlue text-xs sm:text-s rounded-2xl z-10"
       >
         {isImportantOnly ? "Show All" : "Show Important"}
       </button>
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[2px] bg-darkBlue h-0 transition-all duration-300 ease-out timeline-line"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[2px] h-0 bg-darkBlue transition-all duration-300 ease-out timeline-line z-5"></div>
       <div className="flex flex-col items-center mt-12">
         {items.map((item, index) => (
           <TimelineItem key={item.id} item={item} index={index} />
         ))}
+        {hasMore && (
+          <div id="loader" className="text-center mt-4">
+            Loading...
+          </div>
+        )}
       </div>
-      {hasMore && (
-        <div id="loader" className="text-center mt-4">
-          Loading...
-        </div>
-      )}
     </div>
   );
 }

@@ -51,13 +51,13 @@ export function Catalog({ onClose }: { onClose: () => void }) {
   return (
     <div className={`cursor-star fixed inset-0 flex items-center justify-center transition-opacity duration-500 ${isFadingOut ? "opacity-0" : "opacity-100"} bg-bottom z-40`}>
       <div
-        className={`absolute top-7 right-7 cursor-star z-50 transition-transform duration-500 ease-out ${isXButtonVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[-20px]"}`}
+        className={`fixed top-7 right-7 cursor-star z-50 transition-transform duration-500 ease-out ${isXButtonVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[-20px]"}`}
         onClick={handleClose}
       >
         <div className="w-[25px] h-[2px] bg-darkBlue rounded-md transform rotate-45"></div>
-        <div className="w-[25px] h-[2px] bg-darkBlue rounded-md transform -rotate-45 -mt-[3px]"></div>
+        <div className="w-[25px] h-[2px] bg-darkBlue rounded-md transform -rotate-45 -mt-[2px]"></div>
       </div>
-      <nav className="flex flex-col items-center gap-20 text-xl font-bold text-darkBlue">
+      <nav className="flex flex-col items-center justify-center w-full h-full gap-20 text-xl font-bold text-darkBlue">
         {CatalogData.map((link, index) => (
         <Link
           key={link.text}

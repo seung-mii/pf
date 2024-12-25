@@ -37,18 +37,18 @@ const ContactForm: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3 w-full max-w-2xl mt-2 sm:mt-3">
+      <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3 w-full max-w-2xl mt-2 sm:mt-0">
         <div className="relative">
           <label htmlFor="user_name" className="sr-only">이름</label>
-          <input type="text" id="user_name" name="user_name" placeholder="Name..." required className="w-full p-3 md:p-4 text-s rounded-[15px] bg-lightBlue outline-none sm:p-3" />
+          <input type="text" id="user_name" name="user_name" placeholder="Name..." required className="w-full p-3 md:p-4 text-s rounded-2xl bg-lightBlue outline-none sm:p-3" />
         </div>
         <div className="relative">
           <label htmlFor="user_email" className="sr-only">이메일</label>
-          <input type="email" id="user_email" name="user_email" placeholder="Email..." required className="w-full p-3 md:p-4 text-s rounded-[15px] bg-lightBlue outline-none sm:p-3" />
+          <input type="email" id="user_email" name="user_email" placeholder="Email..." required className="w-full p-3 md:p-4 text-s rounded-2xl bg-lightBlue outline-none sm:p-3" />
         </div>
         <div className="relative">
           <label htmlFor="message" className="sr-only">메시지</label>
-          <textarea id="message" name="message" placeholder="Message..."  required className="w-full p-3 md:p-4 text-s rounded-[15px] bg-lightBlue outline-none resize-none sm:p-3" />
+          <textarea id="message" name="message" placeholder="Message..."  required className="w-full h-[15vh] sm:h-auto p-3 md:p-4 text-s rounded-2xl bg-lightBlue outline-none resize-none sm:p-3" />
         </div>
         <button
           type="submit"
