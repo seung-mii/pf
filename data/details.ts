@@ -69,17 +69,130 @@ interface DetailTotalInfo {
 
 export const detailsData: { key: string; value: DetailTotalInfo }[] = [
   {
+    key: "movie",
+    value: {
+      information: {
+        videos: [{
+          title: "Home",
+          url: "/video/movie_video.mp4",
+        }],
+        title: "Movie Web",
+        description: "간단한 영화 웹사이트",
+        github: "https://github.com/seung-mii/nextjs-study",
+        period: "2024.11.13 ~ 2024.11.20",
+        personnel: ["FE: 1"],
+        skills: ["Next.js", "React", "Typescript", "Vercel"],
+      },
+      function: [
+      {
+        title: "영화별 상세 정보",
+        details: [
+          "영화마다 동적 라우팅을 하여 해당 영화에 대한 정보만 볼 수 있습니다.",
+          "영화 예고편 및 비디오를 렌더링하여 사용자에게 제공합니다.",
+        ],
+      }],
+      icandoit:[{
+        title: "CSS 모듈을 활용한 스타일링을 할 수 있습니다.",
+        details: [
+          "컴포넌트 별로 CSS 모듈을 적용하여 스타일 충돌을 방지하고 유지보수를 용이하게 설계할 수 잇습니다.",
+          "글로벌 스타일(global.css)과 개별 스타일 파일을 조합하여 전체적인 스타일 통일성을 유지할 수 있습니다.",
+        ],
+      },
+      {
+        title: "Suspense를 활용하여 동영상 로딩을 최적화를 할 수 있습니다.",
+        details: [
+          "fetch를 사용하여 동영상 데이터를 API로부터 비동기적으로 가져올 수 있습니다.",
+          "Suspense를 활용하여 동영상 정보와 동영상 콘텐츠를 각각 비동기적으로 로딩하며 로딩 중에는 fallback UI를 표시하여 사용자 경험을 개선한 경험이 있습니다.",
+          "동영상 로딩 시 YouTube의 iframe을 활용하여 외부 리소스를 효율적으로 임베드할 수 있습니다.",
+        ],
+      }],
+    },
+  },
+  {
     key: "portfolio",
     value: {
       information: {
+        videos: [{
+          title: "Mobile ver.",
+          url: "/video/pf_video.mp4",
+        }],
         title: "Portfolio",
         description: "포토폴리오 사이트",
         github: "https://github.com/seung-mii/pf",
         link: "https://seung-mi-pf.vercel.app/",
-        period: "2024.10.03 ~ ing",
+        period: "2024.10.03 ~ 2024.12.28",
         personnel: ["FE: 1"],
         skills: ["Next.js", "Three.js", "React", "Typescript", "Tailwind CSS", "Vercel"],
       },
+      function: [{
+        title: "반응형 디자인을 구현하였습니다.",
+        details: [
+          "Tailwind CSS의 반응형 접두사를 활용하여 다양한 뷰포트 크기에 맞는 디자인을 조정했습니다.",
+          "커스텀 브레이크포인트를 `tailwind.config.js` 파일에 정의하여 프로젝트에 맞는 유연한 레이아웃을 설계했습니다.",
+          "모바일, 태블릿, 데스크톱 환경에서도 일관된 사용자 경험을 제공하는 디자인을 구현했습니다.",
+        ],
+      },
+      {
+        title: "성능 개선 및 최적화(리팩토링)하였습니다.",
+        details: [
+          "이미지를 Lazy loading 처리하여 불필요한 리소스 로드를 줄여 페이지 로딩 속도를 최적화하였습니다.",
+          "Lodash 라이브러리의 throttle를 활용하여 이벤트 핸들러 호출 빈도를 제한하여 성능을 개선하였습니다.",
+          "Intersection Observer API를 활용하여 스크롤 이벤트를 효율적으로 처리하고 필요한 콘텐츠만 로드하여 성능을 최적화하였습니다.",
+        ],
+      },
+      {
+        title: "Three.js 라이브러리를 사용하여 웹페이지에 3D 환경을 구현했습니다.",
+        details: [
+          "카메라, 조명, 렌더링을 설정하여 몰입감 있는 배경을 제작했습니다.",
+          "3D 배경이 사용자 인터랙션에 따라 동적으로 반응하도록 구현했습니다.",
+        ],
+      },
+      {
+        title: "SVG 요소를 사용해 텍스트에 애니메이션 효과를 추가했습니다.",
+        details: [
+          "clip-path를 활용하여 텍스트 디자인을 구현했습니다.",
+          "애니메이션을 넣어 텍스트가 부드럽게 나타나거나 사라지는 효과를 구현했습니다.",
+        ],
+      },
+      {
+        title: "React와 CSS를 활용하여 스크롤 시 카드를 3D로 뒤집는 애니메이션을 구현했습니다.",
+        details: [
+          "IntersectionObserver를 사용하여 카드가 뷰포트에 들어왔을 때 애니메이션이 실행되도록 설정했습니다.",
+          "CSS의 transform과 perspective를 조합하여 부드럽고 자연스러운 3D 효과를 만들었습니다.",
+        ],
+      },
+      {
+        title: "폴더 모양의 UI를 만들어 스크롤과 함께 열리고 닫히는 애니메이션을 구현했습니다.",
+        details: [
+          "스크롤 위치에 따라 CSS 클래스가 동적으로 변경되도록 설정했습니다.",
+          "폴더의 열림과 닫힘 애니메이션을 keyframes를 활용해 매끄럽게 처리했습니다.",
+        ],
+      },
+      {
+        title: "카드 요소에 perspective를 적용하여 3D 입체감을 부여했습니다.",
+        details: [
+          "마우스 움직임에 따라 카드의 각도가 실시간으로 변경되도록 구현했습니다.",
+          "React 상태 관리와 CSS 애니메이션을 결합해 인터랙션이 부드럽게 동작하도록 설계했습니다.",
+        ],
+      }],
+      icandoit: [
+        {
+          title: "Three.js의 기본 요소에 대해 배웠습니다.",
+          details: [
+            "Scene, Camera, Renderer를 설정할 수 있습니다.",
+            "카메라와 조명을 조정하여 3D 오브젝트와 배경이 자연스럽게 보이도록 구성하는 방법을 배웠습니다.",
+            "사용자 인터랙션과 3D 그래픽을 연동하여 동적이고 몰입감 있는 사용자 경험을 제공하는 기술을 익혔습니다.",
+          ],
+        },
+        {
+          title: "반응형 디자인을 효과적으로 구현할 수 있습니다.",
+          details: [
+            "Tailwind CSS의 브레이크포인트 시스템을 활용하여 다양한 디바이스 크기에 맞는 스타일을 설정할 수 있습니다.",
+            "뷰포트 크기별로 레이아웃과 타이포그래피를 조정하여 일관된 UI를 설계할 수 있습니다.",
+            "프로젝트 요구사항에 맞는 커스텀 브레이크포인트를 구성하고, 이를 통해 화면 크기별 사용자 경험을 최적화할 수 있습니다.",
+          ],
+        }
+      ],
     },
   },
   {
@@ -203,6 +316,12 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           title: "단축키로도 클래스 변경 관리",
           details: [
             "useCallback과 단축키 이벤트 리스너를 사용해 사용자가 특정 단축키를 누르면 어노테이션 클래스가 변경되도록 설정했습니다.",
+          ],
+        },
+        {
+          title: "이미지를 변경하면 어노테이션 자동 저장",
+          details: [
+            "사용자가 어노테이션 작성 중 이미지 리스트에서 다른 이미지를 선택하면, 선택 직전까지 진행된 어노테이션 좌표를 서버에 자동으로 저장하여 어노테이션 상태를 유지함으로써 사용자 편의성을 높였습니다.",
           ],
         },
       ],
