@@ -157,7 +157,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
       {
         title: "React와 CSS를 활용하여 스크롤 시 카드를 3D로 뒤집는 애니메이션을 구현했습니다.",
         details: [
-          "IntersectionObserver를 사용하여 카드가 뷰포트에 들어왔을 때 애니메이션이 실행되도록 설정했습니다.",
+          "Intersection Observer를 사용하여 카드가 뷰포트에 들어왔을 때 애니메이션이 실행되도록 설정했습니다.",
           "CSS의 transform과 perspective를 조합하여 부드럽고 자연스러운 3D 효과를 만들었습니다.",
         ],
       },

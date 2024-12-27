@@ -5,5 +5,7 @@
 - Three.js
 - Tailwind CSS
 - EmailJS
+- lodash
 - react-toastify
+- Intersection Observer API
 - Vercel

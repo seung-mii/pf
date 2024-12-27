@@ -30,23 +30,34 @@ const useCardFlip = () => {
       const centerY = top - rect.height / 2;
       const d = Math.sqrt(centerX ** 2 + centerY ** 2);
 
-      if (!isFlipped) {
-        frontCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
-        frontCard.style.transform = `rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
-        frontLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
+      if (window.innerWidth < 640) { 
+        frontCard.style.transform = "";
+        frontCard.style.boxShadow = "";
+        frontLight.style.backgroundImage = "";
 
         backCard.style.transform = "rotateY(180deg)";
         backCard.style.boxShadow = "";
         backLight.style.backgroundImage = "";
+        backLight.style.transform = "";
       } else {
-        backCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
-        backCard.style.transform = `rotateY(180deg) rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
-        backLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
-        backLight.style.transform = `translateY(-30px)`;
+        if (!isFlipped) {
+          frontCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
+          frontCard.style.transform = `rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
+          frontLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
 
-        frontCard.style.transform = "";
-        frontCard.style.boxShadow = "";
-        frontLight.style.backgroundImage = "";
+          backCard.style.transform = "rotateY(180deg)";
+          backCard.style.boxShadow = "";
+          backLight.style.backgroundImage = "";
+        } else {
+          backCard.style.boxShadow = `${-centerX / 8}px ${-centerY / 13}px 10px rgba(0, 0, 0, 0.2)`;
+          backCard.style.transform = `rotateY(180deg) rotate3d(${-centerY / 100}, ${centerX / 100}, 0, ${d / 50}deg)`;
+          backLight.style.backgroundImage = `radial-gradient(circle at ${left}px ${top}px, #00000010, #00000000)`;
+          backLight.style.transform = `translateY(-30px)`;
+
+          frontCard.style.transform = "";
+          frontCard.style.boxShadow = "";
+          frontLight.style.backgroundImage = "";
+        }
       }
     };
 
@@ -62,7 +73,6 @@ const useCardFlip = () => {
 
     cardWrapper.addEventListener("mousemove", mouseMove);
     cardWrapper.addEventListener("mouseleave", mouseLeave);
-
     return () => {
       cardWrapper.removeEventListener("mousemove", mouseMove);
       cardWrapper.removeEventListener("mouseleave", mouseLeave);

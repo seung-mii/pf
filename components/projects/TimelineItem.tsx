@@ -40,9 +40,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       <div className="bg-white bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-3/5 sm:w-5/12 md:w-5/12 relative">
         <div className="relative overflow-hidden">
           {item.imgSrc ? (
-            <Image src={item.imgSrc} alt={`${item.title} 프로젝트 이미지`} className="w-300 h-500 max-h-[17vh] sm:max-h-[25vh] transition-transform filter transition-filter duration-300 ease" />
+            <Image src={item.imgSrc} alt={`${item.title} 프로젝트 이미지`} className="w-300 h-500 max-h-[17vh] sm:max-h-[30vh] transition-transform filter transition-filter duration-300 ease" />
           ) : (
-            <div className="w-[30rem] h-[17vh] sm:h-[25vh] bg-white flex items-center justify-center border border-gray-300">
+            <div className="w-[30rem] h-[17vh] sm:h-[30vh] bg-white flex items-center justify-center border border-gray-300">
               <p className="text-gray-500 text-center absolute inset-0 flex justify-center items-center">No Image</p>
             </div>
           )}

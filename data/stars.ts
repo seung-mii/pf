@@ -14,9 +14,9 @@ interface StarObject {
 
 export default function stars(scene: THREE.Scene) {
   const stars: StarInfo[] = [
-    { position: [0, 50, 200], tooltip: "about", path: "/about" },
-    { position: [-100, 130, -30], tooltip: "projects", path: "/projects" },
-    { position: [150, 110, 100], tooltip: "contact", path: "/contact" },
+    { position: [0, 80, 80], tooltip: "about", path: "/about" },
+    { position: [-70, 90, -30], tooltip: "projects", path: "/projects" },
+    { position: [80, 130, 100], tooltip: "contact", path: "/contact" },
   ];
 
   const starTexture = new THREE.TextureLoader().load("/img/star.png");
@@ -34,15 +34,16 @@ export default function stars(scene: THREE.Scene) {
 
   const starObjects: StarObject[] = [];
 
+  const isSmallScreen = window.innerWidth <= 640;
+  const starSize = isSmallScreen ? 20 : 13;
+
   stars.forEach((starData) => {
     const starGeometry = new THREE.BufferGeometry();
-    const vertices = new Float32Array([
-      0, 0, 0,
-    ]);
+    const vertices = new Float32Array([0, 0, 0]);
     starGeometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
 
     const starMaterial = new THREE.PointsMaterial({
-      size: 10,
+      size: starSize,
       map: starTexture,
       transparent: true,
       depthWrite: false,

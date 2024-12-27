@@ -36,12 +36,12 @@ const ScrollToTopButton: React.FC = () => {
       >
         <button
           onClick={scrollToTop}
-          className="p-2 sm:p-3 bg-darkBlue rounded-full shadow-lg transition-all duration-500 ease-in-out cursor-star"
+          className="p-3 bg-darkBlue rounded-full shadow-lg transition-all duration-500 ease-in-out cursor-star"
         >
           <Image
             src={Up}
             alt="Up To Top Icon"
-            className="w-2 h-2 sm:w-3 sm:h-3 opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
+            className="w-3 h-3 opacity-80 transition-opacity duration-300 ease-in-out hover:opacity-100"
           />
         </button>
       </div>

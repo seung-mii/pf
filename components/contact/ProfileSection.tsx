@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Photo from "../../public/img/photo.jpeg";
 import QR from "../../public/img/qr.png";
+import Link from "next/link";
 
 const ProfileSection: React.FC = () => {
   return (
@@ -15,7 +16,9 @@ const ProfileSection: React.FC = () => {
       </div>
       <div className="text-center">
         <Image src={QR} alt="Resume QR Code" className="mx-auto w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] md:w-[80px] md:h-[80px] lg:w-[85px] lg:h-[85px]"/>
-        <p className="text-s m-0">Resume</p>
+        <Link href="https://seung-mi-resume.vercel.app/" target="_blank" className="text-s m-0 underline sm:no-underline sm:hover:underline hover:cursor-star">
+          Resume
+        </Link>
       </div>
     </div>
   );

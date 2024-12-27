@@ -37,9 +37,9 @@ export function Svg() {
   return (
     <div className="flex flex-col items-center sm:items-start mt-10 sm:mt-20 mx-1 sm:mx-5">
       <svg
-        className="block pt-7 w-[55vw] h-[10vh] sm:w-[60vw] md:h-[17vh] sm:pr-80"
+        className="block pt-7 sm:pt-0 w-[55vw] h-[10vh] sm:w-[100vw] md:w-[90vw] lg:w-[80vw] sm:h-[15vh] md:h-[20vh] lg:h-[17vh] sm:pr-80"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1692.48 347.84"
+        viewBox="0 0 1992.48 347.84"
       >
         <defs>
           <clipPath id="01">
@@ -94,7 +94,7 @@ export function Svg() {
         </g>
       </svg>
       <svg
-        className="block w-[63vw] h-[12vh] sm:w-[69vw] sm:h-[25vh] sm:pr-80"
+        className="block w-[63vw] h-[12vh] sm:w-[100vw] md:w-[90vw] lg:w-[69vw] sm:h-[25vh] sm:pr-80"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 250 1901.29 604.64"
       >

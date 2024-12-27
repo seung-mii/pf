@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Frontend Developer",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>

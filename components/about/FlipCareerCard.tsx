@@ -18,12 +18,12 @@ export function FlipCareerCard({ category, title, details, date }: CareerInfo) {
         <div className="flex items-center justify-center text-m sm:text-md font-bold text-darkBlue h-1/3 whitespace-pre-line">
           {formattedTitle}
         </div>
-        <div className="text-s sm:text-m text-left leading-4 sm:leading-5 flex-grow text-darkBlue">
+        <div className="text-s sm:text-md md:text-m text-left leading-4 sm:leading-5 flex-grow text-darkBlue">
           {details.map((line, i) => (
             <p key={i} className="mb-2">{line}</p>
           ))}
         </div>
-        <div className="text-s sm:text-m text-[#999] italic">{date}</div>
+        <div className="text-s sm:text-md md:text-m text-[#999] italic">{date}</div>
       </div>
       <div className="back absolute w-full h-full flex flex-col justify-center rounded-xl shadow-md text-xl font-semibold text-center text-lightBlue bg-darkBlue rotate-y-180 backface-hidden">
         {category}

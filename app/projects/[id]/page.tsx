@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
@@ -15,11 +15,12 @@ const ProjectDetails: React.FC = () => {
   const params = useParams();
   const { id } = params;
   
+  const [showScrollText, setShowScrollText] = useState(true);
+  
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const headerVh = 6;
   const contentVh = 96 - headerVh * 5;
-  
   const projectDetails = detailsData.find((item) => item.key === id)?.value;
 
   const init = () => {
@@ -75,6 +76,21 @@ const ProjectDetails: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    function handleScroll() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+      const threshold = scrollHeight * 0.2;
+      if (currentScroll > threshold) setShowScrollText(false);
+      else setShowScrollText(true);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   if (!projectDetails) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen max-w-5xl mx-auto p-4 sm:p-8 text-center font-sans text-darkBlue">
@@ -99,14 +115,17 @@ const ProjectDetails: React.FC = () => {
       </div>
       <InfoSection information={projectDetails.information}/>
       <div className="border-t border-b border-darkBlue w-full h-[429vh] sm:h-[410vh] mt-[50vh] cursor-downArrow">
-        <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden bg-top">
+        <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden">
           {projectDetails.function && <FunctionSection details={projectDetails.function} />}
           {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}
           {projectDetails.icandoit && <ICanDoItSection details={projectDetails.icandoit} />}
-          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 text-[3vw] sm:text-[1rem] text-darkBlue text-center bg-white/60 px-2 py-1 rounded shadow-md z-50 transition-opacity duration-500 ease-in-out whitespace-nowrap">
-            Scroll to the bottom for more details.
-          </div>
         </div>
+      </div>
+      <div
+        className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 text-[3vw] sm:text-[1rem] text-darkBlue text-center bg-white/60 px-2 py-1 rounded shadow-md z-50 transition-opacity duration-500 ease-in-out whitespace-nowrap 
+          ${showScrollText ? "opacity-100" : "opacity-0"}`}
+      >
+        Scroll to the bottom for more details.
       </div>
     </div>
   );

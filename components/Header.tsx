@@ -63,7 +63,7 @@ export function Header() {
       </header>
       {isCircleVisible && (
         <div
-          className="fixed top-0 left-0 w-[100px] h-[100px] bg-bottom rounded-full pointer-events-none transition-transform duration-500 ease-out"
+          className="fixed top-0 left-0 w-[100px] h-[100px] bg-[#A8C5D3] rounded-full pointer-events-none transition-transform duration-500 ease-out"
           style={{ ...circleStyle, position: "fixed", zIndex: 20 }}
         ></div>
       )}

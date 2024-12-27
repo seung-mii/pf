@@ -148,7 +148,6 @@ body {
     opacity: 0;
     transform: translateX(-100%);
   }
-
   to {
     width: 25px;
     height: 2px;
@@ -197,4 +196,5 @@ path {
   stroke-dashoffset: var(--length);
   animation: draw var(--duration) ease-in forwards;
   animation-delay: var(--delay);
+  background-color: #6F94B0;
 }
