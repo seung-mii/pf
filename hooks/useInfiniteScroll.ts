@@ -9,7 +9,7 @@ export function useInfiniteScroll({ hasMore, fetchMoreData, dependencies = []}: 
           fetchMoreData();
         }
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
 
     const loader = document.getElementById("loader");
@@ -18,5 +18,5 @@ export function useInfiniteScroll({ hasMore, fetchMoreData, dependencies = []}: 
     return () => {
       if (loader) observer.unobserve(loader);
     };
-  }, [hasMore, fetchMoreData, ...dependencies]);
+  }, [fetchMoreData, hasMore]);
 }
