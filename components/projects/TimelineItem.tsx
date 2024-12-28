@@ -50,7 +50,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
             {item.badge}
           </div>
           <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease hover:opacity-100">
-            <Link href={`/projects/${item.link}`} className="text-lightBlue text-s sm:text-xs underline cursor-star" aria-label={`View details of ${item.title}`}>
+            <Link href={`/projects/${item.link}`} className="text-lightBlue text-m underline cursor-star" aria-label={`View details of ${item.title}`}>
               Detail
             </Link>
           </div>
