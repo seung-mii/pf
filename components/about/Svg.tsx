@@ -25,7 +25,7 @@ export function Svg() {
       const length = path.getTotalLength();
       path.style.setProperty("--length", length.toString());
       path.style.setProperty("--duration", `${length}ms`);
-      path.style.setProperty("--delay", `${i * 80}ms`);
+      path.style.setProperty("--delay", `${i * 20}ms`);
     });
   };
 

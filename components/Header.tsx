@@ -1,73 +1,33 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Catalog from "./Catalog";
+import Link from "next/link";
+import React from "react";
+
+const CatalogData = [
+  { href: "/", text: "HOME" },
+  { href: "/about", text: "ABOUT" },
+  { href: "/projects", text: "PROJECTS" },
+  { href: "/contact", text: "CONTACT" },
+];
 
 export function Header() {
-  const [isLineAnimating, setIsLineAnimating] = useState(false);
-  const [showCatalog, setShowCatalog] = useState(false);
-  const [circleStyle, setCircleStyle] = useState({});
-  const [isCircleVisible, setIsCircleVisible] = useState(false);
-
-  const handleCircleAnimation = (event: React.MouseEvent) => {
-    const x = event.clientX;
-    const y = event.clientY;
-
-    setCircleStyle({
-      top: `${y}px`,
-      left: `${x}px`,
-      transform: "scale(0)",
-    });
-    setIsCircleVisible(true);
-
-    setTimeout(() => {
-      setCircleStyle((prevStyle) => ({
-        ...prevStyle,
-        transform: "scale(100)",
-      }));
-    }, 10);
-
-    setTimeout(() => {
-      setShowCatalog(true);
-    }, 500);
-  };
-
-  const handleCloseCatalog = () => {
-    setCircleStyle((prevStyle) => ({
-      ...prevStyle,
-      transform: "scale(0)",
-    }));
-
-    setTimeout(() => {
-      setShowCatalog(false);
-      setIsCircleVisible(false);
-    }, 500); 
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLineAnimating(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="relative bg-transparent star cursor-star">
-      <header className="absolute top-0 left-0 w-full flex justify-end items-center gap-8 px-8 py-4 bg-[#6f94b0] z-10">
-        <div className={`h-[2px] flex-1 bg-darkBlue transition-[clip-path] duration-1000 ease-linear`} style={{ clipPath: isLineAnimating ? "inset(0 0 0 0)" : "inset(0 100% 0 0)" }}></div>
-        <div className="flex flex-col gap-1 cursor-star" onClick={handleCircleAnimation}>
-          <div className="rounded-sm bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "1s" : "0s" }}></div>
-          <div className="rounded-sm bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "1.5s" : "0s" }}></div>
-          <div className="rounded-sm bg-darkBlue" style={{ animation: isLineAnimating ? "draw-bar 0.5s ease forwards" : "none", animationDelay: isLineAnimating ? "2s" : "0s" }}></div>
-        </div>
+    <div className="relative bg-transparent star cursor-star font-sans">
+      <header className="fixed top-0 left-0 w-full flex justify-end items-center gap-8 px-8 pt-4 bg-[#6f94b0] z-10">
+        <nav className="flex flex-row items-center justify-center w-full h-full gap-2 sm:gap-6 text-m font-bold text-darkBlue">
+          {CatalogData.map((link, index) => (
+            <React.Fragment key={link.text}>
+              <Link
+                href={link.href}
+                className="hover:underline hover:cursor-star transition-all duration-500 ease-out"
+              >
+                {link.text}
+              </Link>
+              {index < CatalogData.length - 1 && <span className="text-darkBlue">•</span>}
+            </React.Fragment>
+          ))}
+        </nav>
       </header>
-      {isCircleVisible && (
-        <div
-          className="fixed top-0 left-0 w-[100px] h-[100px] bg-[#A8C5D3] rounded-full pointer-events-none transition-transform duration-500 ease-out"
-          style={{ ...circleStyle, position: "fixed", zIndex: 20 }}
-        ></div>
-      )}
-      {showCatalog && <Catalog onClose={handleCloseCatalog} />}
     </div>
   );
 }

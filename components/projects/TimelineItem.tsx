@@ -52,7 +52,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
               <p className="text-gray-500 text-center absolute inset-0 flex justify-center items-center">No Image</p>
             </div>
           )}
-          <div className="absolute top-2 left-2 bg-darkBlue text-lightWhite text-xs px-2 py-1 rounded">
+          <div className="absolute top-2 left-2 bg-point text-black text-xs px-2 py-1 rounded">
             {item.badge}
           </div>
           <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 ease hover:opacity-100">

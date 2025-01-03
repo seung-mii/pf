@@ -48,7 +48,7 @@ export const projectsData: ProjectInfo[] = [
   {
     id: 2,
     title: "Portfolio",
-    date: "「2024.10.03 ~ 2024.12.28」",
+    date: "「2024.10.03 ~ 2024.12.30」",
     tags: ["Next.js", "Three.js", "React", "Typescript", "Tailwind CSS", "Vercel"],
     imgSrc: Pf,
     link: "portfolio",

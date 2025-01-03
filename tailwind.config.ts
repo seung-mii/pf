@@ -16,7 +16,6 @@ export default {
         point: "#FFD700",
         lightWhite: "#f0f0f0",
         white: "#F5F5F5",
-        btnBg: "#F4A261"
       },
       fontSize: {
         'xs': 'clamp(0.5rem, 2vw, 0.625rem)',

@@ -7,7 +7,7 @@ import { StaticHighlight } from "./StaticHighlight";
 
 export function ParagraphsTypingEffect({ id, paragraphs, highlights, links, onComplete }: ParagraphsTypingEffectProps) {
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(-1);
-  const initialDelay = 7000; 
+  const initialDelay = 2000; 
 
   useEffect(() => {
     if (id === 0) {

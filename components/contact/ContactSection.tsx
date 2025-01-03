@@ -26,7 +26,7 @@ const ContactSection: React.FC = () => {
         <p className="text-s">
           <strong className="font-semibold">Tistory. </strong>
           <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-star">
-            mi-dairy
+            mi-diary
           </Link>
         </p>
       </div>

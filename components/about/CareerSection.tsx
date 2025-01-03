@@ -62,7 +62,7 @@ export function CareerSection() {
   }, []);
 
   return (
-    <div className="w-full h-[700vh] sm:h-[500vh]" ref={wrapperRef}>
+    <div className="w-full h-[300vh] sm:h-[200vh]" ref={wrapperRef}>
       <div
         className="sticky top-0 h-screen flex items-center justify-center overflow-visible sm:overflow-hidden"
         ref={stickyRef}

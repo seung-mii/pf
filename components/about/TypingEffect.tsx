@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Highlight, LinkData, TypingEffectProps } from "@/data/contents";
 
-export function TypingEffect({ text, highlights, links, onComplete, typingSpeed = 50 }: TypingEffectProps) {
+export function TypingEffect({ text, highlights, links, onComplete, typingSpeed = 30 }: TypingEffectProps) {
   const [displayText, setDisplayText] = useState<string>("");
   const [charIndex, setCharIndex] = useState<number>(0);
 
