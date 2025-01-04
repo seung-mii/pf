@@ -1,95 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useParams } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import Left from "../../../public/img/icon/left.png";
 import { detailsData } from "../../../data/details";
-import FunctionSection from "@/components/projects/FunctionSection";
-import TroubleSection from "@/components/projects/TroubleSection";
-import ICanDoItSection from "@/components/projects/ICanDoItSection";
 import InfoSection from "@/components/projects/InfoSection";
 
 const ProjectDetails: React.FC = () => {
   const params = useParams();
   const { id } = params;
   
-  const [showScrollText, setShowScrollText] = useState(true);
-  
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const stickyRef = useRef<HTMLDivElement | null>(null);
-  const headerVh = 6;
-  const contentVh = 96 - headerVh * 5;
   const projectDetails = detailsData.find((item) => item.key === id)?.value;
-
-  const init = () => {
-    const wrapper = wrapperRef.current;
-    const sticky = stickyRef.current;
-    if (!wrapper || !sticky) return;
-
-    const children = sticky.querySelectorAll<HTMLDivElement>(".section");
-    const start = wrapper.offsetTop + 100;
-    const end = wrapper.offsetTop + wrapper.offsetHeight - window.innerHeight - 100;
-
-    children.forEach((child, i) => {
-      child.style.bottom = `${-100 + headerVh * (children.length - i)}vh`;
-      child.querySelector<HTMLDivElement>(".title")!.style.height = `${headerVh}vh`;
-      child.querySelector<HTMLDivElement>(".content")!.style.height = `${contentVh}vh`;
-    });
-
-    return { start, end, children };
-  };
-
-  const animate = (start: number, end: number, children: NodeListOf<HTMLDivElement>) => {
-    const unit = (end - start) / children.length;
-
-    children.forEach((child, i) => {
-      const s = start + unit * i + 100;
-      const e = start + unit * (i + 1);
-
-      if (window.scrollY <= s) {
-        child.style.transform = `translate3d(0, 0, 0)`;
-      } else if (window.scrollY >= e) {
-        child.style.transform = `translate3d(0, ${-contentVh}%, 0)`;
-      } else {
-        child.style.transform = `translate3d(0, ${((window.scrollY - s) / (unit - 100)) * -contentVh}%, 0)`;
-      }
-    });
-  };
-
-  useEffect(() => {
-    const initialized = init();
-    if (initialized) {
-      const { start, end, children } = initialized;
-
-      const handleScroll = () => {
-        if (start !== undefined && end !== undefined && children) {
-          animate(start, end, children);
-        }
-      };
-
-      window.addEventListener("scroll", handleScroll);
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    function handleScroll() {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      const threshold = scrollHeight * 0.2;
-      if (currentScroll > threshold) setShowScrollText(false);
-      else setShowScrollText(true);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   if (!projectDetails) {
     return (
@@ -106,26 +29,29 @@ const ProjectDetails: React.FC = () => {
   }
 
   return ( 
-    <div ref={wrapperRef} className="grid w-full font-sans text-darkBlue cursor-star h-[608vh] pt-20">
-      <div className="fixed z-10 top-0 w-full h-[6vh] border-b-thin border-solid border-darkBlue flex items-center bg-top px-2 sm:px-4">
+    <div className="relative cursor-star bg-bottom min-h-screen sm:h-auto">
+      <div className={`fixed z-30 top-0 left-0 w-full flex border-b-thin border-solid border-darkBlue items-center bg-bottom px-1 sm:px-4
+        ${projectDetails.information.description.includes("\n") ? "py-1" : "py-3"}`}
+      >
         <Link href="/projects">
           <Image src={Left} alt="Go back Icon" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:cursor-star" />
         </Link>
-        <div className="flex-1 text-center text-s sm:text-m">{projectDetails.information.title}</div>
-      </div>
-      <InfoSection information={projectDetails.information}/>
-      <div className="border-t border-b border-darkBlue w-full h-[429vh] sm:h-[410vh] mt-[50vh] cursor-downArrow">
-        <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden">
-          {projectDetails.function && <FunctionSection details={projectDetails.function} />}
-          {projectDetails.troubleshooting && <TroubleSection details={projectDetails.troubleshooting} />}
-          {projectDetails.icandoit && <ICanDoItSection details={projectDetails.icandoit} />}
+        <div className="flex-1 text-center text-s sm:text-m leading-4 sm:leading-6 text-darkBlue">
+          {projectDetails.information.description.split("\n").map((line, idx) => (
+            <React.Fragment key={idx}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
         </div>
       </div>
-      <div
-        className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 text-[3vw] sm:text-[1rem] text-darkBlue text-center bg-white/60 px-2 py-1 rounded shadow-md z-50 transition-opacity duration-500 ease-in-out whitespace-nowrap 
-          ${showScrollText ? "opacity-100" : "opacity-0"}`}
-      >
-        Scroll to the bottom for more details.
+      <div className="grid w-full font-sans text-darkBlue cursor-star py-5">
+        <InfoSection
+          information={projectDetails.information}
+          functions={projectDetails.functions}
+          troubleshooting={projectDetails.troubleshooting}
+          icandoit={projectDetails.icandoit}
+        />
       </div>
     </div>
   );

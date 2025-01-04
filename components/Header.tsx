@@ -12,9 +12,9 @@ const CatalogData = [
 
 export function Header() {
   return (
-    <div className="relative bg-transparent star cursor-star font-sans">
-      <header className="fixed top-0 left-0 w-full flex justify-end items-center gap-8 px-8 pt-4 bg-[#6f94b0] z-10">
-        <nav className="flex flex-row items-center justify-center w-full h-full gap-2 sm:gap-6 text-m font-bold text-darkBlue">
+    <div className="relative cursor-star font-sans">
+      <header className="fixed top-0 left-0 w-full flex justify-end items-center gap-8 px-4 sm:px-8 py-3 sm:py-4 bg-top z-10">
+        <nav className="flex flex-row items-center justify-center w-full h-full gap-2 sm:gap-6 text-m sm:font-bold text-darkBlue">
           {CatalogData.map((link, index) => (
             <React.Fragment key={link.text}>
               <Link

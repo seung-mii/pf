@@ -38,7 +38,7 @@ export default function Projects() {
     <div ref={timelineRef} className="relative max-w-5xl mx-auto p-4 sm:p-8 font-sans star cursor-star">
       <button
         onClick={() => setIsImportantOnly((prev) => !prev)}
-        className="absolute top-14 left-1/2 transform -translate-x-1/2 px-4 py-3 bg-point text-darkBlue text-xs sm:text-s rounded-full z-10 cursor-star"
+        className="absolute top-12 sm:top-14 left-1/2 transform -translate-x-1/2 px-4 py-3 bg-point text-darkBlue text-xs sm:text-s rounded-full z-10 cursor-star"
       >
         {isImportantOnly ? "Click Here to View All" : "Click Here to View Important"}
       </button>

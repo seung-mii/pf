@@ -1,28 +1,3 @@
-export interface InfoSectionProps {
-  information: {
-    videos?: VideoInfo[];
-    title: string;
-    description: string;
-    github?: string;
-    link?: string;
-    period: string;
-    personnel: string[];
-    skills: string[];
-    challenge?: string[];
-    approach?: string[];
-    result?: string[];
-    award?: string[];
-  };
-}
-
-export interface TroubleSectionProps {
-  details: TroubleInfo[];
-}
-
-export interface DetailsProps {
-  details: DetailsInfo[];
-}
-
 export interface ToggleProps {
   id: number;
   title: string;
@@ -47,7 +22,7 @@ interface VideoInfo {
   url: string;          
 }
 
-interface DetailTotalInfo {
+export interface DetailTotalInfo {
   information: {
     videos?: VideoInfo[];
     title: string;
@@ -62,7 +37,7 @@ interface DetailTotalInfo {
     result?: string[];
     award?: string[];
   };
-  function?: DetailsInfo[];
+  functions?: DetailsInfo[];
   troubleshooting?: TroubleInfo[];
   icandoit?: DetailsInfo[];
 }
@@ -80,10 +55,10 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         description: "간단한 영화 웹사이트",
         github: "https://github.com/seung-mii/nextjs-study",
         period: "2024.11.13 ~ 2024.11.20",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["Next.js", "React", "Typescript", "Vercel"],
       },
-      function: [
+      functions: [
       {
         title: "영화별 상세 정보",
         details: [
@@ -117,14 +92,14 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           url: "/video/pf_video.mp4",
         }],
         title: "Portfolio",
-        description: "포토폴리오 사이트",
+        description: "모바일부터 데스크톱까지 반응형 포토폴리오 사이트",
         github: "https://github.com/seung-mii/pf",
         link: "https://seung-mi-pf.vercel.app/",
-        period: "2024.10.03 ~ 2024.12.28",
-        personnel: ["FE: 1"],
+        period: "2024.10.03 ~ 2024.12.30",
+        personnel: ["FE 1명"],
         skills: ["Next.js", "Three.js", "React", "Typescript", "Tailwind CSS", "Vercel"],
       },
-      function: [{
+      functions: [{
         title: "반응형 디자인을 구현하였습니다.",
         details: [
           "Tailwind CSS의 반응형 접두사를 활용하여 다양한 뷰포트 크기에 맞는 디자인을 조정했습니다.",
@@ -159,13 +134,6 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         details: [
           "Intersection Observer를 사용하여 카드가 뷰포트에 들어왔을 때 애니메이션이 실행되도록 설정했습니다.",
           "CSS의 transform과 perspective를 조합하여 부드럽고 자연스러운 3D 효과를 만들었습니다.",
-        ],
-      },
-      {
-        title: "폴더 모양의 UI를 만들어 스크롤과 함께 열리고 닫히는 애니메이션을 구현했습니다.",
-        details: [
-          "스크롤 위치에 따라 CSS 클래스가 동적으로 변경되도록 설정했습니다.",
-          "폴더의 열림과 닫힘 애니메이션을 keyframes를 활용해 매끄럽게 처리했습니다.",
         ],
       },
       {
@@ -218,11 +186,11 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         github: "https://github.com/seung-mii/zomato-clone",
         link: "https://zomato-clone-by-sm.vercel.app/index.html",
         period: "2023.02.07 ~ 2023.05.15, 2024.09.02 ~ 2024.09.29",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["HTML", "SCSS", "JavaScript", "Vercel"],
-        result: ["Lighthouse 기준 SEO와 접근성이 76점 → 91점으로 약 20% 증가"],
+        result: ["Lighthouse 기준 SEO와 접근성이 76점 → 100점으로 31% 증가"],
       },
-      function: [
+      functions: [
         {
           title: "슬라이더를 사용해 평점 값 선택",
           details: [
@@ -262,7 +230,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         title: "Labeling Tool",
         description: "Labeling Tool",
         period: "2023.11.01 ~ 2023.12.21",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
         challenge: [
           "기존 타사 라벨링툴은 하나의 이미지를 라벨링하는 데 시간이 많이 소요되었습니다."
@@ -276,7 +244,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           "타사 라벨링툴을 사용하는 비용인 매월 약 150만 원의 비용 절감하였습니다.",
         ],
       },
-      function: [
+      functions: [
         {
           title: "어노테이션 생성",
           details: [
@@ -380,7 +348,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         personnel: ["FS: 1"],
         skills: ["React", "TypeScript", "NoSQL", "Firebase", "Vite"],
       },
-      function: [
+      functions: [
         {
           title: "사용자 로그인",
           details: [
@@ -453,7 +421,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         description: "교통약자들을 위한 저상버스 정보 시스템",
         github: "https://github.com/StupidTalkingPotatoes/KIS_frontend",
         period: "2023.04.26 ~ 2023.06.08",
-        personnel: ["FE: 1", "BE: 3"],
+        personnel: ["FE 1명", "BE 3명"],
         skills: ["React", "JavaScript", "styled-components", "Kakao Map API", "Naver Maps API"],
         challenge: [
           "주변 교통약자들 10명을 조사하니 저상버스 대기 시간이 평균 1시간이라는 사실을 알게 되었습니다.",
@@ -472,7 +440,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           "2023.07.28",
         ],
       },
-      function: [
+      functions: [
         {
           title: "사용자의 현재 위치 반경 500m 내의 주변 정류장 조회",
           details: [
@@ -585,10 +553,10 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           url: "/video/neighborfood_video.mp4",
         }],
         title: "NeighborFood",
-        description: "주변에 배달 음식을 주문할\n 같은 학교 학생들을 구할 수 있는 어플",
+        description: "배달 음식을 함께 주문할 같은 학교 학생들을 구하는 어플",
         github: "https://github.com/Neighbor-Food/NF_frontend",
         period: "2023.04.25 ~ 2023.06.02",
-        personnel: ["FE: 3", "BE: 2"],
+        personnel: ["FE 3명", "BE 2명"],
         skills: ["CSS", "JavaScript", "React", "Morpheus API"],
         challenge: [
           "코로나로 인한 배달 어플 사용이 증가하면서 배달비의 상승이 소비자에게 큰 부담이 되고 있습니다."
@@ -607,7 +575,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           "2023.05.31",
         ],
       },
-      function: [
+      functions: [
         {
           title: "회원관리",
           details: [
@@ -696,7 +664,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         personnel: ["FS: 1"],
         skills: ["CSS", "JavaScript", "React", "SpringBoot", "H2 Database", "Maven", "Lombok"],
       },
-      function: [
+      functions: [
         {
           title: "회원 관리",
           details: [
@@ -746,7 +714,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         personnel: ["FS: 1"],
         skills: ["CSS", "JavaScript", "React", "SpringBoot", "H2 Database", "Maven", "Lombok"],
       },
-      function: [
+      functions: [
         {
           title: "사용자 관리",
           details: [
@@ -790,7 +758,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         personnel: ["FS: 1"],
         skills: ["JSP", "CSS", "JavaScript", "JQuery", "Spring", "Maven", "MySQL", "Tomcat"],
       },
-      function: [
+      functions: [
         {
           title: "책 정보 생성, 조회, 수정, 삭제",
           details: [
@@ -829,10 +797,10 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         description: "밈 생성기 만드는 사이트",
         github: "https://github.com/seung-mii/meme-maker",
         period: "2023.02.19 ~ 2023.02.20",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["HTML", "CSS", "JavaScript", "Canvas API"],
       },
-      function: [
+      functions: [
         {
           title: "그리기 및 채우기 모드 전환",
           details: [
@@ -904,11 +872,11 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         github: "https://github.com/seung-mii/starbucks",
         link: "https://seung-mii.github.io/starbucks/",
         period: "2022.08.15 ~ 2022.08.21",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["HTML", "CSS", "JavaScript"],
         result: ["Lighthouse 기준 성능: 95점, 접근성과 SEO: 93점"],
       },
-      function: [
+      functions: [
         {
           title: "스크롤 이벤트를 통한 버튼 및 배지 표시 관리",
           details: [
@@ -970,7 +938,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         description: "Overwatch 게임의 영웅 선택 화면",
         github: "https://github.com/seung-mii/overwatch_heroes_selection",
         period: "2022.08.13 ~ 2022.08.14",
-        personnel: ["FE: 1"],
+        personnel: ["FE 1명"],
         skills: ["HTML", "CSS"],
       },
       icandoit: [
