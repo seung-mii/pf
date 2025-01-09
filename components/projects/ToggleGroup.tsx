@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { ToggleProps } from "../../data/details";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"; 
 
-const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, contents }) => {
+const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before, after, contents }) => {
   const [isOpen, setIsOpen] = useState<boolean[]>(new Array(50).fill(false));
 
   const handleToggle = (index: number) => {
@@ -34,17 +36,73 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, conten
           ))}
           {cause && solution && (
             <>
-              <li key={`cause-${id}`} className="select-none leading-relaxed"> {`원인: ${cause}`}</li>
+              {cause.includes("\n") ? (
+                <>
+                  <li key={`cause-title-${id}`} className="select-none leading-relaxed">원인</li>
+                  {cause.split("\n").map((c, idx) => (
+                    <li key={`cause-${idx}`} className="select-none leading-relaxed ml-4">{c}</li>
+                  ))}
+                </>
+              ) : (
+                <li key={`cause-${id}`} className="select-none leading-relaxed"> {`원인: ${cause}`}</li>
+              )}
               {solution.length < 2 ? (
                 <li key={`solution-${id}`} className="select-none leading-relaxed">{`해결방안: ${solution[0]}`}</li>
               ) : (
                 <>
                   <li key={`solution-title-${id}`} className="select-none leading-relaxed">해결방안</li>
-                  {solution.map((s, sidx) => (
-                    <li key={`solution-${id}-${sidx}`} className="select-none leading-relaxed ml-4">{s}</li>
-                  ))}
+                  <ol className="list-decimal space-y-2">
+                    {solution.map((s, sidx) => (
+                      <li key={`solution-${id}-${sidx}`} className="select-none leading-relaxed ml-4">{s}</li>
+                    ))}
+                  </ol>
                 </>
               )}
+              {before && before.length > 0 && (
+                <li key={`before-title-${id}`} className="select-none leading-relaxed mt-2">
+                  Before
+                </li>
+              )}
+              {before?.map((b, sidx) => (
+                <SyntaxHighlighter
+                  key={`before-${id}-${sidx}`}
+                  language="typescript"
+                  style={atomDark}
+                  customStyle={{
+                    padding: "0px",  
+                    margin: "5px 0px",
+                    lineHeight: 1.8,
+                    borderRadius: "10px"
+                  }}
+                >
+                  {b}
+                </SyntaxHighlighter>
+              ))}
+              {before && after && after.length > 0 && (
+                <li key={`after-title-${id}`} className="select-none leading-relaxed mt-2">
+                  After
+                </li>
+              )}
+              {!before && after && after.length > 0 && (
+                <li key={`after-title-${id}`} className="select-none leading-relaxed mt-2">
+                  Code
+                </li>
+              )}
+              {after?.map((a, sidx) => (
+                <SyntaxHighlighter
+                  key={`after-${id}-${sidx}`}
+                  language="typescript"
+                  style={atomDark}
+                  customStyle={{
+                    padding: "0px",  
+                    margin: "5px 0px",
+                    lineHeight: 1.8,
+                    borderRadius: "10px"
+                  }}
+                >
+                  {a}
+                </SyntaxHighlighter>
+              ))}
             </>
           )}
         </ul>

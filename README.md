@@ -8,4 +8,5 @@
 - lodash
 - react-toastify
 - Intersection Observer API
+- React Syntax Highlighter
 - Vercel
