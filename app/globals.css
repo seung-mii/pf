@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Song+Myung&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -137,28 +139,8 @@ table {
 /* WHOLE */
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #6F94B0, #A8C5D3);
-}
-
-/* HEADER */
-@keyframes draw-bar {
-  from {
-    width: 0;
-    height: 0;
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    width: 25px;
-    height: 2px;
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-draw-bar {
-  animation: draw-bar 0.5s ease forwards;
-  transform-origin: left;
+  color: #635985;
+  background: #18122B;
 }
 
 /* ABOUT */
@@ -168,33 +150,4 @@ body {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
-}
-
-/* SVG */
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-svg {
-  fill: none;
-  stroke-width: 40px;
-  stroke-linecap: round;
-}
-
-path {
-  stroke-dasharray: var(--length);
-  stroke-dashoffset: var(--length);
-  animation: draw var(--duration) linear var(--delay) forwards;
-}
-
-.svg-line1 path,
-.svg-line2 path {
-  stroke: #1A2B3C;
-  stroke-dasharray: var(--length);
-  stroke-dashoffset: var(--length);
-  animation: draw var(--duration) ease-in forwards;
-  animation-delay: var(--delay);
-  background-color: #6F94B0;
 }

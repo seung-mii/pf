@@ -4,8 +4,8 @@ import ContactForm from "./ContactForm";
 const ContactBackCard: React.FC = () => {
   return (
     <>
-      <div className="w-full text-left cursor-star">
-        <h1 className="w-[110px] sm:w-[160px] md:w-[170px] text-m sm:text-l font-semibold mb-3 sm:mb-5 pb-2 sm:pb-3 border-b-thin border-solid border-darkBlue">
+      <div className="w-full text-left cursor-circle">
+        <h1 className="w-[110px] sm:w-[160px] md:w-[170px] text-m sm:text-l font-semibold mb-3 sm:mb-5 pb-2 sm:pb-3 border-b-thin border-solid border-lightPurple">
           CONTACT
         </h1>
         <div className="text-s my-4 sm:mb-3">

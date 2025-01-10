@@ -10,10 +10,10 @@ export default function Contact() {
   const { isFlipped, cardWrapperRef, frontCardRef, backCardRef, frontLightRef, backLightRef, handleFlip } = useCardFlip();
 
   return (
-    <div className="flex items-center justify-center relative min-h-screen text-darkBlue bg-gradient-to-b from-top to-bottom font-serif px-4 star cursor-star">
+    <div className="flex items-center justify-center relative min-h-screen text-darkPurple bg-back font-batang px-4 star cursor-circle">
       <div
         ref={cardWrapperRef}
-        className="relative flex flex-col items-center justify-center w-full sm:w-11/12 md:w-4/5 lg:w-[55%] transition-transform duration-500 ease-out [perspective:1000px] md:hover:scale-105 cursor-star"
+        className="relative flex flex-col items-center justify-center w-full sm:w-11/12 md:w-4/5 lg:w-[55%] transition-transform duration-500 ease-out [perspective:1000px] md:hover:scale-105 cursor-circle"
       >
         <div className={`w-full [transform-style:preserve-3d] transition-transform duration-700 ease-in-out ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
           <div ref={frontCardRef} className="relative flex flex-col bg-lightWhite p-4 sm:p-7 md:p-8 lg:p-10 shadow-md [backface-visibility:hidden]">

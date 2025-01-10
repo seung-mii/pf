@@ -9,10 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        top: "#6F94B0",
-        bottom: "#A8C5D3",
-        darkBlue: "#1E2F44",
-        lightBlue: "#D1E4EC",
+        backGround: "#18122B",
+        fontColor: "#D4ADFC",
+        lightPurple: "#635985",
+        darkPurple: "#393053",
         point: "#FFD700",
         lightWhite: "#f0f0f0",
         white: "#F5F5F5",
@@ -28,8 +28,13 @@ export default {
         'thin': '0.0625rem',
       },
       cursor: {
-        'star': 'url("/img/star2.png"), auto',
-        'downArrow': 'url("/img/down_arrow_fill.png"), auto',
+        'circle': 'url("/img/circle.png"), auto',
+        'circleHover': 'url("/img/circle_hover.png"), auto',
+        'scroll': 'url("/img/scroll.png"), auto',
+      },
+      fontFamily: {
+        batang: ['"Gowun Batang"', 'serif'],
+        myung: ['"Song Myung"', 'serif'],
       },
     },
   },

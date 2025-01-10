@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Up from "../public/img/icon/up_light.png";
+import Up from "../public/img/icon/up.png";
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,15 +28,15 @@ const ScrollToTopButton: React.FC = () => {
   };
 
   return (
-    <div className="cursor-star">
+    <div className="cursor-circleHover">
       <div
-        className={`fixed bottom-4 right-4 transition-all duration-500 ease-in-out z-[100] cursor-star ${
+        className={`fixed bottom-4 right-4 transition-all duration-500 ease-in-out z-[100] cursor-circleHover ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         <button
           onClick={scrollToTop}
-          className="p-3 bg-darkBlue rounded-full shadow-lg transition-all duration-500 ease-in-out cursor-star"
+          className="p-3 bg-fontColor rounded-full shadow-lg transition-all duration-500 ease-in-out cursor-circleHover"
         >
           <Image
             src={Up}

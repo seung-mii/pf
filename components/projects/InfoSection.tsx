@@ -44,22 +44,22 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           <div className="flex-1 flex gap-2 sm:gap-4 ml-3 mb-2">
             {information.link && (
               <Link href={information.link} target="_blank">
-                <Image src={Tab} alt="New Tab icon" className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Image src={Tab} alt="New Tab icon" className="w-4 h-4 sm:w-5 sm:h-5 cursor-circleHover" />
               </Link>
             )}
             {information.github && (
               <Link href={information.github} target="_blank">
-                <Image src={Github} alt="Github logo" className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Image src={Github} alt="Github logo" className="w-4 h-4 sm:w-5 sm:h-5 cursor-circleHover" />
               </Link>
             )}
           </div>
-          <div className="border-l-4 border-darkBlue border-solid pl-4 text-s">
+          <div className="border-l-4 border-fontColor border-solid pl-4 text-s">
             <span className="">인원 : {information.personnel.join(", ")}</span>
           </div>
-          <div className="border-l-4 border-darkBlue border-solid pl-4 text-s">
+          <div className="border-l-4 border-fontColor border-solid pl-4 text-s">
             <span className="">기간 : {information.period}</span>
           </div>
-          <div className="border-l-4 border-darkBlue border-solid pl-4 text-s">
+          <div className="border-l-4 border-fontColor border-solid pl-4 text-s">
             <span className="">기술 스택 및 API : {information.skills.join(", ")}</span>
           </div>
         </div>
@@ -67,16 +67,16 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
       <div className="flex flex-col gap-6 col-span-2">
         {information.challenge && (
           <>
-            <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-5 mt-4 mb-1 mx-0 sm:mx-10 relative shadow-md">
-              <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Challenge</h1>
+            <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mt-4 mb-1 mx-0 sm:mx-10 relative shadow-md">
+              <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Challenge</h1>
               <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
                 {information.challenge?.map((s, idx) => (
                   <li key={idx}>{s}</li>
                 ))}
               </ul>
             </div>
-            <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
-              <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Approach</h1>
+            <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
+              <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Approach</h1>
               <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
                 {information.approach?.map((s, idx) => (
                   <li key={idx}>{s}</li>
@@ -86,8 +86,8 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </>
         )}
         {information.result && (
-          <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
-            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Result</h1>
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
+            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Result</h1>
             <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
               {information.result?.map((s, idx) => (
                 <li key={idx}>{s}</li>
@@ -96,8 +96,8 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </div>
         )}
         {information.award && (
-          <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
-            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Contest</h1>
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-md">
+            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Contest</h1>
             <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
               {information.award?.map((s, idx) => {
                 if (idx % 3 === 0) return <li key={idx}>{s}</li>;
@@ -107,8 +107,8 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </div>
         )}
         {functions && (
-          <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
-            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Function</h1>
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
+            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Function</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 auto-rows-[minmax(0, 1fr, auto)]">
               {functions.map(({ title, details }, idx) => (
                 <div key={idx} className="h-auto self-start">
@@ -119,8 +119,8 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </div>
         )}
         {troubleshooting && (
-          <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
-            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">Trouble Shooting</h1>
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
+            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Trouble Shooting</h1>
             <div className="grid grid-cols-1 gap-3 sm:gap-4 auto-rows-[minmax(0, 1fr, auto)]">
               {troubleshooting?.map(({ title, cause, solution, before, after }, idx) => (
                 <div key={idx} className="h-auto self-start">
@@ -131,8 +131,8 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </div>
         )}
         {icandoit && (
-          <div className="border-solid border-thin border-darkBlue rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
-            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-bottom text-s sm:text-m">I can do it</h1>
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
+            <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">I can do it</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 auto-rows-[minmax(0, 1fr, auto)]">
               {icandoit.map(({ title, details }, idx) => (
                 <div key={idx} className="h-auto self-start">
