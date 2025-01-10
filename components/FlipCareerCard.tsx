@@ -1,5 +1,5 @@
 import React from "react";
-import { CareerInfo } from "../../data/careers";
+import { CareerInfo } from "../data/careers";
 
 export function FlipCareerCard({ category, title, details, date }: CareerInfo) {
   const formattedTitle = title.split("\n").map((line, idx) => (

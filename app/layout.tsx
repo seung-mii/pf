@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Header from "../components/Header";
+import ScrollToTopButton from "../components/ScrollToTopButton"; 
+import Footer from "../components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -6,11 +9,15 @@ export const metadata: Metadata = {
   description: "Frontend Developer",
 };
 
-export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <Header />
+        <div id="top"></div>
         {children}
+        <ScrollToTopButton />
+        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { careersData } from "../../data/careers";
+import { careersData } from "../data/careers";
 import { FlipCareerCard } from "./FlipCareerCard";
 
 export function CareerSection() {

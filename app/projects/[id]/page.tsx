@@ -34,7 +34,7 @@ const ProjectDetails: React.FC = () => {
         ${projectDetails.information.description.includes("\n") ? "py-1" : "py-3"}`}
       >
         <Link href="/projects">
-          <Image src={Left} alt="Go back Icon" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 transition-opacity duration-300 ease-in-out hover:cursor-star" />
+          <Image src={Left} alt="Go back Icon" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80 transition-opacity duration-300 ease-in-out" />
         </Link>
         <div className="flex-1 text-center text-s sm:text-m leading-4 sm:leading-6 text-darkBlue">
           {projectDetails.information.description.split("\n").map((line, idx) => (

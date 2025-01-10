@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { skillsData } from "../../data/skills";
+import { skillsData } from "../data/skills";
 
 export function SkillSection() {
   const tabs = Object.keys(skillsData);
@@ -52,7 +52,7 @@ export function SkillSection() {
                   <h3 className={`text-m font-semibold mb-2 text-darkBlue ${skill.name.toLowerCase().replace(".", "-")}`}>
                     {skill.name}
                   </h3>
-                  <ul className="list-disc pl-4 text-s leading-5 text-darkBlue">
+                  <ul className="list-disc pl-4 text-s leading-5 text-darkBlue space-y-1">
                     {skill.description.map((desc, descIndex) => (
                       <li key={descIndex}>{desc}</li>
                     ))}

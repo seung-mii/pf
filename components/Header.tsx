@@ -4,8 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const CatalogData = [
-  { href: "/", text: "HOME" },
-  { href: "/about", text: "ABOUT" },
+  { href: "/", text: "ABOUT" },
   { href: "/projects", text: "PROJECTS" },
   { href: "/contact", text: "CONTACT" },
 ];
@@ -19,7 +18,7 @@ export function Header() {
             <React.Fragment key={link.text}>
               <Link
                 href={link.href}
-                className="hover:underline hover:cursor-star transition-all duration-500 ease-out"
+                className="hover:underline transition-all duration-500 ease-out"
               >
                 {link.text}
               </Link>
