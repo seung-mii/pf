@@ -5,8 +5,8 @@ const TypingEffect: React.FC = () => {
   const [typedText1, setTypedText1] = useState('');
   const [typedText2, setTypedText2] = useState('');
 
-  const line1 = '사용자가 진정으로 필요로 하는 서비스';
-  const line2 = '를 개발하고 싶은 개발자입니다.';
+  const line1 = '사용자의 삶을 변화시키는 서비스,';
+  const line2 = '편리함을 넘어 가치를 제공하는 개발을 지향합니다.';
  
   const typingArr1 = useRef<string[][]>([]);
   const typingArr2 = useRef<string[][]>([]);
@@ -54,10 +54,10 @@ const TypingEffect: React.FC = () => {
             } else {
               clearInterval(timer2);
             }
-          }, 100);
-        }, 400);
+          }, 50);
+        }, 200);
       }
-    }, 100);
+    }, 50);
    
     return () => {
       clearInterval(timer1);
@@ -65,11 +65,11 @@ const TypingEffect: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-[12vh] mx-1 mt-12 mb-8 sm:mt-16 sm:mb-14 flex flex-col items-center justify-center text-center font-myung">
-      <p className="pb-3 text-xl sm:text-4xl text-point">
+    <div className="h-[10vh] mx-1 mt-12 mb-8 sm:mt-16 sm:mb-14 flex flex-col items-center justify-center text-center font-myung">
+      <p className="pb-3 text-l sm:text-3xl text-point">
         {typedText1}
       </p>
-      <p className="text-l sm:text-3xl">
+      <p className="text-m sm:text-2xl">
         {typedText2}
       </p>
     </div>

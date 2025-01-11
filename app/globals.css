@@ -181,8 +181,3 @@ body {
   content: "";
   transform: rotateZ(-150deg) translateX(50%);
 }
-
-.star:nth-child(2) {
-  transform: translateX(25%);
-  animation-delay: 5.1s;
-}

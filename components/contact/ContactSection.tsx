@@ -11,7 +11,7 @@ const ContactSection: React.FC = () => {
         </p>
         <p className="text-s">
           <strong className="font-semibold">Mail. </strong>
-          <Link href="mailto:tmdal9953@naver.com" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleHover">
+          <Link href="mailto:tmdal9953@naver.com" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleDarkHover">
             tmdal9953@naver.com
           </Link>
         </p>
@@ -19,13 +19,13 @@ const ContactSection: React.FC = () => {
       <div className="flex-1 text-left ml-7 sm:pl-5 my-1 sm:mt-0">
         <p className="text-s mt-0 mb-3 sm:mb-5">
           <strong className="font-semibold">Github. </strong>
-          <Link href="https://github.com/seung-mii" target="_blank" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleHover">
+          <Link href="https://github.com/seung-mii" target="_blank" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleDarkHover">
             seung-mii
           </Link>
         </p>
         <p className="text-s">
           <strong className="font-semibold">Tistory. </strong>
-          <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleHover">
+          <Link href="https://mi-dairy.tistory.com/" target="_blank" className="underline-offset-2 underline sm:no-underline sm:hover:underline hover:cursor-circleDarkHover">
             mi-diary
           </Link>
         </p>

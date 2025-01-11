@@ -30,6 +30,8 @@ export default {
       cursor: {
         'circle': 'url("/img/circle.png"), auto',
         'circleHover': 'url("/img/circle_hover.png"), auto',
+        'circleDark': 'url("/img/circle_dark.png"), auto',
+        'circleDarkHover': 'url("/img/circle_darkhover.png"), auto',
         'scroll': 'url("/img/scroll.png"), auto',
       },
       fontFamily: {
