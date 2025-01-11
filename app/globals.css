@@ -151,3 +151,38 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+/* Meteor */
+@keyframes meteor-right-30 {
+  0% {
+    top: -10vh;
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  100% {
+    top: 110vh;
+    transform: translateX(208vh);
+    opacity: 1;
+  }
+}
+
+.star {
+  position: relative;
+}
+
+.star-trail {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: -950%;
+  width: 2000%;
+  height: 2px;
+  background: linear-gradient(to left, #fff0, #ffffff7f);
+  content: "";
+  transform: rotateZ(-150deg) translateX(50%);
+}
+
+.star:nth-child(2) {
+  transform: translateX(25%);
+  animation-delay: 5.1s;
+}

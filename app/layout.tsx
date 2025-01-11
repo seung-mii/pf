@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import ScrollToTopButton from "../components/ScrollToTopButton"; 
 import Footer from "../components/Footer";
 import "./globals.css";
+import MeteorEffect from "@/components/MeteorEffect";
 
 export const metadata: Metadata = {
   title: "Shin Seung Mi Portfolio",
@@ -14,6 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body>
         <Header />
+        <MeteorEffect />
         <div id="top"></div>
         {children}
         <ScrollToTopButton />
