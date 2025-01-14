@@ -9,13 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        backGround: "#18122B",
-        fontColor: "#D4ADFC",
-        lightPurple: "#635985",
-        darkPurple: "#393053",
+        backGround: "#748DA6",
+        fontColor: "#F2D7D9",
+        purple: "#D3CEDF",
+        lightBlue: "#9CB4CC",
+        darkBlue: "#4f6578",
         point: "#FFD700",
-        lightWhite: "#f0f0f0",
-        white: "#F5F5F5",
+        lightWhite: "#F6F4EB",
+        white: "#fff",
+        grey: "#848484"
       },
       fontSize: {
         'xs': 'clamp(0.7rem, 2vw, 0.725rem)',

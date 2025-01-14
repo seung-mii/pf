@@ -65,11 +65,11 @@ const TypingEffect: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-[10vh] mx-1 mt-12 mb-8 sm:mt-16 sm:mb-14 flex flex-col items-center justify-center text-center font-myung">
-      <p className="pb-3 text-l sm:text-3xl text-point">
+    <div className="h-[10vh] mx-1 mt-12 mb-8 sm:mt-12 sm:mb-10 flex flex-col items-center justify-center text-center font-myung">
+      <p className="pb-3 text-xl sm:text-3xl text-fontColor">
         {typedText1}
       </p>
-      <p className="text-m sm:text-2xl">
+      <p className="text-md sm:text-xl text-point italic">
         {typedText2}
       </p>
     </div>

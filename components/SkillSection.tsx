@@ -31,7 +31,7 @@ export function SkillSection() {
             <button
               key={tab}
               className={`px-4 py-1 sm:px-6 text-m text-base cursor-pointer transition-all duration-300 ease-in-out hover:text-fontColor ${
-                activeTab === tab ? "border-l-4 border-solid border-fontColor font-bold text-fontColor" : "text-lightPurple"
+                activeTab === tab ? "border-l-4 border-solid border-fontColor font-bold text-fontColor" : "text-purple"
               }`}
               onClick={() => setActiveTab(tab)}
             >

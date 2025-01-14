@@ -10,7 +10,7 @@ export default function Contact() {
   const { isFlipped, cardWrapperRef, frontCardRef, backCardRef, frontLightRef, backLightRef, handleFlip } = useCardFlip();
 
   return (
-    <div className="flex items-center justify-center relative min-h-screen text-darkPurple bg-back font-batang px-4 cursor-circle">
+    <div className="flex items-center justify-center relative min-h-screen font-batang px-4 cursor-circle">
       <div
         ref={cardWrapperRef}
         className="relative flex flex-col items-center justify-center w-full sm:w-11/12 md:w-4/5 lg:w-[55%] transition-transform duration-500 ease-out [perspective:1000px] md:hover:scale-105 cursor-circleDark"

@@ -6,14 +6,14 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before
   return (
     <div
       key={id}
-      className="bg-darkPurple rounded-md shadow-sm p-3 sm:p-4 cursor-circle transition-all"
+      className="bg-purple rounded-md shadow-sm p-3 sm:p-4 cursor-circle transition-all text-darkBlue"
     >
       <div className="flex items-center">
-        <div className="w-5 h-2 relative mr-0.5">
-          <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-fontColor transition-transform rotate-[45deg] top-[4px] left-[1px]"></span>
-          <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-fontColor transition-transform rotate-[-45deg] top-[4px] left-[5px] sm:left-[6.5px]"></span>
+        <div className="w-5 h-2 relative">
+          <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-darkBlue transition-transform rotate-[45deg] top-[4px] left-[1px]"></span>
+          <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-darkBlue transition-transform rotate-[-45deg] top-[4px] left-[5px] sm:left-[6.5px]"></span>
         </div>
-        <p className="font-semibold text-xs sm:text-s select-none leading-relaxed">{title}</p>
+        <p className="font-semibold text-xs sm:text-s select-none leading-relaxed ml-1 sm:ml-2">{title}</p>
       </div>
       <ul className="list-disc ml-4 sm:ml-6 mt-2 py-1 sm:py-2 text-xs space-y-1">
         {contents?.map((item, idx: number) => (
@@ -57,7 +57,7 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before
                 style={atomDark}
                 customStyle={{
                   padding: "0px",  
-                  margin: "5px 0px",
+                  margin: "8px 0px",
                   lineHeight: 1.8,
                   borderRadius: "10px"
                 }}
@@ -77,7 +77,7 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before
                 style={atomDark}
                 customStyle={{
                   padding: "0px",  
-                  margin: "5px 0px",
+                  margin: "8px 0px",
                   lineHeight: 1.8,
                   borderRadius: "10px"
                 }}
