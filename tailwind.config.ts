@@ -18,9 +18,9 @@ export default {
         white: "#F5F5F5",
       },
       fontSize: {
-        'xs': 'clamp(0.5rem, 2vw, 0.625rem)',
-        's': 'clamp(0.6875rem, 2vw, 0.8125rem)',
-        'm': 'clamp(0.875rem, 2vw, 1rem)',
+        'xs': 'clamp(0.7rem, 2vw, 0.725rem)',
+        's': 'clamp(0.725rem, 2vw, 0.85rem)',
+        'm': 'clamp(0.85rem, 2vw, 1rem)',
         'l': 'clamp(1.0625rem, 2vw, 1.1875rem)',
         'xl': 'clamp(1.25rem, 2vw, 1.4375rem)',
       },

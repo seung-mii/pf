@@ -34,7 +34,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   }, []);
 
   return (
-    <div ref={ref} className={`relative w-full my-3 opacity-0 transform text-fontColor translate-y-5 transition-all duration-700 ease-in-out font-batang ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+    <div ref={ref} className={`relative w-full my-2 sm:my-3 opacity-0 transform text-fontColor translate-y-5 transition-all duration-700 ease-in-out font-batang ${isVisible ? "opacity-100 translate-y-0" : ""} flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-fontColor rounded-full z-5"></div>
       <div className={`absolute top-1/2 w-1/2 h-[1.5px] bg-fontColor ${index % 2 === 0 ? "right-1/2" : "left-1/2"}`}></div>
       <div className="bg-darkPurple bg-opacity-95 shadow-lg rounded-lg overflow-hidden w-3/5 sm:w-5/12 md:w-5/12 relative">

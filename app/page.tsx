@@ -12,11 +12,11 @@ export default function About() {
         <TypingEffect />
         <ContentSection />
       </div>
-      <div className="cursor-circle">
-        <SkillSection />
-      </div>
       <div className="cursor-scroll">
         <CareerSection />
+      </div>
+      <div className="cursor-circle">
+        <SkillSection />
       </div>
     </>
   );

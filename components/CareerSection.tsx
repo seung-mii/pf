@@ -62,12 +62,12 @@ export function CareerSection() {
   }, []);
 
   return (
-    <div className="w-full h-[300vh] sm:h-[200vh] font-batang" ref={wrapperRef}>
+    <div className="w-full h-[300vh] md:h-[360vh] lg:h-[250vh] font-batang" ref={wrapperRef}>
       <div
         className="sticky top-0 h-screen flex items-center justify-center overflow-visible sm:overflow-hidden"
         ref={stickyRef}
       >
-        <div className="absolute w-full sm:w-[95vw] h-auto min-h-full m-md p-md box-border overflow-visible flex gap-4 sm:gap-6 justify-center items-center flex-wrap [perspective:1000px] [transform-style:preserve-3d]">
+        <div className="absolute w-full sm:w-[95vw] h-auto min-h-[87%] sm:min-h-full m-md p-md box-border overflow-visible flex gap-4 sm:gap-6 justify-center items-center flex-wrap [perspective:1000px] [transform-style:preserve-3d]">
           {careersData.map((career, idx) => (
             <FlipCareerCard key={idx} category={career.category} title={career.title} details={career.details} date={career.date} />
           ))}

@@ -9,5 +9,4 @@
 - react-toastify
 - Intersection Observer API
 - React Syntax Highlighter
-- Framer Motion
 - Vercel

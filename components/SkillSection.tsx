@@ -24,7 +24,7 @@ export function SkillSection() {
   }, [activeTab]);
 
   return (
-    <div className="py-20 sm:py-40 h-[50rem] font-batang">
+    <div className="pt-10 min-h-[94vh] h-auto font-batang">
       <div className="flex flex-col sm:flex-row items-start gap-x-20 gap-y-8 xl:gap-x-36 mx-[5vw] md:mx-[10vw] xl:mx-[20vw]">
         <div className="flex flex-col items-start gap-5">
           {tabs.map((tab) => (

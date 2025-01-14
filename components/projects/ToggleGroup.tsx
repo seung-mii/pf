@@ -9,7 +9,7 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before
       className="bg-darkPurple rounded-md shadow-sm p-3 sm:p-4 cursor-circle transition-all"
     >
       <div className="flex items-center">
-        <div className="w-5 h-2 relative sm:mr-1">
+        <div className="w-5 h-2 relative mr-0.5">
           <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-fontColor transition-transform rotate-[45deg] top-[4px] left-[1px]"></span>
           <span className="block absolute w-[6px] sm:w-[9px] h-[1px] bg-fontColor transition-transform rotate-[-45deg] top-[4px] left-[5px] sm:left-[6.5px]"></span>
         </div>
