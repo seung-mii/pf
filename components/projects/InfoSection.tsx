@@ -110,9 +110,9 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-6 mx-0 my-1 sm:mx-10 relative shadow-md">
             <h1 className="absolute -top-3.5 left-4 px-3 py-1 bg-backGround text-s sm:text-m">Trouble Shooting</h1>
             <div className="grid grid-cols-1 gap-3 sm:gap-4 auto-rows-[minmax(0, 1fr, auto)]">
-              {troubleshooting?.map(({ title, cause, solution, before, after }, idx) => (
+              {troubleshooting?.map(({ title, cause, solution, code }, idx) => (
                 <div key={idx} className="h-auto self-start">
-                  <ToggleGroup id={idx} title={title} cause={cause} solution={solution} before={before} after={after} />
+                  <ToggleGroup id={idx} title={title} cause={cause} solution={solution} code={code} />
                 </div>
               ))}
             </div>

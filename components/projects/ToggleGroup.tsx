@@ -2,7 +2,7 @@ import { ToggleProps } from "../../data/details";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism"; 
 
-const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before, after, contents }) => {
+const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, code, contents }) => {
   return (
     <div
       key={id}
@@ -45,46 +45,27 @@ const ToggleGroup: React.FC<ToggleProps> = ({ id, title, cause, solution, before
                 </ol>
               </>
             )}
-            {before && before.length > 0 && (
-              <li key={`before-title-${id}`} className="select-none leading-relaxed mt-2">
-                Before
-              </li>
+            {code && (
+              <>
+                <li key={`code-title-${id}`} className="select-none leading-relaxed mt-2">⏳ Code</li>
+                {code?.map((snippet, idx) => (
+                  <SyntaxHighlighter
+                    key={`code-${id}-${idx}`}
+                    language="diff"
+                    style={atomDark}
+                    customStyle={{
+                      padding: "0px 20px",  
+                      margin: "8px 0px",
+                      lineHeight: 1.8,
+                      fontSize: "10px",
+                      borderRadius: "10px"
+                    }}
+                  >
+                    {snippet}
+                  </SyntaxHighlighter>
+                ))}
+              </>
             )}
-            {before?.map((b, sidx) => (
-              <SyntaxHighlighter
-                key={`before-${id}-${sidx}`}
-                language="typescript"
-                style={atomDark}
-                customStyle={{
-                  padding: "0px",  
-                  margin: "8px 0px",
-                  lineHeight: 1.8,
-                  borderRadius: "10px"
-                }}
-              >
-                {b}
-              </SyntaxHighlighter>
-            ))}
-            {before && after && after.length > 0 && (
-              <li key={`after-title-${id}`} className="select-none leading-relaxed mt-2">
-                After
-              </li>
-            )}
-            {after?.map((a, sidx) => (
-              <SyntaxHighlighter
-                key={`after-${id}-${sidx}`}
-                language="typescript"
-                style={atomDark}
-                customStyle={{
-                  padding: "0px",  
-                  margin: "8px 0px",
-                  lineHeight: 1.8,
-                  borderRadius: "10px"
-                }}
-              >
-                {a}
-              </SyntaxHighlighter>
-            ))}
           </>
         )}
       </ul>

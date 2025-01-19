@@ -3,8 +3,7 @@ export interface ToggleProps {
   title: string;
   cause?: string;
   solution?: string[];
-  before?: string[];
-  after?: string[];
+  code?: string[];
   contents?: string[];
 }
 
@@ -17,8 +16,7 @@ interface TroubleInfo {
   title: string;
   cause: string;
   solution: string[];
-  before?: string[];
-  after?: string[];
+  code?: string[];
 }
 
 interface VideoInfo {
@@ -93,7 +91,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
       information: {
         videos: [{
           title: "Mobile ver.",
-          url: "/video/pf_video.mp4",
+          url: "/video/pf_video.mov",
         }],
         title: "Portfolio",
         description: "모바일부터 데스크톱까지 반응형 포토폴리오 사이트",
@@ -199,7 +197,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         period: "2023.02.07 ~ 2023.05.15, 2024.09.02 ~ 2024.09.29",
         personnel: ["FE 1명"],
         skills: ["HTML", "SCSS", "JavaScript", "Vercel"],
-        result: ["Lighthouse 기준 SEO와 접근성이 76점 → 100점으로 31% 증가"],
+        result: ["Lighthouse 기준 SEO와 접근성이 76점 → 100점으로 31% 증가했습니다."],
       },
       functions: [
         {
@@ -244,14 +242,16 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         personnel: ["FE 1명"],
         skills: ["React", "Redux", "Fabric.js", "Typescript", "Tailwind CSS"],
         challenge: [
-          "기존 타사 라벨링툴은 하나의 이미지를 라벨링하는 데 시간이 많이 소요되었습니다."
+          "기존의 타사 라벨링툴은 하나의 이미지를 라벨링하는 데 시간이 많이 소요되었습니다."
         ],
         approach: [
-          "회사의 라벨러 5명과 소통하며 파악한 결과, 단축키와 필터 기능의 부족으로 인한 작업 효율 저하가 주요 문제라는 것을 알게 되었습니다.",
-          "Canvas 기반의 라이브러리 4개를 비교분석 후 Fabric.js를 채택하여 사용자의 요구에 맞춘 라벨링툴을 개발하였습니다."
+          "회사의 라벨러 5명과 소통하여 파악한 결과, 단축키와 필터 기능의 부족으로 인한 작업 효율 저하가 주요 문제라는 것을 알게 되었습니다.",
+          "단기간에 구현해야했기 때문에 라이브러리를 사용하여 개발하기로 하였습니다.",
+          "Canvas 기반의 라이브러리 Fabric.js, Konva.js, Paper.js, Pixi.js 4개를 비교분석하였습니다.",
+          "그 중 타 라이브러리와 달리, 실시간 필터 효과와 세부적인 도형 편집을 제공하는 Fabric.js를 채택하여 사용자의 요구에 맞춘 라벨링툴을 개발하였습니다."
         ],
         result: [
-          "작업 과정에서 클릭 수가 약 40% 하였습니다.",
+          "작업 과정에서 클릭 수가 약 40% 감소하였습니다.",
           "타사 라벨링툴을 사용하는 비용인 매월 약 150만 원의 비용 절감하였습니다.",
         ],
       },
@@ -309,31 +309,21 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           title: "첫 어노테이션을 그린 후 다음 어노테이션을 그리려고 마우스를 클릭할 때 이전에 그린 어노테이션이 사라지는 문제",
           cause: "부모 컴포넌트인 AnnotationEditorComponent가 리렌더링될 때 자식 컴포넌트인 Canvas가 불필요하게 리렌더링되어 이전에 그린 어노테이션 상태가 사라졌습니다.",
           solution:[
-            "memo를 사용해 Canvas 컴포넌트를 메모이제이션함으로써 props가 변경되지 않는 한 재렌더링되지 않도록 설정하여 이전에 그린 어노테이션 상태가 유지되도록 했습니다.",
+            "memo를 사용해 Canvas 컴포넌트를 메모이제이션함으로써 props가 변경되지 않는 한 리렌더링되지 않도록 설정하여 이전에 그린 어노테이션 상태가 유지되도록 했습니다.",
           ],
-          before: [`
-            const Canvas: React.FC<Props> = (props) => {
-              return (
-                <div>
-                  <canvas id="canvas" />
-                </div>
-              );
-            };
+          code: [`
++ import { memo } from 'react';
 
-            export default Canvas;
-          `],
-          after: [`
-            import { memo } from 'react';
+  const Canvas: React.FC<Props> = (props) => {
+    return (
+      <div>
+        <canvas id="canvas" />
+      </div>
+    );
+  };
 
-            const Canvas: React.FC<Props> = (props) => {
-              return (
-                <div>
-                  <canvas id="canvas" />
-                </div>
-              );
-            };
-
-            export default memo(Canvas);
+- export default Canvas;
++ export default memo(Canvas);
           `],
         },
         {
@@ -341,52 +331,54 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           cause: "datasetClasses가 리렌더링 시마다 새로운 배열이 생성되어 이를 의존성으로 사용하는 useEffect가 값이 변경된 것으로 잘못 인식해 반복 실행되면서 무한 루프가 발생했습니다.\nchangeColorHotkey과 addFilterImg 함수가 매 렌더링마다 새 함수가 만들어져서 이 함수를 의존성 배열에 등록한 useEffect가 계속 변경되었다고 인식해 반복 실행되거나 불필요한 리렌더링을 유발했습니다.\nDOM 요소(Fabric.js Canvas 인스턴스)나 특정 좌표 값(canvasRef, imageSizeRef, isPanning, origX, origY 등)을 useState로 관리하면 변경 시마다 리렌더링이 발생하고 의존성 배열로 인한 무한 루프가 발생했습니다.\n부모 컴포넌트가 리렌더링될 때, 자식 컴포넌트도 매번 리렌더링되어 불필요한 렌더링되었습니다.",
           solution: [
             "useMemo를 사용해 datasetClasses을 메모이제이션하여 리렌더링 시에도 기존 배열 참조값을 유지하도록 함으로써 useEffect가 불필요하게 재실행되지 않도록 했습니다.",
-            "useCallback으로 함수를 감싸 특정 의존성이 변경되지 않으면 함수 참조값이 바뀌지 않도록 해 무한 루프 및 불필요한 재렌더링을 방지했습니다.",
+            "useCallback으로 함수를 감싸 특정 의존성이 변경되지 않으면 함수 참조값이 바뀌지 않도록 해 무한 루프 및 불필요한 리렌더링을 방지했습니다.",
             "useRef를 사용하여 렌더링과 무관하게 유지해야 할 데이터를 저장하고 값 변경 시에도 리렌더링이 일어나지 않게 함으로써 무한 루프나 성능 저하를 방지했습니다.",
             "React.memo를 사용해 자식 컴포넌트를 메모이제이션해 props가 변하지 않는다면 리렌더링을 스킵하여 성능을 최적화하고 불필요한 리렌더링를 방지했습니다.",
           ],
-          after: [`
-            const datasetClasses = useMemo(() => [
-              {
-                name: "4",
-                tool: [ "BOUNDING_BOX" ],
-                color: "#ff00bb"
-              },
-              {
-                name: "6",
-                tool: [ "BOUNDING_BOX" ],
-                color: "#009dff"
-              }
-            ], []); 
+          code: [`
+- const datasetClasses = [
++ const datasetClasses = useMemo(() => [
+  {
+    name: "4",
+    tool: [ "BOUNDING_BOX" ],
+    color: "#ff00bb"
+  }, ...
+- ]; 
++ ], []); 
           `, `
-            const changeColorHotkey = useCallback(
-              (event: KeyboardEvent) => {
-                const keyIndex = parseInt(event.key, 10) - 1;
-                if (keyIndex >= 0 && keyIndex < datasetClasses.length) onChangeColor(datasetClasses[keyIndex].color);
-              },
-              [datasetClasses],
-            );
+- function changeColorHotkey(event: KeyboardEvent) {
++ const changeColorHotkey = useCallback((event: KeyboardEvent) => {
+    const keyIndex = parseInt(event.key, 10) - 1;
+    if (keyIndex >= 0 && keyIndex < datasetClasses.length) onChangeColor(datasetClasses[keyIndex].color);
++   }, [datasetClasses]
+- }
++ );
 
-            const addFilterImg = useCallback(
-              (img: any) => {
-                const brightnessFilter = new fabric.Image.filters.Brightness({
-                  brightness: parseFloat(inputValue.brightness) / 100,
-                });
+- function addFilterImg(img: HTMLImageElement) {
++ const addFilterImg = useCallback((img: HTMLImageElement) => {
+    const brightnessFilter = new fabric.Image.filters.Brightness({
+      brightness: parseFloat(inputValue.brightness) / 100,
+    });
 
-                ...
-              },
-              [inputValue.brightness, inputValue.contrast],
-            );
+    ...
++  }, [inputValue.brightness, inputValue.contrast]
+- }
++ );
           `, `
-            const canvasRef = useRef<fabric.Canvas | null>(null);
-            const imageSizeRef = useRef({ minX: 0, maxX: 0, minY: 0, maxY: 0 });
-            const isPanning = useRef(false);
-            const isDrawing = useRef(true);
-            ...
+- let canvasRef = null;
++ const canvasRef = useRef<fabric.Canvas | null>(null);
+- let imageSizeRef = { minX: 0, maxX: 0, minY: 0, maxY: 0 };
++ const imageSizeRef = useRef({ minX: 0, maxX: 0, minY: 0, maxY: 0 });
+- let isPanning = false;
++ const isPanning = useRef(false);
+- let isDrawing = true;
++ const isDrawing = useRef(true);
+...
           `, `
-            export default memo(AnnotationEditorComponent);
-          `]
-          ,
+- export default AnnotationEditorComponent;
++ export default memo(AnnotationEditorComponent);
+          `
+          ],
         },
         {
           title: "class를 변경하는 단축키 함수를 작성했으나 단축키를 눌러도 class가 변경되지 않는 문제",
@@ -394,14 +386,14 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           solution: [
             "useCallback을 사용해 단축키 함수가 동일한 참조 상태를 유지하도록 메모이제이션하여 함수가 재생성되지 않고 최신 상태를 참조하도록 했습니다.",
           ],
-          after: [`
-            const changeColorHotkey = useCallback(
-              (event: KeyboardEvent) => {
-                const keyIndex = parseInt(event.key, 10) - 1;
-                if (keyIndex >= 0 && keyIndex < datasetClasses.length) onChangeColor(datasetClasses[keyIndex].color);
-              },
-              [datasetClasses],
-            );
+          code: [`
+- function changeColorHotkey (event: KeyboardEvent) {
++ const changeColorHotkey = useCallback((event: KeyboardEvent) => {
+    const keyIndex = parseInt(event.key, 10) - 1;
+    if (keyIndex >= 0 && keyIndex < datasetClasses.length) onChangeColor(datasetClasses[keyIndex].color);
++   }, [datasetClasses]
+- }
++ );
           `],
         },
         {
@@ -410,32 +402,42 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           solution: [
             "마우스 좌표 값이 리렌더링에 영향을 받지 않도록 useRef로 관리하여 좌표 값을 유지합니다.",
           ],
-          after: [`
-            const lastPosX = useRef(0);
-            const lastPosY = useRef(0);
-            const origX = useRef(0);
-            const origY = useRef(0);
+          code: [`
+- let lastPosX = 0;
++ const lastPosX = useRef(0);
+- let lastPosY = 0;
++ const lastPosY = useRef(0);
+- let origX = 0;
++ const origX = useRef(0);
+- let origY = 0;
++ const origY = useRef(0);
           `, `
-            const startDraw = (opt: any) => {
-              if (!opt.e.shiftKey && isDrawing.current && canvasRef.current) {
-                const pointer = canvasRef.current.getPointer(opt.e);
+const startDraw = (opt: any) => {
+-   if (!opt.e.shiftKey && isDrawing && canvas) {
++   if (!opt.e.shiftKey && isDrawing.current && canvasRef.current) {
+-     const pointer = canvas.getPointer(opt.e);
++     const pointer = canvasRef.current.getPointer(opt.e);
 
-                origX.current = pointer.x;
-                origY.current = pointer.y;
+-     origX = pointer.x;
++     origX.current = pointer.x;
+-     origY = pointer.y;
++     origY.current = pointer.y;
+    ...
+  }
+};
 
-                ...
-              }
-            };
+const ingDraw = (opt: any) => {
+-   if (!isDrawing || !rect || !canvas) return;
++   if (!isDrawing.current || !rect || !canvasRef.current) return;
+-   const pointer = canvas.getPointer(opt.e);
++   const pointer = canvasRef.current.getPointer(opt.e);
 
-            const ingDraw = (opt: any) => {
-              if (!isDrawing.current || !rect || !canvasRef.current) return;
-              const pointer = canvasRef.current.getPointer(opt.e);
-
-              let width = Math.abs(origX.current - pointer.x);
-              let height = Math.abs(origY.current - pointer.y);
-
-              ...
-            };
+-   let width = Math.abs(origX - pointer.x);
++   let width = Math.abs(origX.current - pointer.x);
+-   let height = Math.abs(origY - pointer.y);
++   let height = Math.abs(origY.current - pointer.y);
+  ...
+};
           `],
         },
       ],
@@ -555,12 +557,16 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           "운영체제 상관없이 접근 가능한 웹 서비스 기반 저상버스 정보 시스템을 개발했습니다."
         ],
         result: [
-          "Lighthouse 기준 성능과 SEO: 92점, FCP: 0.6s, TBT: 0.02s",
+          "Lighthouse 기준, 성능과 SEO을 92점을 기록했습니다.",
+          "FCP가 0.6s, TBT가 0.02s를 기록했습니다.",
         ],
         award: [
           "제3회 경상북도 공공데이터 활용 창업경진대회 제품 및 서비스 개발 부문 우수 (12개의 팀 중 2등)",
           "포항테크노파크",
           "2023.07.28",
+          "2023년 한국정보기술학회 대학생 논문경진대회 우수논문상 동상",
+          "한국정보기술학회장",
+          "2023.06.02",
         ],
       },
       functions: [
@@ -608,29 +614,31 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
             "Promise를 return하여 then() 메서드를 활용해 위치 정보를 받은 후 좌표 정보를 지도에 반영하고 마커를 표시할 수 있게 했습니다.",
             "사용자의 현재 위치 정보인 point가 업데이트될 때마다 useEffect 훅이 실행되어 지도가 다시 렌더링되고 해당 위치에 맞춰 마커가 표시되도록 했습니다.",
           ],
-          after: [`
-            function getCurrentPosition() {
-              return new Promise(function (resolve, reject) {
-                navigator.geolocation.getCurrentPosition(resolve, reject)
-              });
-            }
+          code: [`
++ function getCurrentPosition() {
++   return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+-     setPoint(position);
++   });
++ }
 
-            useEffect(() => {
-              getCurrentPosition()
-              .then(point => setPoint(point))
-            }, [])
++ useEffect(() => {
++   getCurrentPosition()
++   .then(point => setPoint(point))
++ }, [])
           `, `
-            useEffect(()=> {
-              const requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-              };
-            
-              fetch(\`http://119.56.230.204:506/api/nodes?latitude=\${point.coords.latitude}&longitude=\${point.coords.longitude}\`, requestOptions)
-              .then(response => response.json())
-              .then(result => setList(result))
-              .catch(error => console.log('error :: ', error))  
-            }, [point])
+useEffect(()=> {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+
+  fetch(\`http://119.56.230.204:506/api/nodes?latitude=\${point.coords.latitude}&longitude=\${point.coords.longitude}\`, requestOptions)
+  .then(response => response.json())
+  .then(result => setList(result))
+  .catch(error => console.log('error :: ', error))
+- }, []);
++ }, [point])
           `],
         },
         {
@@ -640,25 +648,16 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
             "useEffect의 의존성 배열에 출발지 및 도착지 정보 변수를 추가하여 변수가 변경될 때마다 useEffect 내의 코드가 다시 실행되도록 했습니다.",
             "출발지 및 도착지 중 하나라도 변경되면 자동으로 API 호출을 트리거하여 최신 경로 정보를 가져와 동적으로 업데이트되도록 처리했습니다.",
           ],
-          before: [`
-            useEffect(() => {
-              if(destinationSelected != undefined) {
-                fetch(\`http://119.56.230.204:506/paths?departureLongitude=\${departureSelected.longitude}&departureLatitude=\${departureSelected.latitude}&arrivalLongitude=\${destinationSelected.longitude}&arrivalLatitude=\${destinationSelected.latitude}\`, requestOptions)
-                .then(response => response.json())
-                .then(result => { setList(result); })
-                .catch(error => console.log('error :: ', error));
-              }
-            }, []);
-          `],
-          after: [`
-            useEffect(() => {
-              if(destinationSelected != undefined) {
-                fetch(\`http://119.56.230.204:506/paths?departureLongitude=\${departureSelected.longitude}&departureLatitude=\${departureSelected.latitude}&arrivalLongitude=\${destinationSelected.longitude}&arrivalLatitude=\${destinationSelected.latitude}\`, requestOptions)
-                .then(response => response.json())
-                .then(result => { setList(result); })
-                .catch(error => console.log('error :: ', error));
-              }
-            }, [departureSelected, destinationSelected]);
+          code: [`
+useEffect(() => {
+  if(destinationSelected != undefined) {
+    fetch(\`http://119.56.230.204:506/paths?departureLongitude=\${departureSelected.longitude}&departureLatitude=\${departureSelected.latitude}&arrivalLongitude=\${destinationSelected.longitude}&arrivalLatitude=\${destinationSelected.latitude}\`, requestOptions)
+    .then(response => response.json())
+    .then(result => { setList(result); })
+    .catch(error => console.log('error :: ', error));
+  }
+- }, []);
++ }, [departureSelected, destinationSelected]);
           `],
         },
         {
@@ -667,55 +666,26 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           solution: [
             "주소의 앞 6자리를 비교하여 주소가 '경북 구미시'로 시작하는 결과만 남기고 다른 지역의 결과는 필터링하는 로직을 추가하여 수신된 데이터에 대해 원하는 지역의 장소만 남겼습니다.",
           ],
-          before : [`
-            const onDepartureClick = () => {
-              setDepartureOption(!departureOption);
-              var ps = new kakao.maps.services.Places();  
-              ps.keywordSearch(departure, placesSearchCB);
+          code : [`
+const onDepartureClick = () => {
+  ...
+  function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+-       setDepartureList(data);
++       {data && data.map((items) => {if (items.address_name.slice(0, 6) == "경북 구미시") { setDepartureList(data); } })}
+    } 
+  }
+}
 
-              function placesSearchCB (data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                  setDepartureList(data);
-                } 
-              }
-            }
-            
-            const onDestinationClick = () => {
-              setDestinationOption(!destinationOption);
-              var ps = new kakao.maps.services.Places();
-              ps.keywordSearch(destination, placesSearchCB);
-
-              function placesSearchCB(data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                  setDestinationList(data);
-                }
-              }
-            };
-          `],
-          after : [`
-            const onDepartureClick = () => {
-              setDepartureOption(!departureOption);
-              var ps = new kakao.maps.services.Places();  
-              ps.keywordSearch(departure, placesSearchCB);
-
-              function placesSearchCB (data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                  {data && data.map((items) => {if (items.address_name.slice(0, 6) == "경북 구미시") { setDepartureList(data); } })}
-                } 
-              }
-            }
-            
-            const onDestinationClick = () => {
-              setDestinationOption(!destinationOption);
-              var ps = new kakao.maps.services.Places();
-              ps.keywordSearch(destination, placesSearchCB);
-
-              function placesSearchCB (data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                  {data && data.map((items) => { if (items.address_name.slice(0, 6) == "경북 구미시") { setDestinationList(data); } }) }
-                } 
-              }
-            }
+const onDestinationClick = () => {
+  ...
+  function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+-       setDestinationList(data);
++       {data && data.map((items) => { if (items.address_name.slice(0, 6) == "경북 구미시") { setDestinationList(data); } }) }
+    } 
+  }
+}
           `],
         },
         {
@@ -767,7 +737,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         }],
         title: "NeighborFood",
         description: "배달 음식을 함께 주문할 같은 학교 학생들을 구하는 어플",
-        github: "https://github.com/Neighbor-Food/NF_frontend",
+        github: "https://github.com/seung-mii/NF_frontend/tree/main",
         period: "2023.04.25 ~ 2023.06.02",
         personnel: ["FE 3명", "BE 2명"],
         skills: ["CSS", "JavaScript", "React", "Morpheus API"],
@@ -837,95 +807,79 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
             "package.json 파일에 proxy 설정을 추가하여 개발 환경에서 CORS 문제를 우회할 수 있도록 설정했습니다.",
             "클라이언트 측에서 직접 API 서버에 요청하는 대신 로컬 서버를 경유해 요청을 프록시하여 CORS 정책에 의한 차단을 방지했습니다.",
           ],
-          after: [`
-            {
-              "name": "neighborfood",
-              "version": "0.1.0",
-              "private": true,
-              "proxy": "http://localhost:8080",
-              "dependencies": {
-                ...
-              }
-            }
+          code: [`
+{
+  "name": "neighborfood",
+  "version": "0.1.0",
+  "private": true,
++   "proxy": "http://localhost:8080",
+  "dependencies": {
+    ...
+  }
+}
           `,`
-            let headers = new Headers({
-              "Content-Type": "application/json", 
-            });
+let headers = new Headers({
+  "Content-Type": "application/json", 
+});
 
-            const accessToken = AppStorage.getItem("ACCESS_TOKEN");
-            if (accessToken) {
-              headers.append("Authorization", "Bearer " + accessToken);
-            }
+const accessToken = AppStorage.getItem("ACCESS_TOKEN");
+if (accessToken) {
+  headers.append("Authorization", "Bearer " + accessToken);
+}
 
-            let options = {
-              headers: headers,
-              url: APL_BASE_URL + api,
-              method: method,
-            };
+let options = {
+  headers: headers,
+-   url: "http://..." + api,
++   url: APL_BASE_URL + api,
+  method: method,
+};
 
-            if (request) {
-              options.body = JSON.stringify(request);
-            }
-            
-            return fetch(options.url, options)
-              .then((response) =>
-                response.json().then((json) => {
-                  if (!response.ok) {
-                    return Promise.reject(json);
-                  }
-                  return json;
-                })
-              )
-              .catch((error) => {
-                console.log("Oops!");
-                console.log(error.error);
-                ...
-                return Promise.reject(error);
-              });
+if (request) {
+  options.body = JSON.stringify(request);
+}
           `],
         },
         {
           title: "본인이 작성하지 않은 게시물과 댓글이 삭제 가능한 문제",
           cause: "게시물과 댓글을 작성한 사용자와 현재 로그인한 사용자를 구분하지 못했습니다.",
           solution: [
-            "AppStorage를 통해 현재 로그인한 사용자의 ID와 게시물 및 댓글 작성자의 ID를 비교하여, 일치하는 경우에만 삭제 버튼을 표시해 삭제 가능하도록 수정했습니다.",
+            "Morpheus 앱에서는 localStorage를 사용할 수 없기 때문에 AppStorage를 통해 현재 로그인한 사용자의 ID와 게시물 및 댓글 작성자의 ID를 비교하여, 일치하는 경우에만 삭제 버튼을 표시해 삭제 가능하도록 수정했습니다.",
           ],
-          after: [`
-            // AppStorage.js
-            // Morpheus 앱에서는 localStorage를 사용할 수 없다.
+          code: [`
+/src/AppStorage.js
 
-            const isMorpheus = (() => {
-              const userAgent = window.navigator.userAgent.toLocaleLowerCase();
-              return userAgent.indexOf("morpheus") > -1;
-            })();
++ const isMorpheus = (() => {
++   const userAgent = window.navigator.userAgent.toLocaleLowerCase();
++   return userAgent.indexOf("morpheus") > -1;
++ })();
 
-            export function getItem(key) {
-              return isMorpheus ? M.data.storage(key) : localStorage.getItem(key);
-            }
++ export function getItem(key) {
++   return isMorpheus ? M.data.storage(key) : localStorage.getItem(key);
++ }
 
-            export function setItem(key, value) {
-              return isMorpheus
-                ? M.data.storage(key, value)
-                : localStorage.setItem(key, value);
-            }
++ export function setItem(key, value) {
++   return isMorpheus
++     ? M.data.storage(key, value)
++     : localStorage.setItem(key, value);
++ }
 
-            export function removeItem(key, value) {
-              return isMorpheus
-                ? M.data.removeStorage(key, value)
-                : localStorage.removeItem(key, value);
-            }
-          `, `
-            AppStorage.getItem("username") === list.member.name && (
-              <button onClick={() => onBoardDelete(list.board_no)}>
-                <span class="material-symbols-rounded">delete</span>
-              </button>
-            )
-          `, `
-            AppStorage.getItem("username") === item.writer && (
-              <button onClick={() => onCommentDelete(item.reply_no)}>
-                <span class="material-symbols-rounded">delete</span>
-              </button>
-            )
++ export function removeItem(key, value) {
++   return isMorpheus
++     ? M.data.removeStorage(key, value)
++     : localStorage.removeItem(key, value);
++ }
++           `, `
++ AppStorage.getItem("username") === list.member.name && (
++   <button onClick={() => onBoardDelete(list.board_no)}>
++     <span class="material-symbols-rounded">delete</span>
++   </button>
++ )
++           `, `
++ AppStorage.getItem("username") === item.writer && (
++   <button onClick={() => onCommentDelete(item.reply_no)}>
++     <span class="material-symbols-rounded">delete</span>
++   </button>
++ )
           `],
         },
       ],
@@ -1170,7 +1124,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         period: "2022.08.15 ~ 2022.08.21",
         personnel: ["FE 1명"],
         skills: ["HTML", "CSS", "JavaScript"],
-        result: ["Lighthouse 기준 성능: 95점, 접근성과 SEO: 93점"],
+        result: ["Lighthouse 기준 성능이 95점, 접근성과 SEO가 93점을 기록했습니다."],
       },
       functions: [
         {
