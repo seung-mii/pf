@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Filp from "../../public/img/icon/vertical-flip.png";
+import Filp from "../../public/img/icon/flip.png";
 
 interface FlipIconProps {
   onClick: () => void;
