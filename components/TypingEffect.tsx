@@ -5,8 +5,8 @@ const TypingEffect: React.FC = () => {
   const [typedText1, setTypedText1] = useState('');
   const [typedText2, setTypedText2] = useState('');
 
-  const line1 = '사용자의 삶을 변화시키는 서비스,';
-  const line2 = '편리함을 넘어 가치를 제공하는 개발을 지향합니다.';
+  const line1 = '저는 이런 개발자입니다.';
+  const line2 = '#필요ﾠ #삶의변화ﾠ #UXﾠ #성능ﾠ #반응형ﾠ #다양한협업ﾠ #수상';
  
   const typingArr1 = useRef<string[][]>([]);
   const typingArr2 = useRef<string[][]>([]);

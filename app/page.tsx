@@ -8,7 +8,7 @@ import { CareerSection } from "@/components/CareerSection";
 export default function About() {
   return (
     <>
-      <div className="h-[80vh] sm:h-[70vh] md:h-[65vh] lg:h-[60vh] xl:h-[50vh]  px-7 pt-1 pb-5 sm:px-14 sm:py-8 font-batang cursor-circle">
+      <div className="h-[195vh] sm:h-[120vh] md:h-[115vh] lg:h-[110vh] xl:h-[100vh] px-7 pt-1 pb-5 sm:px-14 sm:py-8 font-batang cursor-circle">
         <TypingEffect />
         <ContentSection />
       </div>
