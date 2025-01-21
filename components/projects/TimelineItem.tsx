@@ -45,7 +45,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
               height={400}
               priority={true}
               quality={80}
-              style={{ maxHeight: '30vh' }}
+              style={{ maxHeight: "30vh", width: "100%", height: "auto", objectFit: "cover", objectPosition: "top" }}
               className="transition-transform filter transition-filter duration-300 ease" />
           ) : (
             <div className="w-[30rem] h-[17vh] sm:h-[30vh] bg-purple flex items-center justify-center border border-gray-300">
