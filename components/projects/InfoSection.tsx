@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleGroup from "./ToggleGroup";
 
-const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubleshooting, icandoit }) => {
+const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubleshooting, icandoit, kpt }) => {
   const [hasVideo0, setHasVideo0] = useState(true);
   
   useEffect(() => {
@@ -142,6 +142,36 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
             </div>
           </div>
         )}
+        {kpt?.keep &&
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-lg">
+            <h1 className="absolute -top-3.5 left-4 px-2 py-2 sm:py-1 bg-backGround text-s sm:text-m">👍 Keep</h1>
+            <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
+              {kpt.keep?.map((k, kidx) => (
+                <li key={kidx}>{k}</li>
+              ))}
+            </ul>
+          </div>
+        }
+        {kpt?.problem &&
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-lg">
+            <h1 className="absolute -top-3.5 left-4 px-2 py-2 sm:py-1 bg-backGround text-s sm:text-m">⚠️ Problem</h1>
+            <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
+              {kpt.problem?.map((p, pidx) => (
+                <li key={pidx}>{p}</li>
+              ))}
+            </ul>
+          </div>
+        }
+        {kpt?.trys &&
+          <div className="border-solid border-thin border-fontColor rounded-md px-3 py-4 sm:p-5 mx-0 my-1 sm:mx-10 relative shadow-lg">
+            <h1 className="absolute -top-3.5 left-4 px-2 py-2 sm:py-1 bg-backGround text-s sm:text-m">🚀 Try</h1>
+            <ul className="list-disc pl-4 text-xs sm:text-s leading-4 sm:leading-6 sm:mt-1 space-y-1 sm:space-y-0">
+              {kpt.trys?.map((t, tidx) => (
+                <li key={tidx}>{t}</li>
+              ))}
+            </ul>
+          </div>
+        }
       </div>
     </div>
   );

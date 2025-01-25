@@ -51,6 +51,7 @@ const ProjectDetails: React.FC = () => {
           functions={projectDetails.functions}
           troubleshooting={projectDetails.troubleshooting}
           icandoit={projectDetails.icandoit}
+          kpt={projectDetails.kpt}
         />
       </div>
     </div>
