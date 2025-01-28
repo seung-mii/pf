@@ -1,4 +1,8 @@
+/* serif */
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Song+Myung&display=swap');
+/* sans */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -137,9 +141,14 @@ table {
 }
 
 /* WHOLE */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-height: 100vh;
   background: #748DA6;
+  font-weight: 300;
 }
 
 /* ABOUT */
@@ -163,53 +172,53 @@ body {
   }
 }
 
-.content-item {
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.content-item:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.content-item:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.content-item:nth-child(3) {
-  animation-delay: 1s;
-}
-
-.content-item:nth-child(4) {
-  animation-delay: 1.5s;
-}
-
-/* Meteor */
-@keyframes meteor-right-30 {
-  0% {
-    top: -10vh;
-    transform: translateX(0px);
-    opacity: 1;
-  }
-
-  100% {
-    top: 110vh;
-    transform: translateX(208vh);
-    opacity: 1;
-  }
-}
-
-.star {
+.border-animate {
   position: relative;
 }
 
-.star-trail {
-  position: absolute;
-  top: calc(50% - 1px);
-  left: -950%;
-  width: 2000%;
-  height: 2px;
-  background: linear-gradient(to left, #fff0, #ffffff7f);
+.border-animate::before {
   content: "";
-  transform: rotateZ(-150deg) translateX(50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #D3CEDF;
+  animation: draw-border 1s forwards ease-out;
+}
+
+@keyframes draw-border {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.paragraph-animate.fade-up {
+  animation: fade-up 0.7s forwards ease-out;
+}
+
+/* 스크롤바 */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -40,22 +40,31 @@ const ContactForm: React.FC = () => {
       <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-3 w-full max-w-2xl mt-2">
         <div className="relative">
           <label htmlFor="user_name" className="sr-only">이름</label>
-          <input type="text" id="user_name" name="user_name" placeholder="Name..." required className="w-full px-3 py-2 md:px-4 md:py-3 text-s rounded-2xl border-solid border-thin border-black bg-lightWhite outline-none" />
+          <input type="text" id="user_name" name="user_name" placeholder="Your name" required className="w-full px-2 py-2 mt-1 text-s border-solid border-b-thin sm:border-b-[1.5px] border-[#9ca3af] bg-lightWhite outline-none focus:border-black rounded-none" />
         </div>
         <div className="relative">
           <label htmlFor="user_email" className="sr-only">이메일</label>
-          <input type="email" id="user_email" name="user_email" placeholder="Email..." required className="w-full px-3 py-2 md:px-4 md:py-3 text-s rounded-2xl border-solid border-thin border-black bg-lightWhite outline-none" />
+          <input type="email" id="user_email" name="user_email" placeholder="abcd123@gmail.com" required className="w-full px-2 py-2 mt-1 text-s border-solid border-b-thin sm:border-b-[1.5px] border-[#9ca3af] bg-lightWhite outline-none focus:border-black rounded-none" />
         </div>
         <div className="relative">
           <label htmlFor="message" className="sr-only">메시지</label>
-          <textarea id="message" name="message" placeholder="Message..."  required className="w-full h-[15vh] sm:h-auto px-3 py-2 md:px-4 md:py-3 text-s rounded-2xl border-solid border-thin border-black bg-lightWhite outline-none resize-none" />
+          <textarea id="message" name="message" placeholder="Best web!"  required className="w-full h-[15vh] sm:h-auto px-2 py-2 mt-1 text-s leading-5 border-solid border-b-thin sm:border-b-[1.5px] border-[#9ca3af] bg-lightWhite outline-none resize-none focus:border-black rounded-none" />
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`block w-fit text-s font-bold text-black px-3 py-2 mx-auto border border-black rounded-full cursor-circleHover transition-all duration-300
-            ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "hover:bg-black hover:text-white"} sm:px-6 sm:py-2`}>
-          {isSubmitting ? "Sending..." : "Send"}
+          className={`relative group w-fit text-s font-semibold text-black px-2 md:px-4 py-1 md:py-2 mt-0 lg:mt-2 mx-auto border border-black rounded-full cursor-circleHover overflow-hidden transition-all duration-500
+            ${isSubmitting ? "bg-gray-500 cursor-not-allowed" : ""}`}
+        >
+          <span className="absolute inset-0 bg-black transition-transform duration-500 ease-in-out translate-y-full group-hover:translate-y-0 pointer-events-none"/>
+          <span className="relative block text-black transition-transform duration-500 ease-in-out pointer-events-none z-10 group-hover:-translate-y-[150%]">
+            {isSubmitting ? "Sending..." : "Send"}
+          </span>
+          {!isSubmitting && (
+            <span className="absolute left-0 right-0 text-white transition-transform duration-1000 ease-in-out pointer-events-none z-10 top-[150%] group-hover:translate-y-[-220%] sm:group-hover:translate-y-[-270%]">
+              Send
+            </span>
+          )}
         </button>
       </form>
     </>

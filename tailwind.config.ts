@@ -20,8 +20,8 @@ export default {
         grey: "#848484"
       },
       fontSize: {
-        'xs': 'clamp(0.7rem, 2vw, 0.725rem)',
-        's': 'clamp(0.725rem, 2vw, 0.85rem)',
+        'xs': 'clamp(0.7rem, 2vw, 0.75rem)',
+        's': 'clamp(0.75rem, 2vw, 0.85rem)',
         'm': 'clamp(0.85rem, 2vw, 1rem)',
         'l': 'clamp(1.0625rem, 2vw, 1.1875rem)',
         'xl': 'clamp(1.25rem, 2vw, 1.4375rem)',
@@ -39,6 +39,8 @@ export default {
       fontFamily: {
         batang: ['"Gowun Batang"', 'serif'],
         myung: ['"Song Myung"', 'serif'],
+        nanum: ['"Nanum Gothic"', 'sans-serif'], 
+        noto: ['"Noto Sans KR"', 'sans-serif'], 
       },
     },
   },

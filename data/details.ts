@@ -53,6 +53,30 @@ export interface DetailTotalInfo {
 
 export const detailsData: { key: string; value: DetailTotalInfo }[] = [
   {
+    key: "three",
+    value: {
+      information: {
+        videos: [{
+          title: "Home",
+          url: "/video/three_video.mov",
+        }],
+        title: "3차원 하늘 공간",
+        description: "Three.js 공부를 위해 제작해본 웹사이트",
+        github: "https://github.com/seung-mii/threejs-study",
+        period: "2024.12.15 ~ 2024.12.26",
+        personnel: ["FE 1명"],
+        skills: ["Three.js"],
+      },
+      functions: [
+      {
+        title: "3차원 하늘 공간을 구현했습니다.",
+        details: [
+          "육면체 지오메트리에 하늘 텍스처를 매핑하여 스카이박스를 구성하고, 카메라를 내부에 배치했습니다.",
+        ],
+      }],
+    },
+  },
+  {
     key: "movie",
     value: {
       information: {
@@ -61,7 +85,7 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
           url: "/video/movie_video.mp4",
         }],
         title: "Movie Web",
-        description: "간단한 영화 웹사이트",
+        description: "영화 웹사이트",
         github: "https://github.com/seung-mii/nextjs-study",
         period: "2024.11.13 ~ 2024.11.20",
         personnel: ["FE 1명"],
@@ -114,6 +138,9 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         videos: [{
           title: "Mobile ver.",
           url: "/video/pf_video.mov",
+        }, {
+          title: "Previous ver.",
+          url: "/video/prepf_video.mp4",
         }],
         title: "Portfolio",
         description: "모바일부터 데스크톱까지 반응형 포토폴리오 사이트",
@@ -122,6 +149,9 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
         period: "2024.10.03 ~ 2024.12.30",
         personnel: ["FE 1명"],
         skills: ["Next.js", "Three.js", "React", "Typescript", "Tailwind CSS", "Vercel"],
+        result: [
+          "Lighthouse 기준 성능이 94점, 접근성이 96점, SEO가 92점을 기록했습니다.",
+        ],
       },
       functions: [{
         title: "반응형 디자인을 구현하였습니다.",
@@ -219,10 +249,10 @@ export const detailsData: { key: string; value: DetailTotalInfo }[] = [
             title: "Order Online",
             url: "/video/zomato_video3.mp4",
           },
-          {
-            title: "Dining & Nightlife and Clubs",
-            url: "/video/zomato_video2.mp4",
-          },
+          // {
+          //   title: "Dining & Nightlife and Clubs",
+          //   url: "/video/zomato_video2.mp4",
+          // },
         ],
         title: "Zomato Clone",
         description: "라이브러리나 프레임워크를 사용하지 않고\nVanilla JS로 구현한 Zomato 클론코딩 웹사이트",
@@ -1064,67 +1094,6 @@ if (request) {
     },
   },
   {
-    key: "todo",
-    value: {
-      information: {
-        videos: [{
-          title: "Home",
-          url: "/video/todolist_video.mp4",
-        }],
-        title: "To-do List",
-        description: "SpringBoot와 React로 만든 To-do List",
-        github: "https://github.com/seung-mii/To-do-List?tab=readme-ov-file",
-        period: "2023.03.31 ~ 2023.04.11",
-        personnel: ["FS: 1"],
-        skills: ["CSS", "JavaScript", "React", "SpringBoot", "H2 Database", "Maven", "Lombok"],
-      },
-      functions: [
-        {
-          title: "사용자 관리",
-          details: [
-            "사용자 생성, 로그인, 조회 등의 기능 및 비즈니스 로직을 구현했습니다.",
-            "JPA를 활용한 데이터베이스를 연동했습니다.",
-          ],
-        },
-        {
-          title: "할 일 관리",
-          details: [
-            "컴포넌트로 할 일 추가, 삭제, 목록 표시를 구현했습니다.",
-            "새로운 할 일을 입력하면 서버에 저장했습니다.",
-            "할 일 목록 렌더링 및 삭제 기능을 제공했습니다.",
-          ],
-        },
-        {
-          title: "사용자 인증 및 관리",
-          details: [
-            "React Router를 활용한 라우팅했습니다.",
-            "사용자 로그인 및 회원가입을 구현했습니다.",
-            "JWT 토큰을 로컬 스토리지에 저장하여 인증 상태를 유지했습니다.",
-          ],
-        },
-        {
-          title: "Pagination 및 정렬 기능",
-          details: [
-            "To-do 목록의 페이지네이션 구현했습니다.",
-          ],
-        },
-      ],
-      kpt: {
-        keep: [
-          "간단한 CRUD + JWT 인증 과정을 직접 설계 및 구현해 프론트와 백의 연동을 빠르게 경험했다.",
-        ],
-        problem: [
-          "규모가 작다 보니 복잡한 동시성 제어나 트랜잭션 처리 경험은 제한적이었다.",
-          "인증/인가 로직(소셜 로그인, 권한 레벨 등)은 간단히만 구현해 실제 운영 시 부족할 수 있다."
-        ],
-        trys: [
-          "소셜 로그인이나 관리자/일반 사용자 권한 구분 등으로 인증 기능을 확장하려고 한다.",
-          "검색·필터링 기능을 추가해 업무용으로도 활용 가능한 수준으로 구현할 수 있다."
-        ],
-      }
-    },
-  },
-  {
     key: "book",
     value: {
       information: {
@@ -1171,217 +1140,6 @@ if (request) {
         trys: [
           "Spring Boot와 JPA로 마이그레이션하여 최신 스택 활용 및 설정 단순화를 시도해볼 수 있다.",
           "JUnit/Mockito 테스트 코드를 도입해 DAO/Service 레이어의 동작을 사전에 검증하고 품질을 높일 수 있다.",
-        ],
-      }
-    },
-  },
-  {
-    key: "meme",
-    value: {
-      information: {
-        videos: [{
-          title: "Home",
-          url: "/video/meme_video.mp4",
-        }],
-        title: "Meme Maker",
-        description: "밈 생성기 만드는 사이트",
-        github: "https://github.com/seung-mii/meme-maker",
-        period: "2023.02.19 ~ 2023.02.20",
-        personnel: ["FE 1명"],
-        skills: ["HTML", "CSS", "JavaScript", "Canvas API"],
-      },
-      functions: [
-        {
-          title: "그리기 및 채우기 모드 전환",
-          details: [
-            "mousemove, mousedown, mouseup, mouseleave 이벤트를 통해 선을 자연스럽게 그릴 수 있도록 구현했습니다.",
-            "마우스의 이동 경로를 연결하고, 선을 화면에 출력했습니다.",
-            "버튼 클릭 시 상태를 토글하며, 캔버스를 채우거나 선을 그릴 수 있도록 설정했습니다.",
-            "모드 전환 상태는 버튼 텍스트(Fill, Draw)로 즉시 확인 가능합니다.",
-          ],
-        },
-        {
-          title: "색상 및 브러쉬 설정",
-          details: [
-            "색상 선택 도구와 data-color 속성을 활용해 선 색상과 채우기 색상을 동적으로 변경했습니다.",
-            "슬라이더로 선 두께를 실시간으로 조정 가능합니다.",
-          ],
-        },
-        {
-          title: "컨버스 지우개 및 전체 삭제",
-          details: [
-            "지우개 버튼은 선 색상을 흰색으로 변경하여 마치 지우개처럼 작동하도록 구현했습니다.",
-            "전체 삭제 버튼 클릭 시 캔버스를 흰색으로 덮어 초기 상태로 복원했습니다.",
-          ],
-        },
-        {
-          title: "텍스트 추가",
-          details: [
-            "캔버스에서 더블 클릭 이벤트 발생 시 사용자가 입력한 텍스트 출력했습니다.",
-            "텍스트 스타일 설정이 다른 작업에 영향을 미치지 않도록 구현했습니다.",
-          ],
-        },
-        {
-          title: "이미지 저장",
-          details: [
-            "canvas.toDataURL()을 사용해 캔버스의 현재 상태를 Base64로 인코딩된 이미지 URL로 변환했습니다.",
-            "<a> 태그를 동적으로 생성하여 href 속성에 해당 URL을 연결하고, download 속성을 사용해 파일명을 지정했습니다.",
-            "임의로 클릭 이벤트를 발생시켜 사용자가 이미지를 다운로드할 수 있도록 처리했습니다.",
-          ],
-        },
-        {
-          title: "이미지 업로드",
-          details: [
-            "파일 입력 이벤트에서 첫 번째 파일을 가져와, URL.createObjectURL()로 브라우저에서 사용할 임시 URL 생성했습니다.",
-            "Image 객체를 생성해 해당 URL을 소스로 지정하고, 캔버스에 이미지를 출력했습니다.",
-          ],
-        },
-      ],
-      icandoit: [
-        {
-          title: "Canvas API를 활용할 수 있게 되었습니다.",
-          details: [
-            "CSS 리셋 파일에 대해 배웠습니다.",
-            "마우스의 여러 이벤트에 대해 함수를 적용할 수 있게 되었습니다.",
-            "저장 시 이미지를 URL로 인코딩하여 이미지를 저장할 수 있게 되었습니다.",
-          ],
-        },
-      ],
-      kpt: {
-        keep: [
-          "Canvas API를 직접 다루어, 선 그리기·채우기·이미지 업로드/다운로드 등 그래픽 기능 구현 역량을 키웠다.",
-          "파일 입출력, 마우스 이벤트 처리, URL.createObjectURL 등 다양한 브라우저 API를 경험했다.",
-        ],
-        problem: [
-          "모바일/터치 이벤트 등 멀티 플랫폼 대응이 아직 부족해, PC 환경 외 사용자 경험은 고려가 미흡하다.",
-          "이미지 처리가 늘어날 경우, 캔버스 성능이나 메모리 이슈가 발생할 수 있다.",
-        ],
-        trys: [
-          "터치 이벤트까지 지원해 다양한 디바이스에서 사용할 수 있도록 확장할 계획이다.",
-          "텍스트 옵션 및 폰트·브러시 종류를 추가할 예정이다.",
-        ],
-      }
-    },
-  },
-  {
-    key: "starbucks",
-    value: {
-      information: {
-        videos: [{
-          title: "Home",
-          url: "/video/starbucks_video.mp4",
-        }],
-        title: "Starbucks Clone",
-        description: "라이브러리나 프레임워크를 사용하지 않고\nVanilla JS로 구현한 스타벅스 클론코딩 웹사이트",
-        github: "https://github.com/seung-mii/starbucks",
-        link: "https://seung-mii.github.io/starbucks/",
-        period: "2022.08.15 ~ 2022.08.21",
-        personnel: ["FE 1명"],
-        skills: ["HTML", "CSS", "JavaScript"],
-        result: ["Lighthouse 기준 성능이 95점, 접근성과 SEO가 93점을 기록했습니다."],
-      },
-      functions: [
-        {
-          title: "스크롤 이벤트를 통한 버튼 및 배지 표시 관리",
-          details: [
-            "GSAP 라이브러리를 사용해 스크롤 위치에 따라 요소의 상태를 보여주기/숨김 처리, 최상단 이동 설정했습니다.",
-          ],
-        },
-        {
-          title: "Swiper를 사용한 슬라이드 자동 재생 관리",
-          details: [
-            "autoplay와 loop 옵션을 사용하여 슬라이드를 자동 재생 설정했습니다."
-          ],
-        },
-        {
-          title: "YouTube API를 사용한 영상 재생 및 상태 관리",
-          details: [
-            "onYouTubeIframeAPIReady 함수를 사용해 유튜브 영상을 삽입했습니다.",
-            "autoplay와 loop 옵션으로 영상을 자동 재생 및 반복 재생 설정했습니다.",
-            "playVars에서 음소거 기능을 지원하지 않아 이벤트 처리로 음소거 설정했습니다.",
-          ],
-        },
-        {
-          title: "배경 이미지 상태 관리",
-          details: [
-            "background-attachment: fixed와 background-repeat: no-repeat 속성을 사용해 배경 이미지가 고정되도록 설정하고 이미지가 반복되지 않도록 설정했습니다.",
-          ],
-        },
-        {
-          title: "마우스 hover 시 애니메이션을 통한 정보 표시",
-          details: [
-            "마우스 hover 이벤트 발생 시 요소가 180도 회전하도록 설정하여 상세 정보가 표시되도록 애니메이션 효과 구현했습니다.",
-          ],
-        },
-      ],
-      icandoit: [
-        {
-          title: "동영상을 연동할 수 있습니다.",
-          details: [
-            "동영상의 다양한 옵션에 대해 활용할 수 있습니다.",
-          ],
-        },
-        {
-          title: "인터랙티브 컴포넌트에 대해 배웠습니다.",
-          details: [
-            "Scroll과 Swiper를 구현할 수 있습니다."
-          ],
-        }
-      ],
-      kpt: {
-        keep: [
-          "라이브러리 없이 구현하여 웹 표준 기초에 충실해 Lighthouse 점수를 90점대 이상 획득했다.",
-          "Swiper, YouTube API, GSAP 등 필요한 부분만 효율적으로 사용해 페이지를 동적으로 구성했다.",
-        ],
-        problem: [
-          "프로젝트 규모가 커질 경우, JS와 CSS를 모듈화하지 않으면 유지보수가 어려워진다.",
-        ],
-        trys: [
-          "컴포넌트/모듈 단위 설계와 빌드 도구 도입으로 유지보수성을 높여볼 계획이다.",
-        ],
-      }
-    },
-  },
-  {
-    key: "overwatch",
-    value: {
-      information: {
-        videos: [{
-          title: "Home",
-          url: "/video/overwatch_video.mp4",
-        }],
-        title: "Overwatch Heroes Selection",
-        description: "Overwatch 게임의 영웅 선택 화면",
-        github: "https://github.com/seung-mii/overwatch_heroes_selection",
-        period: "2022.08.13 ~ 2022.08.14",
-        personnel: ["FE 1명"],
-        skills: ["HTML", "CSS"],
-      },
-      icandoit: [
-        {
-          title: "HTML에 대해 배웠습니다.",
-          details: [
-            "HTML 구조를 작성할 수 있게 되었습니다.",
-            "시멘틱 태그에 대해 배웠습니다.",
-          ],
-        },
-        {
-          title: "CSS를 활용할 수 있게 되었습니다.",
-          details: [
-            "Mouse Hover 시 이벤트를 넣었습니다.",
-            "class를 활용해 CSS를 지정할 수 있습니다.",
-          ],
-        },
-      ],
-      kpt: {
-        keep: [
-          "시멘틱 태그, 클래스 설계를 익히고 마우스 hover 애니메이션까지 적용했다.",
-        ],
-        problem: [
-          "동적 로직이나 DB 연동은 없어서 실제 서비스 수준 확장 경험은 제한적이었다.",
-        ],
-        trys: [
-          "JavaScript를 추가해 영웅 필터, 정보 표시, 즐겨찾기 등 동적 기능을 도입해볼 계획이다.",
         ],
       }
     },

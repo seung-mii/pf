@@ -16,7 +16,7 @@ export function StaticHighlight({ text, highlights, links }: StaticHighlightProp
           if (typeof element === "string") {
             return element.split(regex).map((part, i) =>
               part === hlText ? (
-                <span key={`highlight-${hlText}-${i}`} style={{ color }}>
+                <span key={`highlight-${hlText}-${i}`} style={{ color }} className="font-normal">
                   {part}
                 </span>
               ) : (
@@ -37,7 +37,7 @@ export function StaticHighlight({ text, highlights, links }: StaticHighlightProp
           if (typeof element === "string") {
             return element.split(regex).map((part, i) =>
               part === linkText ? (
-                <Link key={`link-${linkText}-${i}`} href={href} className="underline" target="_blank" rel="noopener noreferrer">
+                <Link key={`link-${linkText}-${i}`} href={href} className="underline cursor-circleHover" target="_blank" rel="noopener noreferrer">
                   {part}
                 </Link>
               ) : (
