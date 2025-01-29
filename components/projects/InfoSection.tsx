@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { DetailTotalInfo } from "@/data/details";
 import Tab from "@/public/img/icon/link.png";
 import Github from "@/public/img/icon/github-logo.png";
@@ -8,6 +8,12 @@ import ToggleGroup from "./ToggleGroup";
 import LazyVideo from "./LazyVideo";
 
 const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubleshooting, kpt }) => {
+  const memoizedVideos = useMemo(() => {
+    return information.videos?.map((video, index: number) => (
+      <LazyVideo key={index} url={video.url} title={video.title} />
+    ));
+  }, [information.videos]);
+
   return (
     <div className="sm:grid sm:grid-cols-2 sm:gap-y-5 gap-x-3 px-7 pt-5 sm:pt-8 sm:pt-0 relative">
       <div className="sm:sticky top-10 sm:h-full flex flex-col items-start sm:justify-start">
@@ -38,9 +44,7 @@ const InfoSection: React.FC<DetailTotalInfo> = ({ information, functions, troubl
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center mt-8 sm:pr-4 xl:pr-0">
-          {information.videos?.map((video, index) => (
-            <LazyVideo key={index} url={video.url} title={video.title} />
-          ))}
+          {memoizedVideos}
         </div>
       </div>
       <div className="sm:overflow-y-auto sm:max-h-[95vh] sm:pt-8 scrollbar-hide cursor-scroll">

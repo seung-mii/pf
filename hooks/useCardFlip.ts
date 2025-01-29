@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const useCardFlip = () => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
@@ -9,9 +9,9 @@ const useCardFlip = () => {
   const frontLightRef = useRef<HTMLDivElement>(null);
   const backLightRef = useRef<HTMLDivElement>(null);
 
-  const handleFlip = () => {
+  const handleFlip = useCallback(() => {
     setIsFlipped((prev) => !prev);
-  };
+  }, []);
 
   useEffect(() => {
     const cardWrapper = cardWrapperRef.current;
