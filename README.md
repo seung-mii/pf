@@ -75,7 +75,8 @@ $ npm run dev
 
 
 ### 💡 성능 개선 및 최적화(리팩토링)하였습니다.
-- 영상에 대해 React.lazy와 Suspense를 활용해 컴포넌트 단위 지연 로딩을 적용하고, H.264 코덱과 MP4 포맷으로 변환하여 초기 로딩 성능을 개선하였습니다.
+- 영상 컴포넌트에 대해 next/dynamic을 활용해 컴포넌트 단위 지연 로딩을 적용하고, H.264 코덱과 MP4 포맷으로 변환하여 초기 로딩 성능을 개선하였습니다.
+- 반복 렌더링되는 리스트는 useMemo로 캐싱하고, 이벤트 핸들러는 useCallback을 통해 렌더링 최적화를 적용해 전반적인 렌더 효율을 높였습니다.
 - Lodash 라이브러리의 throttle를 활용하여 이벤트 핸들러 호출 빈도를 제한하여 성능을 개선하였습니다.
 - Intersection Observer API를 활용하여 스크롤 이벤트를 효율적으로 처리하고 필요한 콘텐츠만 로드하여 성능을 최적화하였습니다.
 
@@ -138,6 +139,8 @@ $ npm run dev
 │   │   └── FlipIcon.tsx
 │   └── projects/
 │       ├── InfoSection.tsx
+│       ├── LazyVideo.tsx
+│       ├── RealVideo.tsx
 │       └── ToggleGroup.tsx
 ├── hooks/
 │   └── useCardFlip.ts
